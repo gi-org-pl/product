@@ -218,7 +218,7 @@ const availableGroups: SelectableItem[] = [
 
 ## Remember about standards
 
-- Use the standard colour palette — never add colours directly. Check `src/index.css` and [Tailwind docs](https://tailwindcss.com/docs/colors).
+- Use the standard colors palette, never add colors directly (check https://tailwindcss.com/docs/colors and our color palette in the `src/index.css` file and in [athena](https://github.com/gi-org-pl/athena/blob/main/src/index.css))
 - Create unit tests with **Vitest** for 100% of the code created if feasible ([testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md)).
 - Use **BDD / Given–When–Then** structure for all tests.
 - This is a **shared** component → **Storybook story is mandatory**. Cover at minimum:
