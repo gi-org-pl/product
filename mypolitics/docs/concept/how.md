@@ -12,17 +12,17 @@ The quiz is the vehicle. Gamification is not decoration - it is the distribution
 
 ### Engineered virality
 Reach is built, not bought, in three moves:
-1. **Proof of concept to a focus group.** Ship early to friends and politics forums, treat their feedback as the roadmap.
-2. **Engagement at every layer.** Every step of the funnel is designed to be worth continuing, and the result is designed to be worth sharing.
-3. **Public figures.** Politicians, journalists and influencers are reached through patient background work, take the quiz, and publish their own results each year. In the 2019 parliamentary election this made the product viral - 100,000+ users in the pre-election week alone.
+1. **Proof of concept to a focus group** - Ship early to friends and politics forums, treat their feedback as the roadmap.
+2. **Engagement at every layer** - Every step of the funnel is designed to be worth continuing, and the result is designed to be worth sharing.
+3. **Public figures** - Politicians, journalists and influencers are reached through patient background work, take the quiz, and publish their own results each year. In the 2019 parliamentary election this made the product viral - 100,000+ users in the pre-election week alone.
 
 ### Neutrality as an operating rule
 The editorial arm proved the same rule in another medium: the host is a moderator, not a participant. That is what let us put Krzysztof Bosak and Radosław Sikorski in one substantive debate, and what makes figures from every side willing to be associated with us.
 
 ### Organisation
-- **Holarchy.** Thin, flat, overlapping working groups with real autonomy. This is what makes a team of students and pupils viable - it maximises the ideas we can extract and lets people move between groups.
-- **Compensation that is not money.** Growth, mission and co-ownership of something bigger than yourself. This has to be the foundation, not a consolation.
-- **Automate everything without a human in it.** Graphics generation, social promotion, live streams, meeting channels, communication with fans and politicians. Routine editorial work runs itself.
+- **Holarchy** - Thin, flat, overlapping working groups with real autonomy. This is what makes a team of students and pupils viable - it maximises the ideas we can extract and lets people move between groups.
+- **Compensation that is not money** - Growth, mission and co-ownership of something bigger than yourself. This has to be the foundation, not a consolation.
+- **Automate everything without a human in it** - Graphics generation, social promotion, live streams, meeting channels, communication with fans and politicians. Routine editorial work runs itself.
 
 ### How the four modules feed each other
 - **Quiz** is the front door and the engine: it draws the audience and generates the answers.

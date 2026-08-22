@@ -1,9 +1,10 @@
 # Data harvesting
 
-> Every answer lands in the database; the anonymisation boundary.
+> What the quiz collects - answers, demographics, post-surveys - and how it leaves.
 
 ## Contents
 | File | Description |
 |---|---|
-| [Creator exports](./creator-exports.md) | Creators download their data |
-| [LLM quizzes](./llm-quizzes.md) | Quizzes taken by LLMs |
+| [Demographics](./demographics.md) | The four demographic fields |
+| [Exports](./exports.md) | How data leaves the platform |
+| [Post-survey module](./post-survey-module.md) | Current-affairs questions after a quiz |
