@@ -1,11 +1,11 @@
 # Modules
 
-> The four top-level product areas: Quiz, Data, Polls, Media.
+> Our key product areas
 
-## Contents
-| File | Description |
+## Module
+| Module | Description |
 |---|---|
-| [Data module](./data/README.md) | Publish, analyse, download |
-| [Media module](./media/README.md) | Aggregate, link, distribute news |
-| [Polls module](./polls/README.md) | Aggregate polling, predict outcomes |
-| [Quiz module](./quiz/README.md) | Take, create, harvest quizzes |
+| [Quiz](./quiz/README.md) | Quiz taking, creation and moderation |
+| [Data](./data/README.md) | Our data analysis and reports |
+| [Media](./media/README.md) | News aggregation |
+| [Polls](./polls/README.md) | Polling aggregation and predictions |
