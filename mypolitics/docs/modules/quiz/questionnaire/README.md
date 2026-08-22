@@ -5,15 +5,19 @@
 ## Contents
 | File | Description |
 |---|---|
-| [Answer editing](./answer-editing.md) | Changing a submitted answer |
-| [Answer feedback](./answer-feedback.md) | Trivia after each answer |
-| [Checkpoints](./checkpoints.md) | Partial results mid-quiz |
-| [Duo mode](./duo-mode.md) | Guess how a friend answered |
-| [E-mail capture](./email-capture.md) | E-mail for the results link |
-| [Flat answer model](./flat-answer-model.md) | No follow-up questions |
+| [Answer model](./answer-model.md) | The six kinds of answer |
+| [Checkpoints](./checkpoints/README.md) | Partial results between questions |
 | [Gamification](./gamification.md) | Making long quizzes pleasant |
-| [Halfway split](./halfway-split.md) | Finish or see incomplete |
-| [Multi-select and weighting](./multi-select-and-weighting.md) | Many answers, own weights |
-| [No cross-device resume](./no-cross-device-resume.md) | No resume across devices |
-| [Progress and pacing](./progress-and-pacing.md) | The saturated progress bar |
-| [Swipe input](./swipe-input.md) | Swipe instead of buttons |
+| [Phases model](./phases-model.md) | The seven phases of a session |
+| [Progress and pacing](./progress-and-pacing.md) | What the bar is allowed to say |
+| [Results saving and marketing](./results-saving-and-marketing.md) | E-mail for the results link, and consent |
+
+## Context
+The questionnaire is where the audience is won or lost. Between the click that starts a quiz and the result that pays it off sit 50 to 100 questions, and nothing about the product works if people stop halfway.
+
+Four levers carry that:
+
+- **What a question costs to answer** - the [answer model](./answer-model.md) and the [phases](./phases-model.md) a quiz is broken into.
+- **What the taker is told about their progress** - see [progress and pacing](./progress-and-pacing.md).
+- **What they get before the end** - [checkpoints](./checkpoints/README.md), the payoff the [gamification](./gamification.md) bet depends on.
+- **How it closes** - [results saving and marketing](./results-saving-and-marketing.md), the last card before the result.
