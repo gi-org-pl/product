@@ -1,6 +1,6 @@
-# Info modals
+# Module statistics
 
-> Explanatory modals inside results.
+> Distribution of answers shown alongside the module result.
 
 **Decision:** **⚪ idea**
 
@@ -12,3 +12,4 @@
 
 ## Risk
 *why not?*
+

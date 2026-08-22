@@ -1,6 +1,6 @@
-# Character card
+# Double-axis chart
 
-> Downloadable PNG result card.
+> 
 
 **Decision:** **⚪ idea**
 

@@ -1,8 +1,8 @@
 # Follow-up recommendation
 
-> Recommending the next quiz - curated by the team, never by creators.
+> Recommending the next quiz
 
-**Decision:** **🟢 GO** | **🔴 NO-GO** | **⚪ idea**
+**Decision:** **⚪ idea**
 
 ## Context
 *what?*
@@ -12,6 +12,3 @@
 
 ## Risk
 *why not?*
-
-## Decision
-*why GO/NO-GO?*

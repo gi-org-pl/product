@@ -1,6 +1,6 @@
-# Avatar generator
+# Engaging loader
 
-> Generated avatars for archetypes.
+> 
 
 **Decision:** **⚪ idea**
 
@@ -13,5 +13,3 @@
 ## Risk
 *why not?*
 
-## Decision
-*why GO/NO-GO?*

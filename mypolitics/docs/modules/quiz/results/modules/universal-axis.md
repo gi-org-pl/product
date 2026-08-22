@@ -1,6 +1,6 @@
-# Text module
+# Universal axis
 
-> Narrative text block.
+> Backbone of all the other axis modules. 
 
 **Decision:** **🟢 GO** | **🔴 NO-GO** | **⚪ idea**
 

@@ -1,8 +1,8 @@
-# Answer comparison
+# Short results card
 
-> Side-by-side answers.
+> Downloadable PNG result card.
 
-**Decision:** **🟢 GO** | **🔴 NO-GO** | **⚪ idea**
+**Decision:** **⚪ idea**
 
 ## Context
 *what?*
