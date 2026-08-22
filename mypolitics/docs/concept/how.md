@@ -2,8 +2,6 @@
 
 > The operating model and how the four modules feed each other.
 
-**Decision:** **🟢 GO**
-
 ## Context
 myPolitics has run since 2018 with no external funding and no paid promotion. Everything about how we work follows from that: we cannot buy reach, we cannot buy staff, so the product itself has to earn both.
 

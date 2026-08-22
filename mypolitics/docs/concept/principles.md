@@ -2,8 +2,6 @@
 
 > Our moral compass.
 
-**Decision:** **🟢 GO**
-
 ## Context
 myPolitics handles the most polarising subject there is, for a young audience, with no budget to repair a damaged reputation. These are the rules that decide the hard calls - they are constraints, not aspirations.
 

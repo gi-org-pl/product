@@ -2,8 +2,6 @@
 
 > The problem, the mission and the audience definition.
 
-**Decision:** **🟢 GO**
-
 ## Context
 Political division in Poland is argued emotionally, not substantively. People are asked to pick a side long before they can name what they actually believe, and identity-branded media reinforce that: they are ideologically pre-labelled, so young audiences reject them on sight.
 
