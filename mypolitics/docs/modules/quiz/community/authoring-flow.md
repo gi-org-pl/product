@@ -5,7 +5,7 @@
 **Decision:** **⚪ idea**
 
 ## Context
-Any account opens the [quiz editor](../editor/README.md) and builds a quiz end to end - questions, answers, weights, orientations, result modules. Same editor we use for [official quizzes](../official/README.md), no separate creator tier.
+Any account opens the [quiz editor](../editor/README.md) and builds a quiz end to end - questions, answers, weights, orientations, result modules. Same editor we use for our own quizzes, no separate creator tier.
 
 ```mermaid
 stateDiagram-v2

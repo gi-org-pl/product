@@ -6,7 +6,7 @@
 
 ## Context
 Surfaces:
-- a browsable community catalog alongside the [official catalog](../official/catalog.md)
+- a browsable community catalog alongside our own quizzes
 - the [follow-up recommendation](../results/follow-up-recommendation.md) after a finished result
 - the creator's own share links, which work regardless of ranking
 

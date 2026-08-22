@@ -9,6 +9,5 @@
 | [Data harvesting](./data-harvesting/README.md) | What the quiz collects, and para-polls |
 | [Quiz editor](./editor/README.md) | Building a quiz |
 | [myQuizzes](./myquizzes/README.md) | The non-political spin-off |
-| [Official quizzes](./official/README.md) | First-party quizzes |
 | [Questionnaire](./questionnaire/README.md) | The answering experience |
 | [Results](./results/README.md) | The result screen |
