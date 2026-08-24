@@ -8,9 +8,15 @@
 - **One file per functionality** - named after the doc it specifies, so the two line up.
 - **Written once the idea settles** - a spec follows a doc, it never replaces one.
 - **Starts with a link back** - every spec opens with the doc it implements.
-- **Flat for now** - no folders until there are enough files to need them.
+- **Follows the [spec template](../conventions/spec-template.md)** - one shape for front-end, back-end and mixed specs.
+- **Grouped by module** - the folders mirror [modules](../docs/modules/README.md), so a spec sits where its doc does.
 
 ## Contents
-| File | Description |
+| Folder | Description |
 |---|---|
-| [Universal axis](./universal-axis.md) | The bar every result module is built from |
+| [Data](./data/) | Datasets, analysis and reports |
+| [Media](./media/) | Aggregation and distribution |
+| [Platform](./platform/README.md) | Cross-cutting concerns no module owns |
+| [Polls](./polls/) | Poll aggregation and predictions |
+| [Quiz](./quiz/README.md) | Taking, creating and scoring quizzes |
+

@@ -7,7 +7,6 @@
 |---|---|
 | [Accounts](./accounts.md) | What an account unlocks |
 | [Analytics](./analytics.md) | What we measure |
-| [Design system](./design-system.md) | Pill buttons, colour, visual-first |
 | [Front-end reimplementation](./frontend-reimplementation.md) | The front-end rewrite |
 | [Internationalisation](./internationalisation.md) | Translation and going global |
 | [Open-source release](./open-source-release.md) | Publishing the codebase |

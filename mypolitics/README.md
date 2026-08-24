@@ -5,6 +5,7 @@
 ## Contents
 | Folder | Description |
 |---|---|
+| [conventions](./conventions/README.md) | How docs, specs and READMEs are shaped |
 | [docs](./docs/README.md) | What we are building and why - concept, modules, platform, roadmap |
 | [spec](./spec/README.md) | How it is built - technical specification per functionality |
 | [tasks](./tasks/) | Developer tasks, grouped by epic and cycle |
