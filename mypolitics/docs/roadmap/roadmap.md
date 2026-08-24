@@ -4,6 +4,10 @@
 
 Milestones run in order, and so do the parts inside them. A part numbered **x1**, **x2** and so on belongs to the milestone but has no place in its order yet.
 
+![Roadmap](../../assets/roadmap.png)
+
+## Links to docs
+
 | # | Year | Milestone and parts |
 |---|---|---|
 | **1** | **2026** | **Technical preparation** |
