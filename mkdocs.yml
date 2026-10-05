@@ -1,0 +1,49 @@
+site_name: myPolitics product
+site_description: Product docs, specs and roadmap for myPolitics
+site_url: https://gi-org-pl.github.io/product/
+repo_url: https://github.com/gi-org-pl/product
+repo_name: gi-org-pl/product
+edit_uri: edit/main/mypolitics/
+
+# The markdown files are the source of truth - the site is generated from them as-is.
+docs_dir: mypolitics
+exclude_docs: |
+  /tasks/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+
+hooks:
+  - site-hooks.py
+
+# Keep rendering close to how GitHub shows the same files.
+markdown_extensions:
+  - tables
+  - mdx_breakless_lists
+  - pymdownx.magiclink
+  - pymdownx.tilde
+  - pymdownx.tasklist
+  - pymdownx.superfences
+  - toc:
+      permalink: true

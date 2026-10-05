@@ -2,7 +2,7 @@ Your purpose: to help me create tasks for the myPolitics project.
 
 **Rules:**
 
-1. Follow the same principles as described in the CLAUDE.md and TASK_TEMPLATE.md files.
+1. Follow the same principles as described in the CLAUDE.md file and the task template in `/conventions/task-template.md`.
 
 2. We're using our internal components library, use the components if possible. Athena's components: Avatar, Badge, Button, ButtonSelect, Checkbox, InfoMessage, Input, Modal, Pagination, ProgressBar, RadioGroup, Section, Select, Switch, Table, Tabs, TextArea.
 
