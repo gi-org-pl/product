@@ -167,7 +167,9 @@ Run this as soon as Step 5 is done, in the same turn, without asking. Both condi
 - **The spec is approved.** An issue is public to the team and may be picked up within the hour, so an unreviewed spec must never reach one. Writing the spec, or the user asking for "a spec and a task" in one message, is not approval - the review in Step 4 still comes first.
 - **The task file is written.** The issue is a copy of the file, so the repo and GitHub never tell different stories.
 
-Do not publish if the user asked for the task only, or said not to.
+Do not publish if the user asked for the task only, or said not to. The branch name in the task then keeps its `{issue number}` placeholder, which is the correct state for a task with no issue: say in the report that the name is incomplete until the task is published. If the user names an issue that already exists for the work, use its number instead of the placeholder.
+
+**Before publishing a task file this run did not write** (the "task file exists but has no issue" entry point), read it against `conventions/task-template.md`. Tasks written before the branch rule have no branch line, so the fill-in below would silently do nothing. Add the branch bullet to "Remember about standards" with the `{issue number}` placeholder, and fix any other required part of the template that is missing. Leave the task's content alone otherwise - it was written and possibly reviewed by someone else.
 
 Issues go to `gi-org-pl/mypolitics-app`. Its shape, which the new issues must match:
 
@@ -211,6 +213,8 @@ Take the issue number from the URL `gh` prints, replace `{issue number}` in the 
 ```
 gh issue edit {issue number} --repo gi-org-pl/mypolitics-app --body-file {task file}
 ```
+
+Then check the file: it must contain the full branch name and no `{issue number}` left over. If the placeholder was never there, the replacement did nothing and the issue is missing its branch - add the line and push the body again.
 
 With several tasks, publish them in dependency order. Once a blocker has its issue, write its number into the Dependencies section of the tasks that wait on it, then publish those - so each issue names the issue it is blocked by, and the file still matches.
 
