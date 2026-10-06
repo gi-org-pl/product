@@ -33,6 +33,8 @@ A **value** is a share of the track from 0 to 100. The component never normalise
 
 Each entry is anchored to the cap that belongs to it, so an end entry alone renders as a one-sided bar filling from the right.
 
+The mode follows which entries are passed, not which have values. An entry without a value means the orientation is known and its score is not: it keeps its cap, so a double-sided bar with one unknown side stays double-sided. It draws like a value of zero and is announced as missing.
+
 ## Fill geometry
 - Each fill starts at its own cap and extends by its value as a share of the track width.
 - Any remainder stays unfilled. On a double-sided bar with values that do not reach 100 between them, the gap sits in the middle.
@@ -73,7 +75,7 @@ Hatching exists only for comparison. Without a comparison the bar has no hatched
 | Other is ahead | Hatched band from the taker's value to theirs, continuing past the fill |
 | Other is behind | Hatched band from their value to the taker's, drawn over the fill |
 | Values are equal | No band; the image alone marks the shared position |
-| Taker has no entry | The whole track is hatched and only the other party's image is positioned |
+| Taker has no entry, or an entry without a value | The whole track is hatched and only the other party's image is positioned |
 | Other is at 0 or 100 | The image is clamped so it stays fully inside the track |
 | Double-sided bar | The band is measured against the start entry on the same shared track |
 
@@ -91,7 +93,7 @@ Draw order is fills, then marker, then band, then the other party's image, which
 |---|---|
 | Value below 0 or above 100 | Clamped into range |
 | Values that together exceed the track | Both fills scaled proportionally so they meet without overlapping |
-| Value missing or not a number | Treated as an absent entry |
+| Value missing or not a number | The entry stays present: its cap and label are drawn, with no fill and no number |
 | Orientation without an image | Cap renders with colour only |
 | Orientation without a colour | Falls back to a neutral colour |
 | Orientation name longer than the track | Truncated visually, preserved for assistive technology |
