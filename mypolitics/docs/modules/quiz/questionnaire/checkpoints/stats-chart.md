@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67733)
+
 ## Context
 A passive card built on the population rather than on the taker's scores. It draws how every taker so far answered one specific thesis and names where this taker sits in that split. "Rare specimen - you are among the 10% of people who support the thesis *'A great Catholic Poland in a strong Christian Europe.'*"
 

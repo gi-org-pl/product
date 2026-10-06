@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5508-25681)
+
 ## Context
 A square split into four quadrants, with a dot where the taker's two scores put them. The axes are named down the side and along the bottom with their values, and the title says which quadrant they are in and how far out.
 

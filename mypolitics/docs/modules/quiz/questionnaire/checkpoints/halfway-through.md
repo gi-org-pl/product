@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67631)
+
 ## Context
 A passive card at the midpoint of the quiz. No axis, no orientation, no finding - a large percentage and one line telling the taker how much time the rest will take. "You are halfway - it is almost the end, the remaining questions will take about __ min."
 

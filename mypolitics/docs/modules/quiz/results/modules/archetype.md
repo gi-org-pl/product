@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5513-28187)
+
 ## Context
 An archetype is an orientation like any other - an entity that collects points - and this module is the one that tells its story. The leading archetype, its match, a description written by the author, and the ranking behind it.
 

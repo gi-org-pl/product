@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5500-3483)
+
 ## Context
 Every module on the result screen is a card with the same frame: a title, up to two actions, and a body the module fills with [bars](./universal-axis.md).
 

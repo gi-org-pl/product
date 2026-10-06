@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-53568)
+
 ## Context
 The other half of comparison mode, and the half that works in both modes - against a friend, and against an orientation. Every question the taker answered becomes a row that opens into the two answers beside each other.
 

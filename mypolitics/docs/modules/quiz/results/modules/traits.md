@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5513-26739)
+
 ## Context
 A trait is an orientation that only applies at full agreement, so it is not a score to be drawn on a [bar](./universal-axis.md) - it is a thing someone either has or does not. This module shows the ones they have, as coloured pills with an icon and a name.
 

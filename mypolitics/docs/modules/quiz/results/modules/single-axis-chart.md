@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5508-22154)
+
 ## Context
 The simplest module there is: a [bar](./universal-axis.md) filled from zero to the orientation's score, with the orientation named in the title.
 

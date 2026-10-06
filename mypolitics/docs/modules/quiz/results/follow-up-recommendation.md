@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-41770)
+
 ## Context
 A single banner: a title, one line of promise, a themed background image and a play button. It comes in two forms - a bordered block, and a bare band with no frame so it can sit inside other content.
 

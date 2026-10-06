@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-39733)
+
 ## Context
 Almost everything the result screen shows is a score on a scale, so almost everything is drawn with the same bar. The universal axis is that bar, and it comes in two forms: one-sided, filled from zero for a single orientation, and double-sided, split between two orientations that oppose each other.
 
