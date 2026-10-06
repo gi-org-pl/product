@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-52491)
+
 ## Context
 While a comparison is running, a bar sits above the result: who is being compared against, how much the two of you agree, and a control to end it.
 

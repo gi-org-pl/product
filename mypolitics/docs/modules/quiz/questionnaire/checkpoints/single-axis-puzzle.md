@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: Figma - [ask](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67799) | [guessed right](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-67925) | [guessed wrong](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-68299)
+
 ## Context
 The active counterpart to [axis closeness](./axis-closeness.md). Same axis, same chart, but the fill is masked and the taker has to commit to a guess before it is uncovered - see [checkpoints](./README.md) for the shared card frame and [event model](./event-model.md) for what makes it fire.
 

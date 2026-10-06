@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: Figma - [two or three quadrants](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67219) | [four quadrants](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-69231) | [four quadrants, second path](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5581-97574)
+
 ## Context
 Every other checkpoint reports a position. This one reports the movement between positions: the compass is drawn with a dotted trail from where the taker started to where they are now, and the card counts how many quadrants that trail has crossed - see [checkpoints](./README.md) for the shared card frame and [event model](./event-model.md) for what makes it fire.
 

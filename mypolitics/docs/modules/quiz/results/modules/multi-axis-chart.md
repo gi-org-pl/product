@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5500-2487)
+
 ## Context
 A stack of [double axis charts](./double-axis-chart.md) arranged by group. Each row names a group and the orientation leading it, draws that axis as one bar, and hides the rest of the group behind a chevron.
 

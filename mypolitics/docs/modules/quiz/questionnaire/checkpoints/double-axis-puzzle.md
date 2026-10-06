@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: Figma - [ask](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-68069) | [guessed right](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-68119) | [guessed wrong](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-68344)
+
 ## Context
 The harder sibling of the [single axis puzzle](./single-axis-puzzle.md). There the fill is hidden and the poles are named; here the fill is shown and the name is hidden, so the taker knows they are close to something and has to work out what - see [checkpoints](./README.md) for the shared card frame and [event model](./event-model.md) for what makes it fire.
 

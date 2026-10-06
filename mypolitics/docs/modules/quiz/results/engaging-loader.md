@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5518-84111)
+
 ## Context
 The results calculation phase - see [phases model](../questionnaire/phases-model.md) - fills the screen with a card that narrates the work instead of counting down to it. A dark animated field, a stack of short status lines, and the two result actions sitting greyed out until it is over.
 

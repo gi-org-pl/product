@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5500-3239)
+
 ## Context
 The header is the answer the taker came for. An avatar in a ring, a name, and how confident we are about it - then the tabs that split the result from [comparison mode](../comparison/comparision-modes.md).
 

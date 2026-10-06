@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-52656)
+
 ## Context
 Available for a friend only - see [comparison modes](./comparision-modes.md). An orientation has no result of its own to lay over anything, so this view is what a paired identifier buys.
 

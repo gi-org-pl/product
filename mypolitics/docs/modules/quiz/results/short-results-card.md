@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5518-95336)
+
 ## Context
 The short results phase - see [phases model](../questionnaire/phases-model.md) - shows a single card and two actions: open the full results, or download the card. It is the same object either way. On screen it is the summary; saved, it is a PNG the taker can post anywhere.
 

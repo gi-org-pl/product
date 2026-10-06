@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5500-2387)
+
 ## Context
 One [bar](./universal-axis.md) split between two orientations that stand against each other. Each side keeps its own icon, colour and label; together they always add up to a hundred, and the title names whichever side is winning.
 

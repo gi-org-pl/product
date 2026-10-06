@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67457)
+
 ## Context
 A trait is an orientation that only applies at full agreement - every answer tied to it has to line up, so a taker either has it or does not. That makes unlocking one an event with a clear moment, which is what this checkpoint is built on. See [checkpoints](./README.md) for the card frame and [event model](./event-model.md) for the firing rules.
 

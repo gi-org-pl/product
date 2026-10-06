@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: Figma - [single axis](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67082) | [double axis](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5515-67161)
+
 ## Context
 A passive card shown between questions. It names one axis, draws the taker's current position on it, and says what that position means in one sentence - see [checkpoints](./README.md) for the shared card frame and [event model](./event-model.md) for what makes it fire.
 

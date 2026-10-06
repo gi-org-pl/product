@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5514-41702)
+
 ## Context
 Comparison mode is the second tab of the result screen, and it starts with one choice: compare with a friend, or compare with an orientation.
 

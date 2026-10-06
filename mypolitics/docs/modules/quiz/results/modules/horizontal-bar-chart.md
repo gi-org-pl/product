@@ -4,6 +4,8 @@
 
 **Decision:** **⚪ idea**
 
+Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5500-1414)
+
 ## Context
 A list of [single axis bars](./universal-axis.md), one per orientation, sorted by score. Each row carries the orientation's avatar or icon, its name, an optional badge, and its bar.
 
