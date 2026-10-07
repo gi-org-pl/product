@@ -19,7 +19,7 @@ export default function HomePage() { ... }
 ```
 1. PromotionBanner
 2. Featured section
-   ├── Featured QuizCard (isHighlighted + isMainAction + isShowStartText)
+   ├── Featured QuizCard (isHighlighted + isShowStartText)
    └── FeaturedQuizBanner
 3. FeaturesList
 4. PartnersList
@@ -94,7 +94,6 @@ export const MOCK_FEATURED_QUIZ: QuizCardProps = {
   ),
   tags: ['+2M osób', '15 min'],
   isHighlighted: true,
-  isMainAction: true,
   isShowStartText: true,
   isButtonLoading: false,
   onButtonClick: () => {},
@@ -242,7 +241,7 @@ Page-level components typically don't get Storybook stories — skip. Individual
 - [ ] `PromotionBanner` receives `MOCK_PROMOTIONS` from `Home.constants.ts`
 - [ ] `FeaturesList` receives `MOCK_FEATURES` from `Home.constants.ts`
 - [ ] `PartnersList` receives `MOCK_PARTNER_SECTIONS` from `Home.constants.ts`
-- [ ] Featured `QuizCard` uses `isHighlighted + isMainAction + isShowStartText`
+- [ ] Featured `QuizCard` uses `isHighlighted + isShowStartText`
 - [ ] Tab filtering works: Wszystkie / Wyborcze / Społecznościowe
 - [ ] Tab state managed with `useState` — no Zustand
 - [ ] Quiz grid uses `Tabs` component from shared library

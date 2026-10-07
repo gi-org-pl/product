@@ -1,135 +1,74 @@
 # Story
-As a developer, I want the Header and Footer wired into `root.tsx` so that every page in the app automatically gets consistent navigation and footer without any additional layout route.
 
-# Implementation notes
+As a user, I want the same header and footer on every page, and a proper "not found" page for an address that does not exist, so that I can always navigate and never land on a blank screen.
 
-### Why `root.tsx` — not a separate Layout component
-The project already has `root.tsx` which is the universal shell for every route in React Router framework mode. It renders `<Outlet />` which receives every page. Adding `Header` and `Footer` here means **zero routing changes needed** — all current and future pages get the layout for free.
+# Status
 
-No separate `Layout` component, no `layout()` helper in `routes.ts`.
+**Continue pull request [#27](https://github.com/gi-org-pl/mypolitics-app/pull/27) on its branch `layout-wrapper`.** The work is close: this task lists what is left. Do not start over.
 
-### Changes to `root.tsx`
+Already right in #27 - keep it:
 
-```tsx
-import { i18n } from "@lingui/core";
-import { I18nProvider } from "@lingui/react";
-import { Outlet, Scripts } from "react-router";
-import "@gi/athena/athena.css";
+- `Header` and `Footer` are rendered in `src/root.tsx`, inside the i18n provider, around the route content.
+- Unknown addresses are caught by the catch-all route file `src/pages/$.tsx`, which renders `Error404`. `flatRoutes` stays in `src/routes.ts`.
+- Test files inside `src/pages/` are excluded from routing through `ignoredRouteFiles`.
+- The promotion banner is no longer on the home page.
+- `Header` is a named export, like every other component.
 
-import { messages as enMessages } from "../src/locales/en/messages";
-import { messages as plMessages } from "../src/locales/pl/messages";
-import { DEFAULT_LANGUAGE } from "./constants/common";
-import { Header } from "./components/shared/Header/Header";
-import { Footer } from "./components/shared/Footer/Footer";
+# What changed in this task
 
-import "./index.css";
+The first version of this task told you to list routes by hand in `routes.ts` with `route('*', 'pages/NotFound/NotFound.tsx')`. **That instruction is withdrawn.** The project uses file-based routes, and the review of #27 settled it: keep `flatRoutes`, and use the [catch-all route file](https://reactrouter.com/how-to/file-route-conventions#catch-all-route). There is no `pages/NotFound/` folder.
 
-i18n.load({ en: enMessages, pl: plMessages });
-i18n.activate(DEFAULT_LANGUAGE);
+# Behaviour
 
-export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <title>mypolitics</title>
-      </head>
-      <body>
-        <I18nProvider i18n={i18n}>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">
-              <Outlet />
-            </main>
-            <Footer />
-          </div>
-        </I18nProvider>
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-```
+The [Figma frame](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4236-56053) is the source of truth for how the shell looks.
 
-Key points:
-- `flex-col` + `flex-1` on `<main>` → sticky footer pattern (footer always at the bottom, even on short pages).
-- `Header` and `Footer` sit **inside** `<I18nProvider>` so Lingui context is available to both.
-- `<Scripts />` stays outside the provider — it's a React Router internal, not a UI component.
-- Do **not** add padding/margin inside `root.tsx` — individual pages own their own spacing.
+| Case | Behaviour |
+|---|---|
+| Any existing route | Header, then the route's content, then the footer |
+| A route whose content is shorter than the window | The footer sits at the bottom of the window, not under the content |
+| A route whose content is longer than the window | The footer follows the content; the page scrolls as a whole |
+| An address that matches no route | The same header and footer, with `Error404` as the content |
+| Any route | The shell adds no spacing around the content: each page owns its own |
 
-### 404 page wiring
-Add a `NotFound` page that renders `Error404` and register it as the `*` catch-all route in `routes.ts`:
+No separate `Layout` component and no layout route: the shell lives in `root.tsx`.
 
-```
-src/pages/NotFound/
-├── NotFound.tsx
-└── NotFound.test.tsx
-```
+# What is left to fix in #27
 
-```tsx
-// NotFound.tsx
-import { Error404 } from '@/components/shared/Error404/Error404';
-
-export default function NotFound() {
-  return <Error404 />;
-}
-```
-
-Then in `routes.ts` (add to the existing route list — **do not** wrap in a `layout()` call):
-
-```ts
-import { type RouteConfig, index, route } from '@react-router/dev/routes';
-
-export default [
-  index('pages/Home/Home.tsx'),
-  route('quizzes',  'pages/Quizzes/Quizzes.tsx'),
-  route('debates',  'pages/Debates/Debates.tsx'),
-  route('terms',    'pages/Terms/Terms.tsx'),
-  route('privacy',  'pages/Privacy/Privacy.tsx'),
-  route('about',    'pages/About/About.tsx'),
-  route('*',        'pages/NotFound/NotFound.tsx'),  // ← 404 catch-all
-] satisfies RouteConfig;
-```
-
-> Page components for routes other than `NotFound` may not exist yet — add their entries only when the relevant page task is done. The `*` catch-all **must** be wired up as part of this task.
-
-### Dependencies
-This task **depends on**:
-- `Header` component (`epics/layout/cycle-1/header.md`)
-- `Footer` component (`epics/layout/cycle-1/footer.md`)
-- `Error404` component (`epics/layout/cycle-1/error-404.md`)
-
-If any of the above are not yet merged, import a placeholder and leave a `// TODO` comment.
-
-### No new component, no Storybook story
-This task modifies `root.tsx` and creates a thin `NotFound` page — there is no new shared component to document in Storybook.
-
-### i18n
-`root.tsx` contains no user-visible strings. `NotFound` delegates entirely to `Error404` — no additional Lingui macros needed here.
+1. **Merge `main` and make the build pass.** `main` has moved since June: Athena is now the npm package `@gi-org-pl/athena` and its stylesheet is imported in `src/index.css`, not in `root.tsx`.
+2. **Remove the changes that do not belong to this task.**
+   - `PromotionBanner.tsx`: the wrapper with a maximum width and side padding. The banner is no longer on the home page, and a component does not carry its own outer width or margins - the page that places it decides.
+   - `SurveySaturatedProgressBar.tsx` and its stories: formatting-only changes.
+3. **Rewrite the `root` tests so they test behaviour, not class names.** They currently look for the wrapper by its Tailwind classes and assert a class on `main`. Instead:
+   - render the app through a router with a stub route and check that the route's content appears inside `main`;
+   - check the order: header, then `main`, then footer.
+   The sticky footer cannot be proved in a unit test - it is covered by the e2e spec below.
+4. **Add the end-to-end spec.** This pull request puts the shell on every route, so it is user-facing: a happy-path Playwright spec is required. It is also the first real spec in the repository, so the same pull request makes `yarn e2e` runnable - see `AGENTS.md` §4.6 for exactly what that means (`webServer` and `baseURL` in `playwright.config.ts`, and the CI job switched on).
+5. **Describe the pull request properly.** Under Changes, list the decisions and the deviations: the catch-all route instead of the route list, the footer border colour change that a reviewer asked for, and what you verified, with commands and results.
 
 # Files to create / modify
 
 ```
-root.tsx                              # modify — add Header, Footer, flex wrapper
-src/
-└── pages/
-    └── NotFound/
-        ├── NotFound.tsx              # new — wraps Error404
-        └── NotFound.test.tsx         # new — unit tests
-routes.ts                             # modify — add route('*', 'pages/NotFound/NotFound.tsx')
+src/root.tsx                    # modify - done in #27, re-check after merging main
+src/root.test.tsx               # rewrite the assertions
+src/routes.ts                   # modify - done in #27
+src/pages/$.tsx                 # new - done in #27
+src/pages/$.test.tsx            # new - done in #27
+e2e/layout/layout.spec.ts       # new
+playwright.config.ts            # modify - webServer and baseURL
+.github/workflows/...           # modify - enable the e2e job
 ```
+
+`PromotionBanner.tsx`, `SurveySaturatedProgressBar.tsx` and its stories must end up identical to `main`.
 
 # Unit test cases (BDD)
 
 ```ts
 describe('root App', () => {
-  describe('structure', () => {
-    it('renders the Header', ...);
-    it('renders the Footer', ...);
-    it('renders child route content via Outlet', ...);
-  });
-
-  describe('sticky footer', () => {
-    it('pushes the footer to the bottom when content is short', ...);
+  describe('given any route', () => {
+    it('renders the header', ...);
+    it('renders the footer', ...);
+    it('renders the route content inside main', ...);
+    it('renders header, main and footer in that order', ...);
   });
 });
 
@@ -140,27 +79,68 @@ describe('<NotFound /> page', () => {
 });
 ```
 
+# End-to-end cases (Gherkin)
+
+```gherkin
+Feature: Application shell
+
+  Scenario: The shell is on the home page
+    Given a user opens the home page
+    Then they see the header navigation
+    And they see the footer
+
+  Scenario: The footer stays at the bottom of a short page
+    Given a user opens a page whose content is shorter than the window
+    Then the footer ends at the bottom of the window
+
+  Scenario: An unknown address shows the not-found page inside the shell
+    Given a user opens an address that does not exist
+    Then they see the not-found page
+    And they still see the header navigation and the footer
+```
+
+# Out of scope
+
+- Page components for `/quizzes`, `/debates`, `/terms`, `/privacy` and `/about` - each comes with its own task.
+- The content of the home page - [HomePage](https://github.com/gi-org-pl/mypolitics-app/issues/16).
+- Any change to `Header`, `Footer` or `Error404` beyond the named export and the border colour already in #27.
+
 # Remember about standards
+
 - Use the standard colors palette, never add colors directly (check https://tailwindcss.com/docs/colors and our color palette in the `src/index.css` file and in [athena](https://github.com/gi-org-pl/athena/blob/main/src/index.css))
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
+- Keep working on the branch `layout-wrapper`, so the pull request and its review history stay. If the work is ever restarted on a new branch, name it `feature/layout-10`, following [Conventional Branch](https://conventional-branch.github.io/)
+- Read `AGENTS.md` in the repository before continuing - it was extended after this pull request was opened
+- Commit only files that belong to the task; each commit message says what changed, following Conventional Commits
+- This task has no Storybook story: it adds no component
+
+# Dependencies
+
+- `Header` - done ([#9](https://github.com/gi-org-pl/mypolitics-app/issues/9))
+- `Footer` - done ([#8](https://github.com/gi-org-pl/mypolitics-app/issues/8))
+- `Error404` - done ([#7](https://github.com/gi-org-pl/mypolitics-app/issues/7))
 
 # Resources
-- [Legacy repo](https://github.com/gi-org-pl/mypolitics-app-legacy/tree/main/frontend) — see how the legacy app root/layout is structured
-- [mypolitics.pl](https://mypolitics.pl) — observe header + footer on every page
-- [React Router v7 Framework Mode — routing](https://reactrouter.com/start/framework/routing)
-- [Figma project link](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=1190-9207&t=k6GtQ4k9HtLFKbnM-1)
+
+- [Pull request #27](https://github.com/gi-org-pl/mypolitics-app/pull/27) - the work so far and its reviews
+- [Figma - Layout wrapper frame](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4236-56053)
+- [React Router - file route conventions, catch-all route](https://reactrouter.com/how-to/file-route-conventions#catch-all-route)
+- [Playwright - web server](https://playwright.dev/docs/test-webserver)
 - [Front-end standards](https://github.com/Generacja-Innowacja/gi-tech-standards/tree/main/docs/frontend)
 - [Vitest docs](https://vitest.dev/guide/)
 
 # Definition of Done
-- [ ] `Header` and `Footer` added to `root.tsx` inside `<I18nProvider>`
-- [ ] Sticky footer works — `<main>` has `flex-1`, outer `<div>` has `min-h-screen flex flex-col`
-- [ ] No padding/margin added in `root.tsx` — page spacing stays in individual pages
-- [ ] `NotFound` page created at `src/pages/NotFound/NotFound.tsx`
-- [ ] `route('*', ...)` catch-all registered in `routes.ts`
-- [ ] Unit tests added/updated, BDD style, coverage ≥95% on changed files
-- [ ] Biome lint clean (no disabled rules without justification)
-- [ ] TypeScript clean (no `any`, no `@ts-ignore` without comment)
-- [ ] No separate `Layout` component created — logic lives in `root.tsx`
+
+- [ ] `main` merged into the branch; build, lint and tests pass on the merged result
+- [ ] `Header` and `Footer` are rendered in `root.tsx` inside the i18n provider; no separate `Layout` component
+- [ ] Unknown addresses render `Error404` through `src/pages/$.tsx`; `routes.ts` still uses `flatRoutes`
+- [ ] The shell adds no spacing around the route content
+- [ ] `PromotionBanner` and `SurveySaturatedProgressBar` files are identical to `main`
+- [ ] `root` tests assert rendered structure and order, with no class-name selectors
+- [ ] Unit tests BDD style, coverage ≥95% on changed files
+- [ ] Playwright spec `e2e/layout/layout.spec.ts` covers the three scenarios and passes with `yarn e2e` alone, locally and in CI
+- [ ] Biome lint clean
+- [ ] TypeScript clean (no `any`, no `@ts-ignore`)
+- [ ] PR description lists decisions, deviations and verification
 - [ ] CI green: build, lint, test, e2e
