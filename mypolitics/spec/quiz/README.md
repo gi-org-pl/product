@@ -15,6 +15,7 @@
 | [Single axis chart](./single-axis-chart.md) | One orientation, one bar |
 | [Traits](./traits.md) | The traits a taker earned, as a set of pills |
 | [Universal axis](./universal-axis.md) | The bar every result module is built from |
+| [Universal orientation](./universal-orientation.md) | The one definition of an orientation, and how it is read from the API |
 
 ## Build order
 The result modules lean on each other, so they are built in steps. Everything inside one step can be built at the same time; a step needs the ones above it only where the last column says so.
@@ -23,6 +24,7 @@ The result modules lean on each other, so they are built in steps. Everything in
 |---|---|---|
 | 0 | [Universal axis](./universal-axis.md) | Nothing |
 | 0 | [Module wrapper](./module-wrapper.md) | Nothing |
+| 0 | [Universal orientation](./universal-orientation.md) | Nothing |
 | 1 | [Single axis chart](./single-axis-chart.md) | Universal axis, module wrapper |
 | 1 | [Double axis chart](./double-axis-chart.md) | Universal axis, module wrapper |
 | 1 | [Traits](./traits.md) | Module wrapper |
