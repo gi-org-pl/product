@@ -13,3 +13,4 @@ There are exactly four modules: **Quiz**, **Data**, **Polls**, **Media**. Everyt
 | [Modules](./modules/README.md) | The main product areas |
 | [Platform](./platform/README.md) | General concerns and ideas |
 | [Roadmap](./roadmap/README.md) | What happens when |
+| [Growth](./growth/README.md) | Growth ideas parked for a later stage |
