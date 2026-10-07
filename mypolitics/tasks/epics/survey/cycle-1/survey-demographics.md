@@ -1,166 +1,124 @@
 # Story
 
-As a user who has finished a survey, I want to optionally fill in my demographic data (age, gender, place of residence size, education level, and region) so that my results can be compared with others — and I want to be able to skip this step or learn more about how my data will be used.
+As a user who has just answered the last question, I want to tell the quiz a few things about myself - my age, gender, where I live and my education - from short fixed lists, and to see why it asks, so that my result can later be compared with people like me without my typing anything identifying.
+
+# Replaces
+
+This task replaces [#34](https://github.com/gi-org-pl/mypolitics-app/issues/34) and its pull request [#48](https://github.com/gi-org-pl/mypolitics-app/pull/48). Start from a fresh branch off `main`; do not continue that branch. What changed from the old task:
+
+- **Four fields, not five.** Region ("Województwo") is gone: the [demographics doc](https://github.com/gi-org-pl/product/blob/main/mypolitics/docs/modules/quiz/data-harvesting/demographics.md) and the Demographics phase frame have four. The component frame still draws a fifth field; ignore it.
+- **No action buttons.** "Zobacz wyniki" and "Pomiń" belong to the questionnaire that wraps this component, as they do for the category select. The old task put them, and a loading state, inside.
+- **No option lists inside.** The lists are a data contract - they travel with the answers into exports - so the parent passes them in. The old task hard-coded them, with every age from 18 to 117.
+- **Fully controlled.** The parent holds the values; whether a field is required is the parent's decision.
 
 # Component properties
 
 **Component:** `SurveyDemographics`
 **Location:** `src/components/survey/SurveyDemographics/`
-**Shared:** no — domain component under `survey`
+**Shared:** no - domain component under `survey`
 
-This is a **fully controlled, presentational component**. It has no context dependencies and performs no API calls. All async behaviour lives in the parent — the component only manages its own UI state (filled fields, modal visibility) and fires callbacks.
-
-```ts
-type SurveyDemographicsProps = {
-  isLoading?: boolean;         // true while the parent is uploading — disables/loads both buttons
-  onSubmit: (demographics: Demographics) => void;   // called when user clicks "Zobacz wyniki"
-  onSkip: () => void;          // called when user clicks skip
-};
-
-const SurveyDemographics = ({ isLoading = false, onSubmit, onSkip }: SurveyDemographicsProps) => { ... }
-export default SurveyDemographics;
-```
-
-Local state (the only state this component owns):
+Presentational. No context, no API calls. The only state it owns is whether the "To znaczy?" dialog is open.
 
 ```ts
-const [showModal, setShowModal] = useState(false);
-const [demographics, setDemographics] = useState<DemographicsInput>({
-  age: null,
-  gender: null,
-  residenceAreaSize: null,
-  education: null,
-});
-```
+export type DemographicsFieldId = "age" | "gender" | "residenceAreaSize" | "education";
 
-Exported types (in `SurveyDemographics.types.ts`):
+export interface DemographicsOption {
+  value: string;
+  label: string; // already in the taker's language
+}
 
-```ts
-export type Demographics = {
-  age: number;
-  gender: string;
-  residenceAreaSize: string;
-  education: string;
-  region?: string;           // optional — does not block submission
-};
+export type DemographicsValues = Partial<Record<DemographicsFieldId, string>>;
 
-// Internal nullable form state; not exported
-type DemographicsInput = {
-  age: number | null;
-  gender: string | null;
-  residenceAreaSize: string | null;
-  education: string | null;
-  region?: string;
-};
+export interface SurveyDemographicsProps {
+  options: Record<DemographicsFieldId, DemographicsOption[]>; // the fixed list of each field
+  values: DemographicsValues;                                 // chosen values (controlled)
+  onChange: (values: DemographicsValues) => void;             // fired on every choice with the full new set
+  isDisabled?: boolean;                                       // true while the parent is saving
+}
 ```
 
 # Behaviour
 
+The [Figma frame](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4237-59739) is the source of truth for sizes, spacing, type and colours, read together with the [Demographics phase frame](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4272-11722), which shows the four fields in place. The cases below are the source of truth for what happens.
+
 ### Layout
 
-Vertical stack with three main sections:
+Three blocks, top to bottom: the header card, the four fields, the info card.
 
-```
-[ Header card ]
-[ Demographic selects grid ]
-[ Info text + "To znaczy?" link ]
-[ Action buttons ]
-[ Modal (conditional) ]
-```
+- Header card: the title, the illustration of two avatars beside it, a divider, the description.
+- Fields: age and gender share a row; settlement size and education each take a full row. The order is fixed: age, gender, settlement size, education.
+- Info card: one sentence, ending in the inline "To znaczy?" control.
 
----
+### Fields
 
-### Header card
+| Case | Behaviour |
+|---|---|
+| No value for a field | The field shows its name |
+| A value that matches an option | The field shows that option's label |
+| The field is opened | It lists the field's options, in the order given |
+| An option is chosen | `onChange` is called with all current values plus this one; the list closes |
+| A different option is chosen later | `onChange` is called with the value replaced |
+| `isDisabled` | No field can be opened. The "To znaczy?" control still works |
 
-Rounded card with a light background containing:
+A chosen value can be changed, not emptied: a taker who wants to leave a field out does not open it.
 
-- **Title:** `<Trans>Twoja tożsamość</Trans>` — bold, large text.
-- **Illustration:** SVG image of two cartoon avatars (`image.svg`) — positioned to the right.
-- Horizontal divider between title row and description.
-- **Description:** `<Trans>W tym teście otrzymasz dostosowaną pod siebie kartę tożsamości</Trans>`.
+### "To znaczy?" dialog
 
----
+| Case | Behaviour |
+|---|---|
+| "To znaczy?" activated | The dialog opens with its title and two paragraphs |
+| The dialog dismissed (close button, overlay, Escape) | It closes. Nothing else changes |
 
-### Demographic selects (`SurveyDemographicsContent`)
+### Invalid and edge input
 
-A subcomponent `SurveyDemographicsContent` renders a responsive grid of `Select` fields (Athena `Select`). It accepts:
+| Input | Behaviour |
+|---|---|
+| A value that matches no option of its field | Treated as no value: the field shows its name |
+| A field with an empty option list | The field is drawn disabled |
+| A key in `values` that is not one of the four fields | Ignored, and not passed back through `onChange` |
+| An option label longer than the field | Cut with an ellipsis in the closed field; shown in full in the open list |
+| Two options with the same value | The first one is used |
 
-```ts
-type SurveyDemographicsContentProps = {
-  handleChange: (control: string, value: string) => void;
-};
-```
+### Accessibility
 
-Grid layout: two columns on wider viewports, one column on narrow. Fields with `full: true` span the full width.
+- Every field is named after what it asks, whether or not it holds a value - a field showing "Kobieta" is still announced as "Płeć".
+- The illustration is decorative.
+- "To znaczy?" is a button, reachable by keyboard.
+- The dialog moves focus in, traps it, and returns it on close - Athena `Modal` does this.
 
-The five fields and their options:
+# Copy
 
-| `control` | `label` | `full` | Options |
-|---|---|---|---|
-| `age` | `<Trans>Wiek</Trans>` | — | `"0"` → `<Trans>Mniej niż 18</Trans>`, then `"18"`–`"117"` (numeric labels) |
-| `gender` | `<Trans>Płeć</Trans>` | — | `male` → `<Trans>Mężczyzna</Trans>`, `female` → `<Trans>Kobieta</Trans>`, `other` → `<Trans>Inna płeć</Trans>` |
-| `residenceAreaSize` | `<Trans>Wielkość miejsca zamieszkania</Trans>` | `true` | `village` → `<Trans>Wieś</Trans>`, `city_below_50k` → `<Trans>Miasto poniżej 50 tysięcy mieszkańców</Trans>`, `city_below_200k` → `<Trans>Miasto poniżej 200 tysięcy mieszkańców</Trans>`, `city_below_500k` → `<Trans>Miasto poniżej 500 tysięcy mieszkańców</Trans>`, `city_over_500k` → `<Trans>Miasto powyżej 500 tysięcy mieszkańców</Trans>` |
-| `education` | `<Trans>Wykształcenie</Trans>` | `true` | `primary` → `<Trans>Wykształcenie podstawowe</Trans>`, `basic_vocational` → `<Trans>Wykształcenie zasadnicze zawodowe</Trans>`, `secondary` → `<Trans>Wykształcenie średnie</Trans>`, `higher` → `<Trans>Wykształcenie wyższe</Trans>` |
-| `region` | `<Trans>Województwo</Trans>` | `true` | `dolnoslaskie` → `<Trans>Dolnośląskie</Trans>`, `kujawsko-pomorskie` → `<Trans>Kujawsko-Pomorskie</Trans>`, `lubelskie` → `<Trans>Lubelskie</Trans>`, `lubuskie` → `<Trans>Lubuskie</Trans>`, `lodzkie` → `<Trans>Łódzkie</Trans>`, `malopolskie` → `<Trans>Małopolskie</Trans>`, `mazowieckie` → `<Trans>Mazowieckie</Trans>`, `opolskie` → `<Trans>Opolskie</Trans>`, `podkarpackie` → `<Trans>Podkarpackie</Trans>`, `podlaskie` → `<Trans>Podlaskie</Trans>`, `pomorskie` → `<Trans>Pomorskie</Trans>`, `slaskie` → `<Trans>Śląskie</Trans>`, `swietokrzyskie` → `<Trans>Świętokrzyskie</Trans>`, `warminsko-mazurskie` → `<Trans>Warmińsko-Mazurskie</Trans>`, `wielkopolskie` → `<Trans>Wielkopolskie</Trans>`, `zachodniopomorskie` → `<Trans>Zachodniopomorskie</Trans>` |
+Polish is the source; every string goes through a Lingui macro and the English entry is filled in.
 
-The options data is defined as a constant in `SurveyDemographicsContent.constants.ts`.
+| Text | Polish (source) | English |
+|---|---|---|
+| Title | Twoja tożsamość | Your identity |
+| Description | W tym teście otrzymasz dostosowaną pod siebie kartę tożsamości | In this test you will get an identity card tailored to you |
+| Field: age | Wiek | Age |
+| Field: gender | Płeć | Gender |
+| Field: settlement size | Wielkość miejsca zamieszkania | Size of the place you live in |
+| Field: education | Wykształcenie | Education |
+| Info | Powyższe dane w przyszłości pozwolą Ci porównać się z innymi! | This will let you compare yourself with others in the future! |
+| Info control | To znaczy? | Meaning? |
+| Dialog title | Zakres wykorzystania danych | How the data is used |
+| Dialog, first paragraph | Dzięki Twoim odpowiedziom w tej sekcji będziemy mogli przeanalizować Twoje wyniki w przyszłości w celu poprawienia działania quizu, a także przygotowania analiz na data.mypolitics.pl. | Your answers in this section let us analyse results in the future, to improve the quiz and to prepare analyses on data.mypolitics.pl. |
+| Dialog, second paragraph | Twoje dane pozostaną całkowicie anonimowe. | Your data stays completely anonymous. |
 
-Use Athena's `Select` component for each field. On change, call `handleChange(control, value)`.
+Option labels come from props, already translated.
 
----
+# Athena components to use
 
-### Info text & "To znaczy?" link
+- `Select` for each field, with `ActionList` as its content: the option's label goes in `value`, the field's name in `placeholder`. Do not build a custom dropdown.
+- `Modal` for the dialog, through its `title` and `description`.
+- No Athena `Button` in this component: the two action buttons are out of scope, and "To znaczy?" is inline text, so it is a native button styled as in the frame.
+- The illustration is exported from the frame as an image into `src/assets/images/survey/` and imported. Do not reuse the two files from #48: they are 1.2 MB of PNG wrapped in SVG, referenced by a source path that does not exist in a build.
 
-Below the selects, a paragraph:
+# Out of scope
 
-> `<Trans>Powyższe dane w przyszłości pozwolą Ci porównać się z innymi!</Trans>` followed by an inline clickable text `<Trans>To znaczy?</Trans>`
-
-Clicking "To znaczy?" sets `showModal` to `true`.
-
----
-
-### Action buttons
-
-Two buttons stacked vertically (or in a flex column):
-
-1. **Primary — "Zobacz wyniki"**
-   - Athena `Button`, use an appropriate filled/colored variant.
-   - `disabled` when: `isDemographicsFilled` is `false` **or** `isLoading` prop is `true`.
-   - Shows loading state when `isLoading` is `true`.
-   - `onClick`: calls `onSubmit(demographics as Demographics)` — cast is safe because `isDemographicsFilled` guards the button.
-
-2. **Secondary — Skip**
-   - Athena `Button`, use a transparent/ghost variant.
-   - Label: use Lingui for the "Pomiń" / skip string.
-   - `disabled` when: `isLoading` prop is `true`.
-   - Shows loading state when `isLoading` is `true`.
-   - `onClick`: calls `onSkip()`.
-
-`isDemographicsFilled` logic — only the four required fields:
-
-```ts
-const isDemographicsFilled =
-  demographics.age !== null &&
-  demographics.gender !== null &&
-  demographics.residenceAreaSize !== null &&
-  demographics.education !== null;
-```
-
-> **Note:** `region` is optional — do **not** include it in the filled-check.
-
----
-
-### "To znaczy?" Modal
-
-Use Athena's `Modal` component. Opens when the "To znaczy?" inline link is clicked.
-
-- **Title:** `<Trans>Zakres wykorzystania danych</Trans>`
-- **Body:**
-  - `<Trans>Dzięki Twoim odpowiedziom w tej sekcji będziemy mogli przeanalizować Twoje wyniki w przyszłości w celu poprawienia działania quizu, a także przygotowania analiz na data.mypolitics.pl.</Trans>`
-  - `<Trans>Twoje dane pozostaną całkowicie anonimowe.</Trans>`
-- **Close button:** standard modal dismiss — sets `showModal` to `false`.
-
----
+- "Zobacz wyniki" and "Pomiń", their disabled and loading states, and whether any field is required - the questionnaire.
+- The option lists themselves, including the age bands.
+- Saving the answers, and remembering them on the account.
+- Region.
 
 # Files to create
 
@@ -168,94 +126,150 @@ Use Athena's `Modal` component. Opens when the "To znaczy?" inline link is click
 src/components/survey/SurveyDemographics/
 ├── SurveyDemographics.tsx
 ├── SurveyDemographics.test.tsx
-├── SurveyDemographics.types.ts            # Demographics, DemographicsInput
+├── SurveyDemographics.types.ts
+├── SurveyDemographics.constants.ts        # the four fields: id, name, width
 ├── SurveyDemographics.stories.tsx
-└── SurveyDemographicsContent/
-    ├── SurveyDemographicsContent.tsx
-    ├── SurveyDemographicsContent.test.tsx
-    ├── SurveyDemographicsContent.constants.ts  # demographicsData array
-    └── SurveyDemographicsContent.stories.tsx
+├── SurveyDemographicsHeader/              # title, illustration, description
+│   ├── SurveyDemographicsHeader.tsx
+│   └── SurveyDemographicsHeader.test.tsx
+├── SurveyDemographicsField/               # one Select
+│   ├── SurveyDemographicsField.tsx
+│   ├── SurveyDemographicsField.test.tsx
+│   └── utils/
+│       ├── getSelectedOption.ts           # options + value -> the option, or nothing
+│       └── getSelectedOption.test.ts
+├── SurveyDemographicsInfo/                # the sentence and "To znaczy?"
+│   ├── SurveyDemographicsInfo.tsx
+│   └── SurveyDemographicsInfo.test.tsx
+└── SurveyDemographicsModal/
+    ├── SurveyDemographicsModal.tsx
+    └── SurveyDemographicsModal.test.tsx
 ```
+
+No functions in a component file, no `renderX()`. No props that exist only for stories or tests.
 
 # Unit test cases (BDD)
 
 ```ts
 describe('<SurveyDemographics />', () => {
-
-  describe('given no demographic fields are filled', () => {
-    it('disables the primary submit button', ...);
-    it('does not disable the skip button', ...);
+  describe('given no values', () => {
+    it('renders the four fields in order, each showing its name', ...);
+    it('renders no region field', ...);
   });
-
-  describe('given all required demographic fields are filled', () => {
-    it('enables the primary submit button', ...);
+  describe('given values', () => {
+    it('shows the chosen label in each field', ...);
   });
-
-  describe('when the primary button is clicked', () => {
-    it('calls onSubmit with the current demographics object', ...);
+  describe('when an option is chosen', () => {
+    it('calls onChange with the other values kept and this one added', ...);
   });
-
-  describe('when the skip button is clicked', () => {
-    it('calls onSkip', ...);
+  describe('when a different option is chosen for a filled field', () => {
+    it('calls onChange with the value replaced', ...);
   });
-
-  describe('when isLoading is true', () => {
-    it('disables both buttons', ...);
-    it('shows loading state on both buttons', ...);
+  describe('given a key that is not one of the four fields', () => {
+    it('does not pass it back through onChange', ...);
   });
-
-  describe('when "To znaczy?" link is clicked', () => {
-    it('opens the modal', ...);
+  describe('given isDisabled', () => {
+    it('disables every field', ...);
+    it('keeps "To znaczy?" working', ...);
   });
-
-  describe('when the modal is closed', () => {
-    it('hides the modal', ...);
+  describe('when "To znaczy?" is activated', () => {
+    it('opens the dialog', ...);
+  });
+  describe('when the dialog is dismissed', () => {
+    it('closes it', ...);
+    it('does not call onChange', ...);
   });
 });
 
-describe('<SurveyDemographicsContent />', () => {
-
-  describe('given rendered', () => {
-    it('renders a Select for each demographic field', ...);
-    it('renders age, gender, residenceAreaSize, education, and region selects', ...);
+describe('<SurveyDemographicsField />', () => {
+  describe('given no value', () => {
+    it('shows the field name', ...);
   });
+  describe('given a value that matches an option', () => {
+    it('shows the option label', ...);
+    it('is still named after the field', ...);
+  });
+  describe('given a value that matches no option', () => {
+    it('shows the field name', ...);
+  });
+  describe('given an empty option list', () => {
+    it('is disabled', ...);
+  });
+  describe('when opened', () => {
+    it('lists the options in the order given', ...);
+  });
+  describe('when an option is activated', () => {
+    it('calls its handler with the option value', ...);
+  });
+});
 
-  describe('when a select value changes', () => {
-    it('calls handleChange with the correct control key and value', ...);
+describe('getSelectedOption()', () => {
+  describe('given a value present in the options', () => {
+    it('returns that option', ...);
+  });
+  describe('given a value absent from the options', () => {
+    it('returns nothing', ...);
+  });
+  describe('given two options with the same value', () => {
+    it('returns the first', ...);
+  });
+});
+
+describe('<SurveyDemographicsHeader />', () => {
+  it('renders the title and the description', ...);
+  it('hides the illustration from assistive technology', ...);
+});
+
+describe('<SurveyDemographicsModal />', () => {
+  describe('given it is open', () => {
+    it('renders the title and both paragraphs', ...);
   });
 });
 ```
 
 # Storybook stories
 
-**SurveyDemographics:**
-- `Default` — no fields filled, submit button disabled
-- `AllFilled` — all required selects set, submit button enabled
-- `Loading` — `isLoading = true`, both buttons in loading/disabled state
-- `ModalOpen` — "To znaczy?" modal pre-opened
+**Figma**
+- `Default` - no values
+- `Filled` - all four chosen
+- `DialogOpen` - opened in a `play` function
 
-**SurveyDemographicsContent:**
-- `Default` — all five selects rendered in an uncontrolled state
+**Edge**
+- `PartlyFilled` - two of four
+- `Disabled`
+- `LongOptionLabel`
+- `EmptyOptionList` - one field without options
+- `UnknownValue` - a value that is in no list
+
+Stories use mock lists. For gender, settlement size and education take the lists of myPolitics 1.0 (linked below); for age use a handful of bands. They are placeholders, not the product's lists.
 
 # Remember about standards
 
-- **No context hooks, no API calls, no side effects** — this component is purely presentational; the parent owns all async logic
-- Use Athena `Select` for each dropdown — do **not** roll a custom select or reuse the legacy `SurveyAnswerSelect`
-- Use Athena `Button` for both action buttons
-- Use Athena `Modal` for the "To znaczy?" modal
-- No styled-components — Tailwind utility classes only
-- All user-visible strings wrapped in Lingui macros (`<Trans>` in JSX, `` t`…` `` for ARIA labels/attributes) — no hardcoded literals
-- Run `yarn i18n:extract` after adding strings; commit the updated `.po` files
-- `region` is optional and must **not** block the submit button
-- The options data for all selects lives in `SurveyDemographicsContent.constants.ts`
-- Create unit tests with Vitest, BDD style, ≥95% coverage on all new files
-- Create Storybook stories for all variants listed above
+- Use the standard colors palette, never add colors directly (check https://tailwindcss.com/docs/colors and our color palette in the `src/index.css` file and in [athena](https://github.com/gi-org-pl/athena/blob/main/src/index.css))
+- Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
+- Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
+- Name the branch `feature/survey-demographics-89`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Read `AGENTS.md` in the repository before starting. It holds the lessons from earlier reviews, and most of what blocked #48 is in it
+- The component fills its parent's width and its height comes from its content: no maximum width and no centring inside it. Stories show it alone, with no decorator; check them at 320, 360 and 800 px
+- Stories and tests use the shared i18n set-up (`withI18n` in Storybook, `renderWithI18n` from `src/utils/vitest/`). No provider of your own, no `console.log`, no `alert`
+- Assets are imported, never referenced by a path string
+- Run `yarn i18n:extract`, translate every new English entry, commit both catalogs
+- Look at every story in the browser before opening the PR
+- Commit only files that belong to the task; each commit message says what changed, following Conventional Commits
+- The PR follows the repository's pull request template, with screenshots of the stories next to the Figma frame
+
+# Dependencies
+
+None.
 
 # Resources
 
-- [Legacy SurveyDemographics](https://github.com/gi-org-pl/mypolitics-app-legacy/tree/develop/frontend/src/components/Survey/v3/SingleSurveyPage/SurveyContent/QuestionAnswer/Answer) — analyze for behaviour and option data only; do **not** copy styled-components
-- [Figma project link](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=1190-9207&t=k6GtQ4k9HtLFKbnM-1)
+- [Docs - Demographics](https://github.com/gi-org-pl/product/blob/main/mypolitics/docs/modules/quiz/data-harvesting/demographics.md) - the four fields and why they are fixed lists
+- [Docs - Phases model](https://github.com/gi-org-pl/product/blob/main/mypolitics/docs/modules/quiz/questionnaire/phases-model.md) - where the card sits in a session
+- [Figma - SurveyDemographics frame](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4237-59739) - [the card](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4261-11066) (draws a fifth field - ignore it) | [dialog](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4275-1690)
+- [Figma - Demographics phase](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=4272-11722) - the four fields in place; its two buttons are not part of this task
+- [Legacy option lists](https://github.com/gi-org-pl/mypolitics-app-legacy/blob/develop/frontend/src/components/Survey/v3/SingleSurveyPage/SurveyDemographics/SurveyDemographicsContent/SurveyDemographicsContent.tsx) - for story data only
 - [Front-end standards](https://github.com/Generacja-Innowacja/gi-tech-standards/tree/main/docs/frontend)
 - [Storybook docs](https://storybook.js.org/docs/writing-stories)
 - [Tailwind docs](https://tailwindcss.com/docs/)
@@ -265,18 +279,23 @@ describe('<SurveyDemographicsContent />', () => {
 
 - [ ] Code follows folder structure (`docs/frontend/conventions/PROJECT_STRUCTURE.md`)
 - [ ] Naming follows `docs/frontend/conventions/NAMING.md`
-- [ ] Component layout follows `docs/frontend/conventions/COMPONENT_STRUCTURE.md`
+- [ ] Component layout follows `docs/frontend/conventions/COMPONENT_STRUCTURE.md`: one component per file, helpers in `utils/`, each with its own test
+- [ ] Four fields in the fixed order; no region
+- [ ] Each field shows its name when empty and the chosen label when filled
+- [ ] Choosing an option calls `onChange` with the full set of values; the component keeps no copy of them
+- [ ] The component has no action buttons, no option lists of its own and no props that exist only for stories
+- [ ] `isDisabled` blocks the fields and nothing else
+- [ ] "To znaczy?" opens the dialog; dismissing it changes nothing
+- [ ] Invalid input degrades as in the table, without throwing
+- [ ] Every field is named after what it asks, with or without a value
+- [ ] Athena `Select` with `ActionList`, and Athena `Modal`, are used
+- [ ] The illustration is an imported image of a sensible size, not an embedded base64 file
+- [ ] The component fills its parent's width; stories checked at 320 / 360 / 800 px with no horizontal scroll
 - [ ] Unit tests added, BDD style, coverage ≥95% on all new files
-- [ ] Storybook stories added for all variants listed above
+- [ ] Storybook stories added for all variants listed above, showing the component alone
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] No styled-components — Tailwind only
-- [ ] Athena `Select` used for all demographic dropdowns
-- [ ] Athena `Button` used for submit and skip buttons
-- [ ] Athena `Modal` used for the "To znaczy?" explanation modal
-- [ ] No context hooks or API calls — component is fully controlled via props
-- [ ] All user-visible strings wrapped in Lingui macros — no hardcoded literals
-- [ ] `yarn i18n:extract` run after adding strings; `.po` files committed
-- [ ] `region` field is optional and does not block form submission
-- [ ] Demographics options data extracted to `SurveyDemographicsContent.constants.ts`
+- [ ] Every string from the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
+- [ ] PR states "No e2e: not mounted on any route"
+- [ ] Branch named `feature/survey-demographics-89`
 - [ ] CI green: build, lint, test
