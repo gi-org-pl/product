@@ -29,7 +29,7 @@ The first version of this task was wrong in four places. The frame wins in each:
 
 ```ts
 export interface QuizCardProps {
-  title?: string;                  // text shown in place of the logo when there is no logoUrl
+  title?: string;                  // names the card: shown as text when there is no logoUrl, the logo's alternative text when there is
   logoUrl?: string;                // quiz logo image
   logoHeight?: 24 | 32;            // default 32
   backgroundUrl?: string;          // optional image at the top of the card
@@ -42,7 +42,7 @@ export interface QuizCardProps {
   isButtonLoading?: boolean;       // the play button shows a spinner
   isButtonDisabled?: boolean;      // the play button is not rendered
   onButtonClick: () => void;       // play button
-  onCardClick?: () => void;        // the card as a whole
+  onCardClick?: () => void;        // the card as a whole; takes effect only with a title
 }
 ```
 
@@ -98,15 +98,16 @@ Everything that depends on the screen width is CSS. Only the open/closed toggle 
 
 | Case | Behaviour |
 |---|---|
-| `onCardClick` given | Clicking the card anywhere outside its buttons calls it |
-| `onCardClick` given, keyboard | The logo or title is a real button that calls it, so nothing is mouse-only |
+| `onCardClick` and a `title` | Clicking the card anywhere outside its buttons calls it |
+| `onCardClick` and a `title`, keyboard | The logo or title is a real button, named after the title, that calls it - so nothing is mouse-only |
+| `onCardClick` without a `title` | The card is not interactive, for mouse and keyboard alike: there is nothing to name the control with, and a mouse-only card is not an option |
 | No `onCardClick` | The card is not interactive and does not look it |
 
 ### Invalid and edge input
 
 | Input | Behaviour |
 |---|---|
-| `title` only whitespace | Treated as absent |
+| `title` only whitespace | Treated as absent, so `onCardClick` has no effect either |
 | `cta` empty | No badge |
 | `logoUrl` that fails to load | The image's alternative text, which is the title |
 | `description` empty | No paragraph; tags still show |
@@ -238,9 +239,16 @@ describe('<QuizCard />', () => {
     });
   });
   describe('card click', () => {
-    describe('given onCardClick', () => {
+    describe('given onCardClick and a title', () => {
       it('calls it when the card is clicked', ...);
       it('calls it when the title button is activated by keyboard', ...);
+    });
+    describe('given onCardClick, a logo and a title', () => {
+      it('names the logo button after the title', ...);
+    });
+    describe('given onCardClick but no title', () => {
+      it('renders no card-level button', ...);
+      it('does not call it when the card is clicked', ...);
     });
     describe('given no onCardClick', () => {
       it('renders no card-level button', ...);
@@ -305,7 +313,7 @@ None.
 - [ ] Width-dependent behaviour is CSS; no viewport hook; server and browser render the same
 - [ ] `isMainAction` is gone; the play button is filled on every card
 - [ ] The image is short on a collapsed card and tall on an open one
-- [ ] With `onCardClick`, the card can be activated by keyboard; the play button never triggers the card
+- [ ] With `onCardClick` and a title, the card can be activated by keyboard through a named button; without a title it is not interactive at all; the play button never triggers the card
 - [ ] Decorative images are hidden from assistive technology; named controls have Polish names
 - [ ] Every string from the Copy section goes through a Lingui macro; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] The component fills its parent's width; stories checked at 320 / 360 / 800 px with no horizontal scroll and the title wrapping

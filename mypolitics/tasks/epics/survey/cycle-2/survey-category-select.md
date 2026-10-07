@@ -97,13 +97,13 @@ Rows fade in one after another, a few tens of milliseconds apart.
 
 # Copy
 
-Polish is the source; the string goes through a Lingui macro with plural forms, and the English entry is filled in.
+Polish is the source; the string goes through Lingui's `plural` macro, and the English entry is filled in. The form is chosen by the language's plural category, not by comparing the number against ranges by hand: in Polish 22 takes the same form as 2, and 12 the same form as 5.
 
 | Text | Polish (source) | English |
 |---|---|---|
-| Prompt, 1 | Wybierz {count} najważniejszy dla Ciebie temat. | Choose the {count} topic that matters most to you. |
-| Prompt, 2-4 | Wybierz {count} najważniejsze dla Ciebie tematy. | Choose the {count} topics that matter most to you. |
-| Prompt, 5 and more | Wybierz {count} najważniejszych dla Ciebie tematów. | Choose the {count} topics that matter most to you. |
+| Prompt, `one` - 1 | Wybierz {count} najważniejszy dla Ciebie temat. | Choose the {count} topic that matters most to you. |
+| Prompt, `few` - 2-4, 22-24, 32-34 and so on, but not 12-14 | Wybierz {count} najważniejsze dla Ciebie tematy. | Choose the {count} topics that matter most to you. |
+| Prompt, `many` - 5-21, 25-31 and so on | Wybierz {count} najważniejszych dla Ciebie tematów. | Choose the {count} topics that matter most to you. |
 
 Category names come from props, already translated. Do not wrap them again.
 
@@ -156,8 +156,8 @@ describe('<SurveyCategorySelect />', () => {
     it('renders a row for every category, in order', ...);
     it('renders every row unselected', ...);
   });
-  describe('given maxSelection of 1, 3 and 5', () => {
-    it('uses the matching plural form in the prompt', ...);
+  describe('given maxSelection of 1, 3, 5, 12 and 22', () => {
+    it('uses the one, few, many, many and few form in the prompt', ...);
   });
   describe('given some categories are selected (below max)', () => {
     it('renders the matching rows as selected', ...);
@@ -264,7 +264,7 @@ describe('getValidSelection()', () => {
 - [ ] Component layout follows `docs/frontend/conventions/COMPONENT_STRUCTURE.md`
 - [ ] Every row is a `SurveyAnswer` of the custom-selectable type; no Athena `Checkbox`, no hand-built row
 - [ ] At the limit, unselected rows are disabled and selected rows stay active; a disabled row never calls `onChange`
-- [ ] The default prompt uses the right plural form for 1, 2-4 and 5+
+- [ ] The default prompt takes its form from Lingui's plural categories: right for 1, 3, 5, 12 and 22
 - [ ] Rows are visible without JavaScript; the mount animation is CSS and is skipped under `prefers-reduced-motion`
 - [ ] Invalid input degrades as in the table, without throwing
 - [ ] Each row exposes its name and selected state to assistive technology
