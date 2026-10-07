@@ -1,6 +1,6 @@
-# Later
+# Growth
 
-> Ideas parked for a later stage - no design, no product documentation, not on the roadmap.
+> Ideas for bringing takers back and growing the audience - parked for a later stage, with no design, no product documentation, and not on the roadmap.
 
 An idea lands here so it is not lost. It moves under its module or [platform](../platform/README.md) once it has a design and a decision, and only then can a [roadmap](../roadmap/README.md) milestone depend on it.
 
