@@ -209,7 +209,7 @@ The card starts in ask and moves at most once. The state lasts as long as the ca
 | An archetype without a closeness yet, or with one that is not a number | Ranked as zero, and last |
 | A closeness outside 0-100 | Clamped before ranking |
 | Every archetype at the same closeness | No separation. The card does not fire |
-| An archetype without an image | Its row shows a neutral placeholder in the image's place; on a hit its cap is drawn with the neutral colour alone |
+| An archetype without an image | Its row shows a neutral placeholder in the image's place; on a hit its cap is drawn with the colour of its match band alone, as the universal axis draws any entry without an image |
 | Fewer than two distractors left after same-name rows are removed | The card does not fire |
 | A name longer than its option row, or than the room over the bar | It wraps onto further lines. It is never cut |
 | A pool line without the name slot | Shown as written |
