@@ -603,7 +603,7 @@ Check widths by resizing the viewport, not by wrapping the story: at 320 px the 
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-stats-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-stats-112`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - The card reads nothing but its props: no session, no running state, no source. Everything it draws is in `card`
 - The request names the quiz and nothing about the taker. The counts are kept in the memory of the page only; they are not stored, not logged and not sent on
@@ -616,8 +616,8 @@ Check widths by resizing the viewport, not by wrapping the story: at 320 px the 
 
 # Dependencies
 
-- `survey-checkpoint` - the frame `SurveyCheckpoint` with its `quote`, `CheckpointCardProps`, the registry `CHECKPOINT_CARDS`, `getSessionCheckpoint`, the Checkpoints phase.
-- Through it: `survey-checkpoint-engine` (the trigger, `StatsCheckpointCard`, `CheckpointAggregates`, `getCheckpointText`, `getCheckpointSlots`, the two pools), `survey-questionnaire` (`useQuestionActions`) and `survey-api` (`apiClient`).
+- `survey-checkpoint` (#107) - the frame `SurveyCheckpoint` with its `quote`, `CheckpointCardProps`, the registry `CHECKPOINT_CARDS`, `getSessionCheckpoint`, the Checkpoints phase.
+- Through it: `survey-checkpoint-engine` (#106) (the trigger, `StatsCheckpointCard`, `CheckpointAggregates`, `getCheckpointText`, `getCheckpointSlots`, the two pools), `survey-questionnaire` (#102) (`useQuestionActions`) and `survey-api` (#100) (`apiClient`).
 - **A source of answer counts** - not a task of this epic and not built anywhere. The card ships switched off and stays so until a back-end delivers the contract above and the address is set.
 
 It blocks nothing. The other cards can be built alongside it.
@@ -670,6 +670,6 @@ It blocks nothing. The other cards can be built alongside it.
 - [ ] Every string from the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-stats-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-stats-112`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

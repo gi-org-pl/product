@@ -911,7 +911,7 @@ Test the engine on hand-built `RunningState` objects: the engine is a function o
 # Remember about standards
 
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
-- Name the branch `feature/survey-checkpoint-engine-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-engine-106`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - No Storybook story - there is no component
 - Every pool line goes through a Lingui `msg` macro with Polish as the source. Run `yarn i18n:extract`, fill in every new English entry from the table above, commit both catalogs. No line is built from parts at run time, and no word is chosen by a number
@@ -922,11 +922,11 @@ Test the engine on hand-built `RunningState` objects: the engine is a function o
 
 # Dependencies
 
-- `survey-running-state` - `RunningState` and `getRunningState`.
-- `survey-session` - `SurveyCheckpointRecord`, `SurveyTimeSample`, `SurveyAnswerEntry`, `getAnswerKind`.
-- `survey-api` - the `Survey` types.
+- `survey-running-state` (#105) - `RunningState` and `getRunningState`.
+- `survey-session` (#101) - `SurveyCheckpointRecord`, `SurveyTimeSample`, `SurveyAnswerEntry`, `getAnswerKind`.
+- `survey-api` (#100) - the `Survey` types.
 
-It blocks `survey-checkpoint`, which asks the engine at every boundary and keeps its record, and through it every card task. The card tasks are written against `CheckpointCard`: do not rename a member or a field without updating them.
+It blocks `survey-checkpoint` (#107), which asks the engine at every boundary and keeps its record, and through it every card task. The card tasks are written against `CheckpointCard`: do not rename a member or a field without updating them.
 
 # Resources
 
@@ -971,6 +971,6 @@ It blocks `survey-checkpoint`, which asks the engine at every boundary and keeps
 - [ ] `yarn i18n:extract` run; every new English entry translated; `.po` files committed
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-engine-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-engine-106`
 - [ ] CI green: build, lint, test
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

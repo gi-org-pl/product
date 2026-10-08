@@ -554,7 +554,7 @@ Whether a link request follows the result is asserted by `survey-results-calcula
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-email-capture-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-email-capture-103`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting: one component per file, no `renderX()` functions, helpers and hooks in `utils/` with their own tests, no import from another component's `utils/`, constants or subcomponents
 - The card fills its parent's width and its height comes from its content. Layout that depends on width is CSS; do not measure the element or the window in JavaScript
 - No request outside `src/services/api/client/`, and no second Axios instance. No new dependency - no form library, no validation library
@@ -564,10 +564,10 @@ Whether a link request follows the result is asserted by `survey-results-calcula
 
 # Dependencies
 
-- `survey-questionnaire` - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, the frame of the phase, the e2e spec this task extends.
-- Through it, `survey-session` (`SurveyEmail`, `setEmail`, `leaveEmailCapture`, `SURVEY_SESSION_CONFIG`, `isPhaseInSession`) and `survey-api` (`apiClient`, `ApiRequestOptions`, `src/vite-env.d.ts`).
+- `survey-questionnaire` (#102) - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, the frame of the phase, the e2e spec this task extends.
+- Through it, `survey-session` (#101) (`SurveyEmail`, `setEmail`, `leaveEmailCapture`, `SURVEY_SESSION_CONFIG`, `isPhaseInSession`) and `survey-api` (#100) (`apiClient`, `ApiRequestOptions`, `src/vite-env.d.ts`).
 
-It blocks `survey-results-calculation`, which calls `requestResultLink` and reads `session.session.email`.
+It blocks `survey-results-calculation` (#104), which calls `requestResultLink` and reads `session.session.email`.
 
 No back-end work blocks it: the endpoint does not exist yet, and the phase stays off until its address is configured.
 
@@ -612,5 +612,5 @@ No back-end work blocks it: the endpoint does not exist yet, and the phase stays
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
 - [ ] Every string of the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] PR description lists decisions and deviations, says that the questionnaire without an endpoint is covered by unit tests only, and repeats that the variable must not be set in a deployed environment before `survey-results-calculation` is merged
-- [ ] Branch named `feature/survey-email-capture-{issue number}`
+- [ ] Branch named `feature/survey-email-capture-103`
 - [ ] CI green: build, lint, test, e2e

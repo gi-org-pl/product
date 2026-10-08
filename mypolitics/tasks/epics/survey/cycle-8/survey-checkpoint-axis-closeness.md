@@ -438,7 +438,7 @@ Check widths by resizing the viewport, not by wrapping the story.
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-axis-closeness-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-axis-closeness-109`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - The card reads nothing but its props: no session, no running state. Everything it draws is in `card`
 - The option on `UniversalAxis` is one bar with a switch, not a second bar. Its defaults are today's behaviour
@@ -450,11 +450,11 @@ Check widths by resizing the viewport, not by wrapping the story.
 
 # Dependencies
 
-- `survey-checkpoint` - the frame `SurveyCheckpoint`, `CheckpointCardProps`, the registry `CHECKPOINT_CARDS`, the Checkpoints phase.
-- Through it: `survey-checkpoint-engine` (the trigger, `AxisClosenessCheckpointCard`, `getCheckpointText`, the two pools) and `survey-running-state` (the axes and their values).
+- `survey-checkpoint` (#107) - the frame `SurveyCheckpoint`, `CheckpointCardProps`, the registry `CHECKPOINT_CARDS`, the Checkpoints phase.
+- Through it: `survey-checkpoint-engine` (#106) (the trigger, `AxisClosenessCheckpointCard`, `getCheckpointText`, the two pools) and `survey-running-state` (#105) (the axes and their values).
 - `UniversalAxis` and `getAxisLayout` - built, on `main` of the app.
 
-It blocks `survey-checkpoint-axis-puzzle`, which draws the same bar without numbers and adds its mask to it, and through it `survey-checkpoint-position-puzzle`. Both are written against `showValues` and `description`: do not rename them without updating those tasks.
+It blocks `survey-checkpoint-axis-puzzle` (#113), which draws the same bar without numbers and adds its mask to it, and through it `survey-checkpoint-position-puzzle` (#114). Both are written against `showValues` and `description`: do not rename them without updating those tasks.
 
 # Resources
 
@@ -500,6 +500,6 @@ It blocks `survey-checkpoint-axis-puzzle`, which draws the same bar without numb
 - [ ] Every string from the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-axis-closeness-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-axis-closeness-109`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

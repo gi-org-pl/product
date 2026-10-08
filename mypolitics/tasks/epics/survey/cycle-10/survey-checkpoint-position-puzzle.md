@@ -416,7 +416,7 @@ Stories show the component alone, with no decorator, background or fixed width; 
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-position-puzzle-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-position-puzzle-114`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - The guess is kept in the component only. Nothing from this card is stored, sent or logged: the rows and a hit name political identities
 - Nothing is imported from another component's `utils/`, constants or subcomponents - `Archetype` and `RankedRow` included
@@ -428,9 +428,9 @@ Stories show the component alone, with no decorator, background or fixed width; 
 
 # Dependencies
 
-- `survey-checkpoint` - the frame with `options`, `CheckpointCardProps` with `onReveal`, `CHECKPOINT_CARDS`.
-- `survey-checkpoint-engine` - `PositionPuzzleCheckpointCard` with its three options, `getCheckpointText`, the three pools, and the trigger that makes the card appear.
-- `survey-checkpoint-axis-puzzle` - `SurveyCheckpointOptions` and `useCheckpointGuess`, and through it `survey-checkpoint-axis-closeness` for `showValues` and `description` on `UniversalAxis`.
+- `survey-checkpoint` (#107) - the frame with `options`, `CheckpointCardProps` with `onReveal`, `CHECKPOINT_CARDS`.
+- `survey-checkpoint-engine` (#106) - `PositionPuzzleCheckpointCard` with its three options, `getCheckpointText`, the three pools, and the trigger that makes the card appear.
+- `survey-checkpoint-axis-puzzle` (#113) - `SurveyCheckpointOptions` and `useCheckpointGuess`, and through it `survey-checkpoint-axis-closeness` (#109) for `showValues` and `description` on `UniversalAxis`.
 
 It blocks nothing. It is the last of the two puzzles to be built.
 
@@ -481,6 +481,6 @@ It blocks nothing. It is the last of the two puzzles to be built.
 - [ ] The reveal has no transition under reduced motion; no animation library added
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-position-puzzle-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-position-puzzle-114`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

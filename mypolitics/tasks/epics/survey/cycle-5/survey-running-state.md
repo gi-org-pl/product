@@ -602,7 +602,7 @@ Fixtures:
 # Remember about standards
 
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
-- Name the branch `feature/survey-running-state-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-running-state-105`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - No Storybook story - there is no component
 - No user-visible strings are added, so nothing goes through Lingui
@@ -614,10 +614,10 @@ Fixtures:
 
 # Dependencies
 
-- `survey-api` - the `Survey` types this task reads.
-- `survey-session` - `SurveySession`, `SurveyAnswerEntry`, `SurveyTimeSample`.
+- `survey-api` (#100) - the `Survey` types this task reads.
+- `survey-session` (#101) - `SurveySession`, `SurveyAnswerEntry`, `SurveyTimeSample`.
 
-It blocks `survey-checkpoint-engine`, which decides on cards from the running state, and through it every checkpoint task.
+It blocks `survey-checkpoint-engine` (#106), which decides on cards from the running state, and through it every checkpoint task.
 
 # Resources
 
@@ -654,6 +654,6 @@ It blocks `survey-checkpoint-engine`, which decides on cards from the running st
 - [ ] PR states "No e2e: not mounted on any route"
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-running-state-{issue number}`
+- [ ] Branch named `feature/survey-running-state-105`
 - [ ] CI green: build, lint, test
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

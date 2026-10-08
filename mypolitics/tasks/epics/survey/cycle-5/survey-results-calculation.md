@@ -683,7 +683,7 @@ The second try by itself, the 30-second limit, the order of the lines and the no
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-results-calculation-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-results-calculation-104`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting: one component per file, no `renderX()` functions, helpers and hooks in `utils/` with their own tests, no import from another component's `utils/`, constants or subcomponents
 - The card fills its parent's width and its height comes from its content. Layout that depends on width is CSS; do not measure the element or the window in JavaScript
 - Tailwind class names are static: a duration cannot be built into a class name from a constant at runtime
@@ -695,11 +695,11 @@ The second try by itself, the 30-second limit, the order of the lines and the no
 
 # Dependencies
 
-- `survey-questionnaire` - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, `onLeave`, the stand-in this task deletes, the e2e spec it extends.
-- `survey-email-capture` - `requestResultLink`, `ResultLinkInput`, `ResultLinkOutcome`, and the e2e build with the endpoint configured. Both tasks are in cycle 5: this one is built second.
-- Through them, `survey-api` (`createResult`, `getResult`) and `survey-session` (`buildResultInput`, `setResultState`, `setEmail`, `SURVEY_SESSION_CONFIG`).
+- `survey-questionnaire` (#102) - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, `onLeave`, the stand-in this task deletes, the e2e spec it extends.
+- `survey-email-capture` (#103) - `requestResultLink`, `ResultLinkInput`, `ResultLinkOutcome`, and the e2e build with the endpoint configured. Both tasks are in cycle 5: this one is built second.
+- Through them, `survey-api` (#100) (`createResult`, `getResult`) and `survey-session` (#101) (`buildResultInput`, `setResultState`, `setEmail`, `SURVEY_SESSION_CONFIG`).
 
-It does not depend on `survey-checkpoint-engine`: the two draw files are created by whichever of the two tasks is built first.
+It does not depend on `survey-checkpoint-engine` (#106): the two draw files are created by whichever of the two tasks is built first.
 
 Nothing in this epic waits for it. The short results card of the results module will take over its ending.
 
@@ -748,5 +748,5 @@ Nothing in this epic waits for it. The short results card of the results module 
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
 - [ ] Every string of the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] PR description lists decisions and deviations, and says the reduced-motion paths were checked by eye
-- [ ] Branch named `feature/survey-results-calculation-{issue number}`
+- [ ] Branch named `feature/survey-results-calculation-104`
 - [ ] CI green: build, lint, test, e2e

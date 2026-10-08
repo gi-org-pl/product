@@ -489,7 +489,7 @@ The stories of `NolanChart` are not changed; compare them before and after the m
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-nolan-path-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-nolan-path-111`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins - except for the deviation named above, once it is approved
 - Make the move its own commit, before the trail and the card, so the reviewer can see that `NolanChart` did not change
 - Nothing is imported from another component's `utils/`, constants or subcomponents: that is why the map and its helpers are promoted, not reached into
@@ -502,9 +502,9 @@ The stories of `NolanChart` are not changed; compare them before and after the m
 
 # Dependencies
 
-- `survey-checkpoint` - the frame `SurveyCheckpoint`, `CheckpointCardProps`, `CHECKPOINT_CARDS`.
-- `survey-checkpoint-engine` - `NolanPathCheckpointCard`, `getCheckpointText`, and the trigger that makes the card appear.
-- `survey-running-state` - `CompassPoint`, and the move of `getNolanPosition` with its types and constants that this task builds on.
+- `survey-checkpoint` (#107) - the frame `SurveyCheckpoint`, `CheckpointCardProps`, `CHECKPOINT_CARDS`.
+- `survey-checkpoint-engine` (#106) - `NolanPathCheckpointCard`, `getCheckpointText`, and the trigger that makes the card appear.
+- `survey-running-state` (#105) - `CompassPoint`, and the move of `getNolanPosition` with its types and constants that this task builds on.
 
 It blocks nothing. It can be built alongside the other cards of this cycle; the only file it shares with them is `SurveyQuestionnaire.constants.ts`, where each adds one line.
 
@@ -553,6 +553,6 @@ It blocks nothing. It can be built alongside the other cards of this cycle; the 
 - [ ] No new dependency
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-nolan-path-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-nolan-path-111`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

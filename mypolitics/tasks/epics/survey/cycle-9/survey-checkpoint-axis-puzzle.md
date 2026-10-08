@@ -584,7 +584,7 @@ Stories show the component alone, with no decorator, background or fixed width; 
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-axis-puzzle-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-axis-puzzle-113`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins
 - The mask is one bar with a switch, not a second bar. Its default is today's behaviour, and every result module stays as it is
 - `SurveyCheckpointOptions` and `useCheckpointGuess` are written in general terms - orientations, outcomes - with nothing of this card in their names or bodies: the next puzzle uses both
@@ -597,11 +597,11 @@ Stories show the component alone, with no decorator, background or fixed width; 
 
 # Dependencies
 
-- `survey-checkpoint` - the frame with `options` and `isContinueAvailable`, `CheckpointCardProps` with `onReveal`, `CHECKPOINT_CARDS`.
-- `survey-checkpoint-engine` - `AxisPuzzleCheckpointCard`, `getCheckpointText`, the three pools, and the trigger that makes the card appear.
-- `survey-checkpoint-axis-closeness` - `showValues` and `description` on `UniversalAxis`. The e2e scenario also relies on its card being registered.
+- `survey-checkpoint` (#107) - the frame with `options` and `isContinueAvailable`, `CheckpointCardProps` with `onReveal`, `CHECKPOINT_CARDS`.
+- `survey-checkpoint-engine` (#106) - `AxisPuzzleCheckpointCard`, `getCheckpointText`, the three pools, and the trigger that makes the card appear.
+- `survey-checkpoint-axis-closeness` (#109) - `showValues` and `description` on `UniversalAxis`. The e2e scenario also relies on its card being registered.
 
-It blocks `survey-checkpoint-position-puzzle`, which is written against `SurveyCheckpointOptionsProps`, `useCheckpointGuess` and the bar without numbers: do not rename them without updating that task.
+It blocks `survey-checkpoint-position-puzzle` (#114), which is written against `SurveyCheckpointOptionsProps`, `useCheckpointGuess` and the bar without numbers: do not rename them without updating that task.
 
 # Resources
 
@@ -652,6 +652,6 @@ It blocks `survey-checkpoint-position-puzzle`, which is written against `SurveyC
 - [ ] The reveal has no transition under reduced motion; no animation library added
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-axis-puzzle-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-axis-puzzle-113`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed

@@ -652,14 +652,14 @@ Test the pure functions by replaying events on a small quiz from `createSurvey`:
 - No Storybook story - there is no component
 - No user-visible strings are added, so nothing goes through Lingui
 - State in the PR: "No e2e: not mounted on any route", and which Zustand trigger applies
-- Name the branch `feature/survey-session-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-session-101`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Commit only files that belong to the task; the PR follows the repository's pull request template
 
 # Dependencies
 
-- `survey-api` - the types `Survey`, `SurveyQuestion`, `SurveyPossibleAnswer`, `SurveyCategory` and `ResultInput`, and the files `src/types/survey.ts` and `src/constants/survey.ts` this task adds to.
+- `survey-api` (#100) - the types `Survey`, `SurveyQuestion`, `SurveyPossibleAnswer`, `SurveyCategory` and `ResultInput`, and the files `src/types/survey.ts` and `src/constants/survey.ts` this task adds to.
 
-It blocks `survey-questionnaire` and `survey-running-state`.
+It blocks `survey-questionnaire` (#102) and `survey-running-state` (#105).
 
 # Resources
 
@@ -695,5 +695,5 @@ It blocks `survey-questionnaire` and `survey-running-state`.
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
 - [ ] PR states "No e2e: not mounted on any route" and lists decisions and deviations
-- [ ] Branch named `feature/survey-session-{issue number}`
+- [ ] Branch named `feature/survey-session-101`
 - [ ] CI green: build, lint, test

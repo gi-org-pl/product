@@ -723,7 +723,7 @@ Edge cases stay in unit tests. `survey-email-capture`, `survey-results-calculati
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-questionnaire-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-questionnaire-102`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting: one component per file, no `renderX()` functions, helpers and hooks in `utils/` with their own tests, no import from another component's `utils/`, constants or subcomponents
 - The screen fills its parent's width and its height comes from its content. Layout that depends on width is CSS; do not measure the element or the window in JavaScript
 - Tailwind class names are static: a duration cannot be built into a class name from a constant at runtime
@@ -735,12 +735,12 @@ Edge cases stay in unit tests. `survey-email-capture`, `survey-results-calculati
 
 # Dependencies
 
-- `survey-api` - `getSurvey`, `createResult`, `getSurveyId`, `getResultsUrl`, `PATHS.quiz`, the survey types.
-- `survey-session` - `useSurveySession`, `getSurveySessionStore`, and the functions the screen calls: `getVisibleCategories`, `getTopicLimit`, `getCurrentQuestion`, `getProgress`, `getQuestionsLeftInCategory`, `getAnswersToDraw`, `canStepBack`, `canReset`, `buildResultInput`, `DEMOGRAPHICS_VALUES`.
+- `survey-api` (#100) - `getSurvey`, `createResult`, `getSurveyId`, `getResultsUrl`, `PATHS.quiz`, the survey types.
+- `survey-session` (#101) - `useSurveySession`, `getSurveySessionStore`, and the functions the screen calls: `getVisibleCategories`, `getTopicLimit`, `getCurrentQuestion`, `getProgress`, `getQuestionsLeftInCategory`, `getAnswersToDraw`, `canStepBack`, `canReset`, `buildResultInput`, `DEMOGRAPHICS_VALUES`.
 
 The six survey components it composes are merged (#30, #33, #37, #87, #88, #89).
 
-It blocks `survey-email-capture`, `survey-results-calculation` and `survey-checkpoint`.
+It blocks `survey-email-capture` (#103), `survey-results-calculation` (#104) and `survey-checkpoint` (#107).
 
 # Resources
 
@@ -790,5 +790,5 @@ It blocks `survey-email-capture`, `survey-results-calculation` and `survey-check
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
 - [ ] Every string of the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] PR description lists decisions and deviations, and says the reduced-motion paths were checked by eye
-- [ ] Branch named `feature/survey-questionnaire-{issue number}`
+- [ ] Branch named `feature/survey-questionnaire-102`
 - [ ] CI green: build, lint, test, e2e

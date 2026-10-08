@@ -536,14 +536,14 @@ Build the "live shapes" fixtures from real responses of `GET https://api.mypolit
 - No Storybook story - there is no component
 - No user-visible strings are added, so nothing goes through Lingui
 - State in the PR: "No e2e: not mounted on any route"
-- Name the branch `feature/survey-api-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-api-100`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Commit only files that belong to the task; the PR follows the repository's pull request template
 
 # Dependencies
 
 Nothing blocks this task. `UniversalOrientation` ([#85](https://github.com/gi-org-pl/mypolitics-app/issues/85)) is merged.
 
-It blocks `survey-session`, `survey-questionnaire`, `survey-results-calculation` and `survey-running-state`.
+It blocks `survey-session` (#101), `survey-questionnaire` (#102), `survey-results-calculation` (#104) and `survey-running-state` (#105).
 
 # Resources
 
@@ -575,5 +575,5 @@ It blocks `survey-session`, `survey-questionnaire`, `survey-results-calculation`
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
 - [ ] PR states "No e2e: not mounted on any route" and lists decisions and deviations
-- [ ] Branch named `feature/survey-api-{issue number}`
+- [ ] Branch named `feature/survey-api-100`
 - [ ] CI green: build, lint, test

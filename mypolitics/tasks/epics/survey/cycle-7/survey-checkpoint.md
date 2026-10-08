@@ -671,7 +671,7 @@ Check widths by resizing the viewport, not by wrapping the story. No story for t
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/survey-checkpoint-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/survey-checkpoint-107`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 - Read `AGENTS.md` in the repository before starting; where it differs from this task on a standard, it wins - except for the deviation named above, once it is approved
 - The frame fills its parent's width and its height comes from its content. Stories show it alone, with no decorator, background or fixed width; check them at 320, 360 and 800 px
 - Layout that depends on width is CSS. Do not measure the element or the window in JavaScript
@@ -684,11 +684,11 @@ Check widths by resizing the viewport, not by wrapping the story. No story for t
 
 # Dependencies
 
-- `survey-questionnaire` - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, `useQuestionActions`.
-- `survey-session` - the session and its checkpoint actions; this task adds `setCheckpointRecord` to it.
-- `survey-checkpoint-engine` - `getNextCheckpoint`, `readCheckpointRecord`, the reveal lines and the wording, and through it `survey-running-state`.
+- `survey-questionnaire` (#102) - the screen, `SURVEY_PHASE_CONTENT`, `SurveyPhaseContentProps`, `useQuestionActions`.
+- `survey-session` (#101) - the session and its checkpoint actions; this task adds `setCheckpointRecord` to it.
+- `survey-checkpoint-engine` (#106) - `getNextCheckpoint`, `readCheckpointRecord`, the reveal lines and the wording, and through it `survey-running-state` (#105).
 
-It blocks every card task: `survey-checkpoint-halfway`, `survey-checkpoint-axis-closeness`, `survey-checkpoint-new-trait`, `survey-checkpoint-nolan-path`, `survey-checkpoint-stats`, `survey-checkpoint-axis-puzzle` and `survey-checkpoint-position-puzzle`. They are written against `SurveyCheckpointProps`, `CheckpointCardProps` and `CHECKPOINT_CARDS`: do not rename them without updating those tasks.
+It blocks every card task: `survey-checkpoint-halfway` (#108), `survey-checkpoint-axis-closeness` (#109), `survey-checkpoint-new-trait` (#110), `survey-checkpoint-nolan-path` (#111), `survey-checkpoint-stats` (#112), `survey-checkpoint-axis-puzzle` (#113) and `survey-checkpoint-position-puzzle` (#114). They are written against `SurveyCheckpointProps`, `CheckpointCardProps` and `CHECKPOINT_CARDS`: do not rename them without updating those tasks.
 
 # Resources
 
@@ -741,6 +741,6 @@ It blocks every card task: `survey-checkpoint-halfway`, `survey-checkpoint-axis-
 - [ ] Every string from the Copy section goes through a Lingui macro, with Polish as the source; `yarn i18n:extract` run, English entries translated, `.po` files committed
 - [ ] Biome lint clean
 - [ ] TypeScript clean (no `any`, no `@ts-ignore`)
-- [ ] Branch named `feature/survey-checkpoint-{issue number}`
+- [ ] Branch named `feature/survey-checkpoint-107`
 - [ ] CI green: build, lint, test, e2e
 - [ ] PR description lists decisions and deviations from the ticket/spec; only files belonging to the task are committed
