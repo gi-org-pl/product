@@ -105,7 +105,7 @@ Nothing here throws.
 The result screen, comparison mode and the generated result image. In the image the caller passes no actions.
 
 ### Accessibility
-- The card is named after the leading orientation, or after both poles on a tie, through the accessible name the wrapper takes for a component title.
+- The card is named after the leading orientation, or after both poles on a tie, through the accessible name the wrapper takes for a component title. On a tie with a pole name missing the card is named with the word for a tie, like the chip, so it is never announced as one pole alone or left without a name.
 - The bar announces both orientations, both values and the comparison value, as the universal axis specifies.
 - The lead is never carried by colour alone: the title says it in words.
 
