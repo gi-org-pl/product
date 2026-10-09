@@ -32,5 +32,5 @@ How it behaves:
 - **Averages lie for individuals** - a fast reader and a slow deliberator get the same number, and a time promise is the one claim a taker can check immediately.
 - **50% is bad news dressed as good** - it says as much is left as is done, and copy calling that "almost the end" strains against the number printed above it.
 - **It spends prime real estate on nothing personal** - the midpoint slot is the most valuable one we have, and a percentage is the least interesting thing to put in it.
-- **It collides with the halfway split** - [halfway split](../halfway-split.md) fires at the same moment, and two cards back to back at the midpoint is exactly the pacing failure the [event model](./event-model.md) exists to prevent.
+- **It competes for the midpoint slot** - a personal card can qualify at the same moment, and two cards back to back at the midpoint is exactly the pacing failure the [event model](./event-model.md) exists to prevent.
 - **The percentage has to agree with the progress bar** - a card announcing 50% above a bar that reads differently discredits both - see [progress and pacing](../progress-and-pacing.md).

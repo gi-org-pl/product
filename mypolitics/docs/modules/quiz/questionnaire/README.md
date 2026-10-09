@@ -11,6 +11,7 @@
 | [Phases model](./phases-model.md) | The seven phases of a session |
 | [Progress and pacing](./progress-and-pacing.md) | What the bar is allowed to say |
 | [Results saving and marketing](./results-saving-and-marketing.md) | E-mail for the results link, and consent |
+| [Session and data](./session-and-data.md) | What a session holds, and what is handed in |
 
 ## Context
 The questionnaire is where the audience is won or lost. Between the click that starts a quiz and the result that pays it off sit 50 to 100 questions, and nothing about the product works if people stop halfway.
