@@ -50,6 +50,7 @@ The mode follows which entries are passed, not which have values. An entry witho
 | Double-sided, side at or above its fit threshold | Value inside that side's fill |
 | Double-sided, side below its fit threshold | No value for that side; the other side still shows its own |
 | Entry absent | No value shown |
+| Value labels switched off - the checkpoint cards | No value shown on or next to any fill, and none in the description. See [axis closeness](./axis-closeness.md), [single axis puzzle](./single-axis-puzzle.md) and [double axis puzzle](./double-axis-puzzle.md) |
 
 The fit thresholds are **fixed percentages**, one per mode, not measured from the rendered text. Measuring would make the same bar render differently depending on which font loaded, the locale's digits and the environment doing the drawing, and this bar has to look identical in the app, on a checkpoint card and inside the generated image. Fixed numbers also cost nothing on a screen holding dozens of bars. The trade is that each threshold is tuned once for the widest realistic label rather than being exactly right for every one.
 
@@ -68,7 +69,9 @@ The marker sits above the fills and below the comparison layer, and is drawn whe
 ## Comparison cases
 Comparison carries exactly one other party. Group comparison is not a case this component handles - a screen comparing several people composes several bars.
 
-Hatching exists only for comparison. Without a comparison the bar has no hatched area at all, and with one the hatched band is exactly the span between the two values - the difference is the thing being drawn.
+Hatching exists for comparison, with one exception named below. Without a comparison the bar has no hatched area at all, and with one the hatched band is exactly the span between the two values - the difference is the thing being drawn.
+
+The exception is the masked state of the [single axis puzzle](./single-axis-puzzle.md): while the taker is guessing, the whole track is hatched and no fill is drawn, so the bar gives nothing away. It ends with the guess.
 
 | Case | Rendering |
 |---|---|

@@ -7,7 +7,7 @@
 Design: [Figma](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=5516-70263)
 
 ## Context
-After the last question and before the result, the questionnaire shows one card: *save your results*. It asks for an e-mail address and sends a link to the result, so the taker can come back to it later - which matters because there is [no cross-device resume](./no-cross-device-resume.md) and no account is required to take a quiz.
+After the last question and before the result, the questionnaire shows one card: *save your results*. It asks for an e-mail address and sends a link to the result, so the taker can come back to it later - which matters because there is [no cross-device resume](./session-and-data.md) and no account is required to take a quiz.
 
 The card carries two asks, deliberately separated:
 
