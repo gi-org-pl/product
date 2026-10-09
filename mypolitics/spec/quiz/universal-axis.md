@@ -63,8 +63,11 @@ A comparison does not remove the numbers. A side keeps its value wherever the ba
 | The other party's position is clear of the side's number | The value is shown by the rules above |
 | The other party's position is within the clearance of the cap the number sits at | No value for that side; the other side of a double-sided bar still shows its own |
 | Value that would be written after the fill | No value shown |
+| The whole track is hatched, because the taker has no entry or no value | No value shown on either side |
 
 The clearance is a **fixed percentage**, one per mode, a little above the fit threshold so that it also leaves room for the other party's image. It is tuned once and never measured, for the same reasons as the thresholds. A number is never drawn under hatching or under the image; a hidden value is still carried by the description for assistive technology.
+
+The frame at the top of this page still draws its comparison states without numbers. It predates this rule and is to be redrawn; until then the table above is what holds.
 
 The numbers stay because modules that colour a bar by something other than the orientation - a match band, for one - rely on the number to say what the colour says.
 
