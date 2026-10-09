@@ -90,7 +90,7 @@ The title is placed in the wrapper's title slot as a component title.
 | Moderate or extreme | The taker's quadrant is filled with its colour at full strength |
 | Centre | No quadrant is filled |
 | The taker | A dot with a halo at the position |
-| Dot at an edge or a corner | Its centre is placed exactly; whatever falls outside the map is cut off |
+| Dot at an edge or a corner | Its centre is placed exactly and the dot is drawn in full, over the edge of the map. The halo and the fills stay inside the map |
 | No position | No dot and no filled quadrant |
 
 Each axis is named beside the map with its coordinate: the horizontal axis under the map, the vertical axis along its side.
