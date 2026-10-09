@@ -59,6 +59,7 @@ The lead is decided on the values as the taker sees them - rounded to whole numb
 | Tie | A neutral chip naming both poles, start first, with no icon and no colour |
 | Tie, title slot narrower than the tie breakpoint | The chip shows the word for a tie instead of the names |
 | Tie, title slot at or above the breakpoint, names too long for it | Each name is truncated on its own, so both poles and the separator stay visible |
+| Tie, one or both pole names missing | The chip shows the word for a tie, at any width |
 | Leading orientation without an image | The chip shows the name alone |
 
 The title names the side the taker landed on, not the axis. The chip is never interactive.
@@ -91,7 +92,7 @@ The frame at the top of this page shows its comparison example without numbers. 
 | Value outside 0-100 | Clamped by the bar. The lead uses the clamped values |
 | Values that exceed 100 together | Scaled by the bar. The lead uses the values as given |
 | Value not a number | Treated as absent |
-| Orientation name missing | Its label row stays reserved and empty. If it leads, the chip shows the image alone |
+| Orientation name missing | Its label row stays reserved and empty. If it leads, the chip shows the image alone. On a tie the chip shows the word for a tie, see Title |
 | Orientation names longer than the room | Each label is truncated by the bar, a title with a lead by the wrapper; both stay complete for assistive technology. On a tie each name is truncated on its own, see Title |
 | Orientation without a colour | The neutral fallback, on the chip and on the bar |
 | Both poles are the same orientation | Drawn as given. The module does not check the pairing |
