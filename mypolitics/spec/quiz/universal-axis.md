@@ -95,7 +95,7 @@ Hatching exists only for comparison. Without a comparison the bar has no hatched
 | Other is at 0 or 100 | The image is clamped so it stays fully inside the track |
 | Double-sided bar | The band is measured against the start entry on the same shared track |
 
-The band always ends at the taker's fill as it is drawn. When two values exceed the track and the fills are scaled, the band follows the scaled fill, not the value as given, so it never runs past the fill it belongs to.
+The band always ends at the taker's fill as it is drawn. When two values exceed the track and the fills are scaled, the band follows the scaled fill, not the value as given, so it never runs past the fill it belongs to. Values that exceed the track are already wrong input, and what is drawn then is a degraded bar, not a correct one: the other party's position is not scaled with the fills, so the band can end up on the other side of the fill than the values as given would put it.
 
 One hatching pattern serves both directions. Direction is conveyed by where the band sits, never by colour, because both cases must be recognisable wherever the bar is drawn. A wider band means a bigger disagreement, which is what makes a screen of bars scannable for where two people actually differ.
 
