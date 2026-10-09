@@ -56,6 +56,22 @@ The fit thresholds are **fixed percentages**, one per mode, not measured from th
 
 Values are displayed rounded. Layout always uses the exact value, so rounding never moves a fill.
 
+### With a comparison
+A comparison does not remove the numbers. A side keeps its value wherever the band and the other party's image leave it uncovered.
+
+| Case | Rendering |
+|---|---|
+| The other party's position is clear of the side's number | The value is shown by the rules above |
+| The other party's position is within the clearance of the cap the number sits at | No value for that side; the other side of a double-sided bar still shows its own |
+| Value that would be written after the fill | No value shown |
+| The whole track is hatched, because the taker has no entry or no value | No value shown on either side |
+
+The clearance is a **fixed percentage**, one per mode, a little above the fit threshold so that it also leaves room for the other party's image. It is tuned once and never measured, for the same reasons as the thresholds. A number is never drawn under hatching or under the image; a hidden value is still carried by the description for assistive technology.
+
+The frame at the top of this page still draws its comparison states without numbers. It predates this rule and is to be redrawn; until then the table above is what holds.
+
+The numbers stay because modules that colour a bar by something other than the orientation - a match band, for one - rely on the number to say what the colour says.
+
 ## Marker cases
 | Case | Rendering |
 |---|---|
@@ -82,9 +98,11 @@ The exception is the masked state of the [single axis puzzle](./single-axis-puzz
 | Other is at 0 or 100 | The image is clamped so it stays fully inside the track |
 | Double-sided bar | The band is measured against the start entry on the same shared track |
 
+The band always ends at the taker's fill as it is drawn. When two values exceed the track and the fills are scaled, the band follows the scaled fill, not the value as given, so it never runs past the fill it belongs to. Values that exceed the track are already wrong input, and what is drawn then is a degraded bar, not a correct one: the other party's position is not scaled with the fills, so the band can end up on the other side of the fill than the values as given would put it.
+
 One hatching pattern serves both directions. Direction is conveyed by where the band sits, never by colour, because both cases must be recognisable wherever the bar is drawn. A wider band means a bigger disagreement, which is what makes a screen of bars scannable for where two people actually differ.
 
-Draw order is fills, then marker, then band, then the other party's image, which is always topmost.
+Draw order is fills, then marker, then band, then the other party's image, which is always topmost. Which values stay visible next to the band is set in [value label cases](#with-a-comparison).
 
 ## Label cases
 - A label sits under the cap of the entry it names, on one line, truncated when it does not fit.
