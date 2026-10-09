@@ -93,6 +93,8 @@ The title is placed in the wrapper's title slot as a component title.
 | Dot at an edge or a corner | Its centre is placed exactly and the dot is drawn in full, over the edge of the map. The halo and the fills stay inside the map |
 | No position | No dot and no filled quadrant |
 
+The frame at the top of this page draws the dot at a corner differently. It predates this rule and is to be redrawn; until then the table above is what holds.
+
 Each axis is named beside the map with its coordinate: the horizontal axis under the map, the vertical axis along its side.
 
 ### Opened
