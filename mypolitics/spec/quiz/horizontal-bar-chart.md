@@ -73,11 +73,14 @@ What is open is the module's own state. Nothing outside is told about it.
 |---|---|
 | A category | A heading with the category's name and its leading orientation, the leader's badge, the leader's bar, and a control that opens the category |
 | The leader | The first row of the category's own ranking |
-| Category where no entry has a value above zero | The heading says there is no result, the bar is an empty track, and the control still opens the category |
+| Category with one entry | The heading and the leader's bar, and no control: there is nothing behind it |
+| Category where no entry has a value above zero | The heading says there is no result, the bar is an empty track, and the control still opens the category when it has more than one entry |
 | The list of categories | Shown in the order given, never sorted and never cut |
 | A category opened | The card shows that category alone: its heading and leader, then the rest of its ranking in full, and a control at the foot that returns to the list of categories |
 
 One category is open at a time, and the fold does not apply inside one: an opened category shows every row it has.
+
+A control exists only when it leads somewhere. Opening a category replaces the whole list with it, so a category that would open to the same heading and bar gets no control - the same rule the flat list follows when nothing is behind the fold.
 
 ## States and lifecycle
 | State | Condition | What is possible in it |

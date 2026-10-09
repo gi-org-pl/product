@@ -57,9 +57,12 @@ The lead is decided on the values as the taker sees them - rounded to whole numb
 |---|---|
 | There is a lead | A chip with the leading orientation's icon and name, filled with its colour |
 | Tie | A neutral chip naming both poles, start first, with no icon and no colour |
+| Tie, on a card too narrow for both names | The chip shows the word for a tie instead of the names |
 | Leading orientation without an image | The chip shows the name alone |
 
 The title names the side the taker landed on, not the axis. The chip is never interactive.
+
+A tie title never shows one pole alone. The title slot is a single line, and two names cut to the first one would read as a lead that the bar under it contradicts. Both poles stay named under their caps, so the short form loses nothing. Which form applies depends on the width the title is given, not on the viewport, and nothing is measured.
 
 ### Bar
 | Case | Behaviour |
@@ -84,7 +87,7 @@ Labels are always on: each pole is named under its own cap.
 | Values that exceed 100 together | Scaled by the bar. The lead uses the values as given |
 | Value not a number | Treated as absent |
 | Orientation name missing | Its label row stays reserved and empty. If it leads, the chip shows the image alone |
-| Orientation names longer than the room | Each label is truncated by the bar, the title by the wrapper; both stay complete for assistive technology |
+| Orientation names longer than the room | Each label is truncated by the bar, a title with a lead by the wrapper; both stay complete for assistive technology. A tie title switches to its short form instead |
 | Orientation without a colour | The neutral fallback, on the chip and on the bar |
 | Both poles are the same orientation | Drawn as given. The module does not check the pairing |
 
