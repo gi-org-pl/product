@@ -93,17 +93,14 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "2e46f89d-913e-4d82-85a6-70a8c25902f5",
         "010a5a3d-0729-4315-b231-c9dd081d0d55"
       ],
-      "params": {}
+      "axisIds": [],
+      "values": []
     },
     {
       "id": "identity-archetype",
       "type": "archetype",
       "position": 1,
       "column": "end",
-      "title": {
-        "pl": "Tożsamość",
-        "en": "Identity"
-      },
       "orientationIds": [
         "f108a0b0-1ac7-4111-88cb-a4bbfe7f059b",
         "99681a0e-6851-4967-8fcc-cf77ac4717a5",
@@ -121,17 +118,22 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "2e46f89d-913e-4d82-85a6-70a8c25902f5",
         "010a5a3d-0729-4315-b231-c9dd081d0d55"
       ],
-      "params": {}
+      "axisIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Tożsamość",
+            "en": "Identity"
+          }
+        }
+      ]
     },
     {
       "id": "identity-ideologies",
       "type": "multi_axis",
       "position": 2,
       "column": "start",
-      "title": {
-        "pl": "Ideologie",
-        "en": "Ideologies"
-      },
       "axisIds": [
         "6c2611c8-2989-48a9-ab9f-dbf45dbb3496",
         "c4b9c12a-96e5-4b8a-88ea-0a0b262b13d0",
@@ -150,9 +152,20 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "94e03d6a-562a-4f7f-ba67-01a1ac41effa",
         "c1ffca92-311c-4f09-b41e-81f5961198e4"
       ],
-      "params": {
-        "groupBy": "category"
-      }
+      "orientationIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Ideologie",
+            "en": "Ideologies"
+          }
+        },
+        {
+          "key": "groupBy",
+          "value": "category"
+        }
+      ]
     },
     {
       "id": "identity-compass",
@@ -163,91 +176,141 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "8bd5f826-1aed-409b-8a6e-da4a76189c03",
         "092ea01d-2d31-4ee2-ae30-deffa1c7c096"
       ],
-      "description": {
-        "pl": "Kompas dwuosiowy to forma prezentacji Twoich poglądów na wykresie dwuosiowym. Oś pozioma to poglądy gospodarcze (lewica-prawica), a pionowa to poglądy obyczajowe (lewica na dole, prawica na górze).",
-        "en": "The compass shows your views on two axes. The horizontal one is economic views (left to right), the vertical one is social views (left at the bottom, right at the top)."
-      },
-      "params": {},
-      "labels": {
-        "centre": {
-          "pl": "Centrowy",
-          "en": "Centrist"
+      "orientationIds": [],
+      "values": [
+        {
+          "key": "description",
+          "value": {
+            "pl": "Kompas dwuosiowy to forma prezentacji Twoich poglądów na wykresie dwuosiowym. Oś pozioma to poglądy gospodarcze (lewica-prawica), a pionowa to poglądy obyczajowe (lewica na dole, prawica na górze).",
+            "en": "The compass shows your views on two axes. The horizontal one is economic views (left to right), the vertical one is social views (left at the bottom, right at the top)."
+          }
         },
-        "horizontalStartModerate": {
-          "pl": "Lewicowy gospodarczo",
-          "en": "Economically left-wing"
+        {
+          "key": "label.centre",
+          "value": {
+            "pl": "Centrowy",
+            "en": "Centrist"
+          }
         },
-        "horizontalStartExtreme": {
-          "pl": "Lewicowy gospodarczo",
-          "en": "Economically left-wing"
+        {
+          "key": "label.horizontalStartModerate",
+          "value": {
+            "pl": "Lewicowy gospodarczo",
+            "en": "Economically left-wing"
+          }
         },
-        "horizontalEndModerate": {
-          "pl": "Prawicowy gospodarczo",
-          "en": "Economically right-wing"
+        {
+          "key": "label.horizontalStartExtreme",
+          "value": {
+            "pl": "Lewicowy gospodarczo",
+            "en": "Economically left-wing"
+          }
         },
-        "horizontalEndExtreme": {
-          "pl": "Prawicowy gospodarczo",
-          "en": "Economically right-wing"
+        {
+          "key": "label.horizontalEndModerate",
+          "value": {
+            "pl": "Prawicowy gospodarczo",
+            "en": "Economically right-wing"
+          }
         },
-        "verticalStartModerate": {
-          "pl": "Lewicowy światopoglądowo",
-          "en": "Socially left-wing"
+        {
+          "key": "label.horizontalEndExtreme",
+          "value": {
+            "pl": "Prawicowy gospodarczo",
+            "en": "Economically right-wing"
+          }
         },
-        "verticalStartExtreme": {
-          "pl": "Lewicowy światopoglądowo",
-          "en": "Socially left-wing"
+        {
+          "key": "label.verticalStartModerate",
+          "value": {
+            "pl": "Lewicowy światopoglądowo",
+            "en": "Socially left-wing"
+          }
         },
-        "verticalEndModerate": {
-          "pl": "Prawicowy światopoglądowo",
-          "en": "Socially right-wing"
+        {
+          "key": "label.verticalStartExtreme",
+          "value": {
+            "pl": "Lewicowy światopoglądowo",
+            "en": "Socially left-wing"
+          }
         },
-        "verticalEndExtreme": {
-          "pl": "Prawicowy światopoglądowo",
-          "en": "Socially right-wing"
+        {
+          "key": "label.verticalEndModerate",
+          "value": {
+            "pl": "Prawicowy światopoglądowo",
+            "en": "Socially right-wing"
+          }
         },
-        "bottomLeftModerate": {
-          "pl": "Lewicowy",
-          "en": "Left-wing"
+        {
+          "key": "label.verticalEndExtreme",
+          "value": {
+            "pl": "Prawicowy światopoglądowo",
+            "en": "Socially right-wing"
+          }
         },
-        "bottomLeftExtreme": {
-          "pl": "Lewicowy",
-          "en": "Left-wing"
+        {
+          "key": "label.bottomLeftModerate",
+          "value": {
+            "pl": "Lewicowy",
+            "en": "Left-wing"
+          }
         },
-        "topRightModerate": {
-          "pl": "Prawicowy",
-          "en": "Right-wing"
+        {
+          "key": "label.bottomLeftExtreme",
+          "value": {
+            "pl": "Lewicowy",
+            "en": "Left-wing"
+          }
         },
-        "topRightExtreme": {
-          "pl": "Prawicowy",
-          "en": "Right-wing"
+        {
+          "key": "label.topRightModerate",
+          "value": {
+            "pl": "Prawicowy",
+            "en": "Right-wing"
+          }
         },
-        "topLeftModerate": {
-          "pl": "Mieszany",
-          "en": "Mixed"
+        {
+          "key": "label.topRightExtreme",
+          "value": {
+            "pl": "Prawicowy",
+            "en": "Right-wing"
+          }
         },
-        "topLeftExtreme": {
-          "pl": "Mieszany",
-          "en": "Mixed"
+        {
+          "key": "label.topLeftModerate",
+          "value": {
+            "pl": "Mieszany",
+            "en": "Mixed"
+          }
         },
-        "bottomRightModerate": {
-          "pl": "Mieszany",
-          "en": "Mixed"
+        {
+          "key": "label.topLeftExtreme",
+          "value": {
+            "pl": "Mieszany",
+            "en": "Mixed"
+          }
         },
-        "bottomRightExtreme": {
-          "pl": "Mieszany",
-          "en": "Mixed"
+        {
+          "key": "label.bottomRightModerate",
+          "value": {
+            "pl": "Mieszany",
+            "en": "Mixed"
+          }
+        },
+        {
+          "key": "label.bottomRightExtreme",
+          "value": {
+            "pl": "Mieszany",
+            "en": "Mixed"
+          }
         }
-      }
+      ]
     },
     {
       "id": "identity-parties",
       "type": "horizontal_bar",
       "position": 4,
       "column": "start",
-      "title": {
-        "pl": "Partie",
-        "en": "Parties"
-      },
       "orientationIds": [
         "a3356612-5554-4510-a867-71b03bc63980",
         "c00d6c51-7ab2-450d-b779-8a01ab269965",
@@ -261,13 +324,27 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "09d0f391-236c-4de2-860a-d86b023214b3",
         "9d67d502-a832-489e-aa5d-af8ef69b72aa"
       ],
-      "description": {
-        "pl": "W quizie tożsamościowym nie dopasowujemy partii do Twoich wyników według odpowiedzi. Zamiast tego najpierw określamy najbliższą tożsamość, a później to, jak ta tożsamość prawdopodobnie zagłosowałaby w wyborach.",
-        "en": "The identity quiz does not match parties to your answers. It first finds your closest identity, and then how that identity would probably vote."
-      },
-      "params": {
-        "selection": "linked_to_leader"
-      }
+      "axisIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Partie",
+            "en": "Parties"
+          }
+        },
+        {
+          "key": "description",
+          "value": {
+            "pl": "W quizie tożsamościowym nie dopasowujemy partii do Twoich wyników według odpowiedzi. Zamiast tego najpierw określamy najbliższą tożsamość, a później to, jak ta tożsamość prawdopodobnie zagłosowałaby w wyborach.",
+            "en": "The identity quiz does not match parties to your answers. It first finds your closest identity, and then how that identity would probably vote."
+          }
+        },
+        {
+          "key": "selection",
+          "value": "linked_to_leader"
+        }
+      ]
     }
   ],
   "270f6c12-6551-4661-bfcf-52635a703928": [
@@ -290,23 +367,22 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
-      "params": {},
-      "labels": {
-        "link": {
-          "pl": "Program",
-          "en": "Programme"
+      "axisIds": [],
+      "values": [
+        {
+          "key": "label.link",
+          "value": {
+            "pl": "Program",
+            "en": "Programme"
+          }
         }
-      }
+      ]
     },
     {
       "id": "presidential-candidates",
       "type": "horizontal_bar",
       "position": 1,
       "column": "start",
-      "title": {
-        "pl": "Kandydaci",
-        "en": "Candidates"
-      },
       "orientationIds": [
         "50208528-a7de-4d9a-ba99-529ad8b85776",
         "565946a2-6622-4fb6-8eee-196408544e9a",
@@ -322,19 +398,26 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
-      "params": {
-        "visibleRows": 13
-      }
+      "axisIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Kandydaci",
+            "en": "Candidates"
+          }
+        },
+        {
+          "key": "visibleRows",
+          "value": 13
+        }
+      ]
     },
     {
       "id": "presidential-identity",
       "type": "archetype",
       "position": 2,
       "column": "end",
-      "title": {
-        "pl": "Prezydent",
-        "en": "President"
-      },
       "orientationIds": [
         "1f412f57-341b-42c5-a2cd-bfcc9a1bb420",
         "6f24ac8d-6ef8-427f-8fda-67c073eb6f39",
@@ -347,17 +430,22 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "c28e9896-ff92-4881-a650-0e7f828ec381",
         "a309edcc-327c-40ae-8ce7-a7528619a3c1"
       ],
-      "params": {}
+      "axisIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Prezydent",
+            "en": "President"
+          }
+        }
+      ]
     },
     {
       "id": "presidential-categories",
       "type": "horizontal_bar",
       "position": 3,
       "column": "end",
-      "title": {
-        "pl": "Kategorie",
-        "en": "Categories"
-      },
       "orientationIds": [
         "50208528-a7de-4d9a-ba99-529ad8b85776",
         "565946a2-6622-4fb6-8eee-196408544e9a",
@@ -373,9 +461,20 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
-      "params": {
-        "groupBy": "category"
-      }
+      "axisIds": [],
+      "values": [
+        {
+          "key": "title",
+          "value": {
+            "pl": "Kategorie",
+            "en": "Categories"
+          }
+        },
+        {
+          "key": "groupBy",
+          "value": "category"
+        }
+      ]
     }
   ]
 }

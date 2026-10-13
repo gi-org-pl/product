@@ -49,6 +49,8 @@ export const getModuleParams = <Type extends ResultModuleType>(
 
 # Behaviour
 
+> **Changed since.** The three maps of this task - `params`, `labels`, `colors` - and the fields `title` and `description` became one list of keys and values in the task `result-modules-values`. The idea of this task stands and went further there: definitions as data, one reader per kind, defaults for what is left out.
+
 The [spec](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/quiz/result-modules-configuration.md) is the source of truth. This task builds its sections "The record" (the four rules), "What each type reads", "Parameters", and the parameter rows of "Reading the list" and "Invalid and edge input".
 
 ### Two tables hold everything about a parameter

@@ -63,7 +63,7 @@ export const readResultModules = (
 
 # Behaviour
 
-> **Changed since.** The four settings of a record - `selection`, `groupBy`, `marker`, `visibleRows` - are no longer fields: the task `result-modules-parameters` moved them into one open map, `params`. Everything else below stands.
+> **Changed since.** The record described below was reshaped twice after the owner's review. Its fields are now only `id`, `type`, `position`, `column`, `orientationIds` and `axisIds`; the title, the description, the four settings, the labels and the colours are pairs of one list, `values`. The task `result-modules-values` and the spec hold the shape that is built. What this task says about reading a list, the order of the records and the header stands.
 
 The [spec](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/quiz/result-modules-configuration.md) is the source of truth for every case below. This task builds its sections "The record", "Types", "Slots", "The back-end contract" (the reading side) and "Reading the list". What a record is turned into - the leader, selection, grouping, what each type is given - is the next task.
 
