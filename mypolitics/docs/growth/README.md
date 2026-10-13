@@ -10,6 +10,7 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Result chart forms](./result-chart-forms.md) | A parliament, possible majorities and seats by topic as result modules |
 | [Community voting](./community-voting.md) | A public question the community votes on, built to be shared |
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
+| [Educational pages](./educational-pages.md) | Subpages explaining members of parliament and politicians |
 | [Voting records comparison](./voting-records-comparison.md) | How politicians and clubs voted, compared on key topics |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
 | [Legacy content migration](./legacy-content-migration.md) | Moving old videos and articles to the new service |
