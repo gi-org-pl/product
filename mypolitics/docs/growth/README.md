@@ -14,4 +14,5 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Voting records comparison](./voting-records-comparison.md) | How politicians and clubs voted, compared on key topics |
 | [Live results preview](./live-results-preview.md) | Watching the compass and results change while answering |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
+| [Multiplayer mode](./multiplayer-mode.md) | Taking a quiz in a group with a host, or as two |
 | [Legacy content migration](./legacy-content-migration.md) | Moving old videos and articles to the new service |
