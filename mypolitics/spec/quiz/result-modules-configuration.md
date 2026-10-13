@@ -63,13 +63,13 @@ A trait, an archetype, a party and a candidate are not types of module, and not 
 ### What each type reads
 | Type | Orientations | Axes | Keys |
 |---|---|---|---|
-| Header | The pool its orientation is chosen from | - | `label.link` |
+| Header | The pool its orientation is chosen from | - | `lowMatch`, `label.link`, `label.lowMatch` |
 | Single axis | The first one: what the card is about | - | `marker` |
 | Double axis | - | The first one: its two sides are the two poles | `marker` |
 | Multi axis | - | Every axis it shows | `title`, `groupBy`, `marker` |
-| Horizontal bar | What is ranked | - | `title`, `selection`, `groupBy`, `visibleRows` |
+| Horizontal bar | What is ranked | - | `title`, `selection`, `groupBy`, `visibleRows`, `label.empty` |
 | Nolan chart | - | The horizontal and the vertical axis | The labels and the colours of the [map](#keys-of-the-map) |
-| Archetype | Every archetype the quiz scores | - | `title` |
+| Archetype | Every archetype the quiz scores | - | `title`, `lowMatch` |
 | Traits | Every trait the quiz defines | - | `title` |
 
 Every type reads the identifier, the type and the key `description`. Every type but the header reads the position and the column: the header is always on top.
@@ -85,7 +85,10 @@ What a key means, what it may hold and what it is when left out is defined once,
 | `groupBy` | `none` or `category` | `none` | Multi axis, horizontal bar | Whether its rows are one list or one list per category |
 | `marker` | A whole number from 0 to 100, or `none` | 50 | Single axis, double axis, multi axis | The reference line on every bar of the module. `none` switches the line off |
 | `visibleRows` | A whole number, 1 or more | 3 | Horizontal bar | How many rows a list shows before its fold |
+| `lowMatch` | `no_match` or `named` | `no_match` | Header, archetype | What the module does with a leader whose value is below 50. `no_match` says that nothing matches. `named` names the leader with its value all the same |
 | `label.link` | A text, per language | The header's own | Header | The label of the link to the orientation's website |
+| `label.lowMatch` | A text, per language | None | Header | The line under a leader that the header names below 50. Read only when `lowMatch` is `named`. Without it there is no line |
+| `label.empty` | A text, per language | None | Horizontal bar | What the card says when its selection leaves nothing to rank. With it the card is drawn. Without it there is no card |
 | `label.` and a name of the map | A text, per language | The map's own | Nolan chart | A name on the map. See [below](#keys-of-the-map) |
 | `color.` and a corner of the map | A colour | The map's own | Nolan chart | The colour of a corner |
 
@@ -194,7 +197,9 @@ Four fields are asked of the back-end here, because the record leans on them:
 | Two share the highest value | The one listed first by the author |
 | None of them has a value | No leader |
 | There is no header record | No leader |
-| The leader's value is below 50 | It is still given to the header, which shows no match. For selection it counts as no leader |
+| The leader's value is below 50, and the header record's `lowMatch` is `no_match` | It is still given to the header, which shows no match |
+| The leader's value is below 50, and the header record's `lowMatch` is `named` | It is given to the header, which names it with its value and shows the text of `label.lowMatch` under the result |
+| The leader's value is below 50 | For selection it counts as no leader, whatever `lowMatch` holds |
 
 The header's confidence is the leader's value. Nothing else in the result is called confidence.
 
@@ -225,13 +230,13 @@ The key `groupBy`.
 ### What each type is given
 | Type | Given |
 |---|---|
-| Header | The leader as its orientation, the leader's value as confidence, the text of the key `label.link` |
+| Header | The leader as its orientation, the leader's value as confidence, `lowMatch`, the text of the key `label.link`, the text of the key `label.lowMatch` |
 | Single axis | The first shown orientation with its value, the marker |
 | Double axis | The first axis: the first shown orientation of its negative side as the start entry and of its positive side as the end entry, each with the side value; the marker |
 | Multi axis | The title; for every axis the same two entries as a double axis; groups as above; the marker |
-| Horizontal bar | The title; the selected orientations with their values, or the categories each with theirs; visible rows. An orientation marked official carries the verified badge |
+| Horizontal bar | The title; the selected orientations with their values, or the categories each with theirs; visible rows; the text of the key `label.empty`. An orientation marked official carries the verified badge |
 | Nolan chart | The axis of type `compass_x_axis` as the horizontal one and of type `compass_y_axis` as the vertical one, each with its name and its two entries as a double axis; the labels and colours of the map |
-| Archetype | The title; every shown orientation of the record with its value as its match |
+| Archetype | The title; every shown orientation of the record with its value as its match; `lowMatch` |
 | Traits | The title; every shown orientation of the record as the catalogue; as earned, the ones that scored all they could in the whole quiz, as the [event model](./event-model.md) defines a trait |
 
 Two lists the [event model](./event-model.md) could not find in the survey are settled by the records. The trait list is the orientations of the traits record. The named positions are the orientations of the archetype record. A quiz with no such record has no traits and falls back to the event model's stand-in for named positions.
@@ -240,7 +245,9 @@ Two lists the [event model](./event-model.md) could not find in the survey are s
 | Case | Behaviour |
 |---|---|
 | A single axis, an archetype, a traits or a horizontal bar record is left with no shown orientation | Not drawn |
-| A horizontal bar record whose selection leaves nothing, or one grouped by category in a quiz with no category to show | Not drawn |
+| A horizontal bar record whose selection leaves nothing, and which has no text in `label.empty` | Not drawn |
+| A horizontal bar record whose selection leaves nothing, and which has a text in `label.empty` | Drawn: an empty card with that text |
+| A horizontal bar record grouped by category in a quiz with no category to show | Not drawn |
 | A double axis record with no axis, or an axis with an empty side | Not drawn |
 | A multi axis record left with no axis that has both sides | Not drawn |
 | A Nolan chart record that does not find both of its axes | Not drawn |

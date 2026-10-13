@@ -38,7 +38,7 @@ The API sends no result modules yet. Until it does, the app keeps one list per q
 
 | Quiz | Modules, in order | Looks like |
 |---|---|---|
-| Quiz Tożsamościowy | Header over the identities. Start column: multi axis "Ideologie" (the axes that have a category, grouped by category), horizontal bar "Partie" (the parties, linked to the leader). End column: archetype "Tożsamość" (the identities), Nolan chart (the two compass axes) | The old identity quiz result |
+| Quiz Tożsamościowy | Header over the identities, naming the closest identity below 50 with a notice. Start column: multi axis "Ideologie" (the axes that have a category, grouped by category, with an explanation). End column, in order: archetype "Tożsamość" (the identities, naming the closest below 50), Nolan chart (the two compass axes), horizontal bar "Partie" (the parties, linked to the leader, saying "Brak najbliższej partii" when the leader is below 50) | The old identity quiz result |
 | Barometr Prezydencki 2025 | Header over the candidates, link label "Program". Start column: horizontal bar "Kandydaci" (every candidate, all rows visible). End column: archetype "Prezydent" (the presidential identities), horizontal bar "Kategorie" (the candidates, by category) | The old presidential result |
 
 Every other quiz has no list and reads as not configured.

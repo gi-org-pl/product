@@ -32,7 +32,7 @@ Not covered here:
 | Term | Meaning |
 |---|---|
 | The other side | A friend, drawn as a person orientation whose identifier is the friend's result identifier; or an orientation of the quiz |
-| Offered orientations | The shown orientations of the quiz that at least one answer of the quiz lists, in the quiz's order |
+| Offered orientations | The shown orientations of the quiz that at least one answer of the quiz lists, in the quiz's order. When the quiz's header record lists orientations, only those of them: what the result is named after is what it is compared with. A quiz with no header record, or whose header record lists none, offers all of them |
 | An orientation's answers to a question | The possible answers of that question that list the orientation. There may be none, one or several |
 | Agreement on a question | Agree, disagree or neither - see the table below |
 
