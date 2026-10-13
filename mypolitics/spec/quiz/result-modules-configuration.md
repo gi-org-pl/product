@@ -194,7 +194,9 @@ This is the rule the old identity quiz had in code: the parties shown are the on
 | A module of axes | One group per category of the quiz, in the quiz's order, holding the record's axes of that category in the author's order. The group is named after the category |
 | An axis with no category | It stands in a group of its own, with no name, after the others |
 | A module of orientations | One group per category of the quiz, each holding the record's orientations with their values scored on that category's questions alone |
-| A category with nothing in it, or a hidden one | It is not a group |
+| A module of axes, and a category none of its axes belongs to | It is not a group |
+| A module of orientations, and a category in which none of them has a value | Still a group. The module shows that nothing matches there |
+| A hidden category | It is not a group |
 | None | One list, in the author's order |
 
 ### What each type is given
@@ -215,7 +217,7 @@ Two lists the [event model](./event-model.md) could not find in the survey are s
 | Case | Behaviour |
 |---|---|
 | A single axis, an archetype, a traits or a horizontal bar record is left with no shown orientation | Not drawn |
-| A horizontal bar record whose selection leaves nothing | Not drawn |
+| A horizontal bar record whose selection leaves nothing, or one grouped by category in a quiz with no category to show | Not drawn |
 | A double axis record with no axis, or an axis with an empty side | Not drawn |
 | A multi axis record left with no axis that has both sides | Not drawn |
 | A Nolan chart record that does not find both of its axes | Not drawn |

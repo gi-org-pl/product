@@ -26,7 +26,9 @@
 | [Progress and pacing](./progress-and-pacing.md) | The progress bar: what counts, what it shows, where it is drawn |
 | [Random copy](./checkpoints-random-copy.md) | The pools of lines the checkpoint cards draw their wording from |
 | [Result modules configuration](./result-modules-configuration.md) | The one record that says which modules a result shows, where, and what each is pointed at |
+| [Results comparison](./results-comparison.md) | The comparison tab: the other side, the agreement bar, results and answers side by side |
 | [Results saving and marketing](./results-saving-and-marketing.md) | The e-mail card, and the endpoint that sends the results link |
+| [Results screen](./results-screen.md) | The screen a result is read on: loading, composition and layout |
 | [Session and data](./session-and-data.md) | Where a quiz is read from, what a session holds and what is handed in |
 | [Single axis chart](./single-axis-chart.md) | One orientation, one bar |
 | [Single axis puzzle](./single-axis-puzzle.md) | The checkpoint card that asks which pole of an axis is closer |
@@ -69,6 +71,8 @@ The result modules lean on each other, so they are built in steps. Everything in
 | 10 | [Single axis puzzle](./single-axis-puzzle.md) | Axis closeness, for the bar without value labels and the shared gate |
 | 11 | [Double axis puzzle](./double-axis-puzzle.md) | Single axis puzzle, for the option row and the bar without numbers; archetype, for the row a hit uncovers |
 | 12 | [Result modules configuration](./result-modules-configuration.md) | Every result module, for what each takes; universal orientation; session and data, for the quiz; event model, for a value and a trait |
+| 13 | [Results screen](./results-screen.md) | Result modules configuration; header; module wrapper; engaging loader, which now leads to it |
+| 14 | [Results comparison](./results-comparison.md) | Results screen. Built as two units: the other side with the results, then the questions |
 
 Four rules are written once and used by more than one module. Each lives in the spec that is built first:
 
