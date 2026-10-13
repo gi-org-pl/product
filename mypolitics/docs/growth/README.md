@@ -7,5 +7,6 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 ## Contents
 | File | Description |
 |---|---|
+| [Multiplayer mode](./multiplayer-mode.md) | Taking a quiz in a group with a host, or as two |
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
