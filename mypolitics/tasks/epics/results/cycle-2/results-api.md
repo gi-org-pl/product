@@ -195,6 +195,38 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "verticalEndExtreme": {
           "pl": "Prawicowy światopoglądowo",
           "en": "Socially right-wing"
+        },
+        "bottomLeftModerate": {
+          "pl": "Lewicowy",
+          "en": "Left-wing"
+        },
+        "bottomLeftExtreme": {
+          "pl": "Lewicowy",
+          "en": "Left-wing"
+        },
+        "topRightModerate": {
+          "pl": "Prawicowy",
+          "en": "Right-wing"
+        },
+        "topRightExtreme": {
+          "pl": "Prawicowy",
+          "en": "Right-wing"
+        },
+        "topLeftModerate": {
+          "pl": "Lewicowy gospodarczo, prawicowy światopoglądowo",
+          "en": "Economically left-wing, socially right-wing"
+        },
+        "topLeftExtreme": {
+          "pl": "Lewicowy gospodarczo, prawicowy światopoglądowo",
+          "en": "Economically left-wing, socially right-wing"
+        },
+        "bottomRightModerate": {
+          "pl": "Prawicowy gospodarczo, lewicowy światopoglądowo",
+          "en": "Economically right-wing, socially left-wing"
+        },
+        "bottomRightExtreme": {
+          "pl": "Prawicowy gospodarczo, lewicowy światopoglądowo",
+          "en": "Economically right-wing, socially left-wing"
         }
       },
       "description": {
