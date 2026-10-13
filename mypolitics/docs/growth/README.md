@@ -8,4 +8,5 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | File | Description |
 |---|---|
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
+| [Community voting](./community-voting.md) | A public question the community votes on, built to be shared |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
