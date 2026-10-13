@@ -122,8 +122,11 @@ A module the taker's result does not draw is not drawn for the friend either.
 | Friend's identifier, label | Identyfikator wyników znajomego | A friend's result identifier |
 | Friend mode, hint | Wymień się identyfikatorami wyników ze znajomym, aby porównać wzajemnie swoje odpowiedzi. | Swap result identifiers with a friend to compare your answers. |
 | Copy control | Skopiuj identyfikator | Copy the identifier |
+| Copied | Skopiowano identyfikator. | Identifier copied. |
+| Copying is not possible | Nie udało się skopiować. Zaznacz identyfikator i skopiuj go ręcznie. | Copying failed. Select the identifier and copy it by hand. |
 | Orientation search | Szukaj po nazwie | Search by name |
 | Refused, own | To jest Twój identyfikator. | This is your own identifier. |
+| Refused, not an identifier | To nie jest identyfikator wyników. | This is not a result identifier. |
 | Refused, other survey | Ten wynik pochodzi z innego quizu. | This result comes from another quiz. |
 | Refused, anything else | Nie znaleźliśmy takiego wyniku. | We could not find this result. |
 | Agreement, label | Zgodność | Agreement |
@@ -132,9 +135,11 @@ A module the taker's result does not draw is not drawn for the friend either.
 | End the comparison | Cofnij porównanie | End the comparison |
 | View, results | Wyniki | Results |
 | View, questions | Pytania | Questions |
+| The switch of views, accessible name | Widok porównania | Comparison view |
 | Question search | Szukaj | Search |
 | Toggle | Tylko niezgodność | Only disagreements |
 | No answer | Brak odpowiedzi | No answer |
+| A question's agreement, in words | Zgodność, Niezgodność, Brak porównania | Agreement, Disagreement, No comparison |
 | Nothing listed | Brak pytań do pokazania. | No questions to show. |
 
 ## Rules and constraints
