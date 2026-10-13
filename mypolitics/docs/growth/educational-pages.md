@@ -11,7 +11,7 @@ What the documents say that is near it:
 
 - **Education is the stated purpose** - [why](../concept/why.md) says civic education is supposed to close the gap in understanding and does not, and that myPolitics exists to educate through play.
 - **Education has a principle** - [principles](../concept/principles.md) name education through play, substance over emotion, and credibility above all.
-- **Explanations already exist in the quiz** - [info modals](../modules/quiz/results/info-modals.md) explain what a module measures and how to read it, and the [multi axis chart](../modules/quiz/results/modules/multi-axis-chart.md) and [archetypes](../modules/quiz/results/modules/archetype.md) teach the vocabulary of axes.
+- **Explanations are planned in the quiz, not written** - [info modals](../modules/quiz/results/info-modals.md), meant to explain what a module measures and how to read it, are themselves an idea with nothing in them yet. What exists is the vocabulary of axes that the [multi axis chart](../modules/quiz/results/modules/multi-axis-chart.md) and [archetypes](../modules/quiz/results/modules/archetype.md) teach.
 - **People already appear as orientations** - candidates and parties can be ranked with faces in the [horizontal bar chart](../modules/quiz/results/modules/horizontal-bar-chart.md), and [how](../concept/how.md) describes politicians taking the quizzes and publishing their results.
 - **No page about a person or an institution is documented** - there is no module for it.
 
@@ -21,7 +21,7 @@ The idea is a set of pages that explain, for a young audience, who the people an
 - **It is the mission in its plainest form** - an explanation of how parliament works or who a politician is is education without a quiz around it.
 - **It gives the quizzes somewhere to point** - a result that names a party or a candidate could lead to a page that says who they are.
 - **It reaches people who do not take quizzes** - an explanatory page can be found by someone who searches for a name.
-- **It uses what we already write** - [info modals](../modules/quiz/results/info-modals.md) and axis descriptions are the same kind of text.
+- **It shares its writing with the quiz** - axis descriptions are the same kind of text, and so will [info modals](../modules/quiz/results/info-modals.md) be once they are written; neither is a stock of content to draw from today.
 - **The [media module](../modules/media/README.md) feeds it** - news aggregation could keep such pages linked to what is happening.
 
 ## Risk
