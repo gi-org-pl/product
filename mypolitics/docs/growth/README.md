@@ -7,5 +7,6 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 ## Contents
 | File | Description |
 |---|---|
+| [Live results preview](./live-results-preview.md) | Watching the compass and results change while answering |
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
