@@ -12,5 +12,6 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Educational pages](./educational-pages.md) | Subpages explaining members of parliament and politicians |
 | [Voting records comparison](./voting-records-comparison.md) | How politicians and clubs voted, compared on key topics |
+| [Live results preview](./live-results-preview.md) | Watching the compass and results change while answering |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
 | [Legacy content migration](./legacy-content-migration.md) | Moving old videos and articles to the new service |
