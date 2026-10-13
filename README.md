@@ -5,6 +5,7 @@
 ## Contents
 | Folder | Description |
 |---|---|
+| [Generacja Innowacja](./gi/README.md) | Roadmap, decisions and docs of the whole foundation |
 | [myPolitics](./mypolitics/README.md) | Docs, specs, roadmap and tasks of myPolitics |
 | [Asystent NGO](./asystent-ngo/) | Developer tasks of Asystent NGO |
 
