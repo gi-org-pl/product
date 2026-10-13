@@ -9,3 +9,4 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 |---|---|
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
+| [Educational pages](./educational-pages.md) | Subpages explaining members of parliament and politicians |
