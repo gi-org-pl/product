@@ -12,7 +12,7 @@ Proposed on 2026-10-13 after a first analysis, tracked in [issue #109](https://g
 The proposal in short:
 
 - **A separate, read-only bot** exports the server through Discord's official API on a schedule. A user account's token is never used - that is against Discord's terms.
-- **An existing tool** does the export: [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter), command line version, to JSON and HTML, with media downloaded as files (Discord's attachment links expire) and threads included.
+- **An existing tool** does the export: [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter), command line version, to JSON and HTML, with media downloaded as files (Discord's attachment links expire). The tool has an option to include threads; whether that covers forum channels and private threads is not verified - until the trial export confirms it, the backup is not to be counted as covering them.
 - **Beyond messages** it keeps the structure of the server (channels, categories, roles, permission overwrites) and the audit log, which Discord holds for 45 days only.
 - **On the foundation's own server** an incremental export runs nightly and a full one weekly. The archive is encrypted, a second encrypted copy is kept elsewhere, and access is limited to the board.
 - **Members are told** that it happens.
