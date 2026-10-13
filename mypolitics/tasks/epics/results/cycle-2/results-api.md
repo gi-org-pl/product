@@ -92,7 +92,8 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "a6ef4109-7141-4b0b-9924-b87a700d90b5",
         "2e46f89d-913e-4d82-85a6-70a8c25902f5",
         "010a5a3d-0729-4315-b231-c9dd081d0d55"
-      ]
+      ],
+      "params": {}
     },
     {
       "id": "identity-archetype",
@@ -119,7 +120,8 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "a6ef4109-7141-4b0b-9924-b87a700d90b5",
         "2e46f89d-913e-4d82-85a6-70a8c25902f5",
         "010a5a3d-0729-4315-b231-c9dd081d0d55"
-      ]
+      ],
+      "params": {}
     },
     {
       "id": "identity-ideologies",
@@ -148,7 +150,9 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "94e03d6a-562a-4f7f-ba67-01a1ac41effa",
         "c1ffca92-311c-4f09-b41e-81f5961198e4"
       ],
-      "groupBy": "category"
+      "params": {
+        "groupBy": "category"
+      }
     },
     {
       "id": "identity-compass",
@@ -159,6 +163,11 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "8bd5f826-1aed-409b-8a6e-da4a76189c03",
         "092ea01d-2d31-4ee2-ae30-deffa1c7c096"
       ],
+      "description": {
+        "pl": "Kompas dwuosiowy to forma prezentacji Twoich poglądów na wykresie dwuosiowym. Oś pozioma to poglądy gospodarcze (lewica-prawica), a pionowa to poglądy obyczajowe (lewica na dole, prawica na górze).",
+        "en": "The compass shows your views on two axes. The horizontal one is economic views (left to right), the vertical one is social views (left at the bottom, right at the top)."
+      },
+      "params": {},
       "labels": {
         "centre": {
           "pl": "Centrowy",
@@ -228,10 +237,6 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
           "pl": "Mieszany",
           "en": "Mixed"
         }
-      },
-      "description": {
-        "pl": "Kompas dwuosiowy to forma prezentacji Twoich poglądów na wykresie dwuosiowym. Oś pozioma to poglądy gospodarcze (lewica-prawica), a pionowa to poglądy obyczajowe (lewica na dole, prawica na górze).",
-        "en": "The compass shows your views on two axes. The horizontal one is economic views (left to right), the vertical one is social views (left at the bottom, right at the top)."
       }
     },
     {
@@ -256,10 +261,12 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "09d0f391-236c-4de2-860a-d86b023214b3",
         "9d67d502-a832-489e-aa5d-af8ef69b72aa"
       ],
-      "selection": "linked_to_leader",
       "description": {
         "pl": "W quizie tożsamościowym nie dopasowujemy partii do Twoich wyników według odpowiedzi. Zamiast tego najpierw określamy najbliższą tożsamość, a później to, jak ta tożsamość prawdopodobnie zagłosowałaby w wyborach.",
         "en": "The identity quiz does not match parties to your answers. It first finds your closest identity, and then how that identity would probably vote."
+      },
+      "params": {
+        "selection": "linked_to_leader"
       }
     }
   ],
@@ -283,6 +290,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
+      "params": {},
       "labels": {
         "link": {
           "pl": "Program",
@@ -314,7 +322,9 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
-      "visibleRows": 13
+      "params": {
+        "visibleRows": 13
+      }
     },
     {
       "id": "presidential-identity",
@@ -336,7 +346,8 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "ba7240c9-3c0b-44cd-a941-45a93d1a6665",
         "c28e9896-ff92-4881-a650-0e7f828ec381",
         "a309edcc-327c-40ae-8ce7-a7528619a3c1"
-      ]
+      ],
+      "params": {}
     },
     {
       "id": "presidential-categories",
@@ -362,7 +373,9 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
         "538434a9-dfed-4680-be7d-01eadfcb27fe",
         "176a1292-3630-4d2d-ae5f-f703de6dff51"
       ],
-      "groupBy": "category"
+      "params": {
+        "groupBy": "category"
+      }
     }
   ]
 }

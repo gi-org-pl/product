@@ -36,20 +36,18 @@ One record per module. A quiz has a list of them.
 | Description | Text | The author's explanation of the module | Optional. When present, the module offers its info action |
 | Orientations | A list of identifiers | The orientations the module is about, in the author's order | May be empty |
 | Axes | A list of identifiers | The axes the module is about, in the author's order | May be empty |
-| Selection | All, or linked to the leader | Which of its orientations the module shows | All unless said |
-| Grouping | None, or by category | Whether its rows are one list or one list per category | None unless said |
-| Marker | A number from 0 to 100, or none | The reference line on every bar of the module | 50 unless said. None switches the line off |
-| Visible rows | A whole number, 1 or more | How many rows a list shows before its fold | 3 unless said |
+| Parameters | Values by [name](#parameters) | Everything a module type can be set to that is not one of the fields above | May be empty. A parameter that is left out has its default |
 | Labels | Texts by [slot](#slots) | The author's texts that no orientation and no axis carries | May be empty |
 | Colours | Colours by [slot](#slots) | The author's colours that no orientation carries | May be empty |
 
 Every text and every colour is author-supplied and untrusted.
 
-Three rules keep the record the same for every module:
+Four rules keep the record the same for every module, and keep it from ever needing a new field:
 
 - **A module points, it does not copy.** A name, an image, a colour, a description, a slogan, a website, the official mark, the hidden mark and the linked orientations belong to an [orientation](./universal-orientation.md). The name and the two sides of an axis belong to the axis. A record holds identifiers and never repeats what they lead to.
-- **A field means one thing.** A module type reads the fields listed for it [below](#what-each-type-reads) and ignores the others. No type gives a field a second meaning.
-- **A text or a colour with no home goes into a slot.** What only one module needs - the label of the header's link, the names on the map - is a named slot of Labels or Colours, not a field of its own.
+- **A field is what every module has.** The fields of the record are the ones that mean the same for every type: what the module is, where it stands, what it is called, what it is about. Nothing that only some types need is a field.
+- **What a type can be set to is a parameter.** A setting of a module - which orientations it selects, how it groups, where its marker is, how many rows it shows - is a named value in Parameters. A new setting, of an existing type or of a new one, is a new name: the record, the table it is stored in and the API stay as they are.
+- **A text or a colour with no home goes into a slot.** What only one module needs to say or to paint - the label of the header's link, the names on the map - is a named slot of Labels or Colours. They are apart from Parameters because a label is held per language and a colour is checked as a colour.
 
 ### Types
 | Type | Sent as | Module |
@@ -63,21 +61,38 @@ Three rules keep the record the same for every module:
 | Archetype | `archetype` | [Archetype](./archetype.md) |
 | Traits | `traits` | [Traits](./traits.md) |
 
+The list is the app's, not the back-end's: a type is a name the app has a module for. A new module is a new name, with a row in each of the three tables below, and nothing else in this structure changes.
+
 A trait, an archetype, a party and a candidate are not types of module, and not types of orientation either: they are what an orientation is used as once a module is pointed at it.
 
 ### What each type reads
-| Type | Orientations | Axes | Other fields |
-|---|---|---|---|
-| Header | The pool its orientation is chosen from | - | Label `link` |
-| Single axis | The first one: what the card is about | - | Marker |
-| Double axis | - | The first one: its two sides are the two poles | Marker |
-| Multi axis | - | Every axis it shows | Title, grouping, marker |
-| Horizontal bar | What is ranked | - | Title, selection, grouping, visible rows |
-| Nolan chart | - | The horizontal and the vertical axis | The map's labels and colours |
-| Archetype | Every archetype the quiz scores | - | Title |
-| Traits | Every trait the quiz defines | - | Title |
+| Type | Orientations | Axes | Title | Parameters | Slots |
+|---|---|---|---|---|---|
+| Header | The pool its orientation is chosen from | - | - | - | Label `link` |
+| Single axis | The first one: what the card is about | - | - | `marker` | - |
+| Double axis | - | The first one: its two sides are the two poles | - | `marker` | - |
+| Multi axis | - | Every axis it shows | Yes | `groupBy`, `marker` | - |
+| Horizontal bar | What is ranked | - | Yes | `selection`, `groupBy`, `visibleRows` | - |
+| Nolan chart | - | The horizontal and the vertical axis | - | - | The map's labels and colours |
+| Archetype | Every archetype the quiz scores | - | Yes | - | - |
+| Traits | Every trait the quiz defines | - | Yes | - | - |
 
 Every type reads the identifier, the type and the description. Every type but the header reads the position and the column: the header is always on top.
+
+### Parameters
+A parameter is a name and a value. The value is a number, a text, yes or no, nothing, or a list of those. What a name means, what it may hold and what it is when left out is defined once, here, and is the same for every type that reads it.
+
+| Name | Holds | Default | Read by | Meaning |
+|---|---|---|---|---|
+| `selection` | `all` or `linked_to_leader` | `all` | Horizontal bar | Which of its orientations the module shows |
+| `groupBy` | `none` or `category` | `none` | Multi axis, horizontal bar | Whether its rows are one list or one list per category |
+| `marker` | A number from 0 to 100, or nothing | 50 | Single axis, double axis, multi axis | The reference line on every bar of the module. Nothing switches the line off |
+| `visibleRows` | A whole number, 1 or more | 3 | Horizontal bar | How many rows a list shows before its fold |
+
+- **A type reads the names listed for it** and ignores every other name, whether another type reads it or nobody does.
+- **A name means one thing.** A type that needs a different meaning takes a different name.
+- **Adding one** is a row in this table and a line in the app's table of parameters by type. No record that exists has to change: it reads as the default.
+- **Not a parameter:** a score, a threshold of a match band or of the map, anything about a taker. See [rules](#rules-and-constraints).
 
 ### Slots
 | Type | Kind | Slot | What it is |
@@ -90,7 +105,7 @@ Every type reads the identifier, the type and the description. Every type but th
 | Nolan chart | Label | `topLeftModerateShort`, `topLeftExtremeShort`, and the same for the other three corners | A shorter form of a corner's name, for a narrow card |
 | Nolan chart | Colour | `topLeft`, `topRight`, `bottomLeft`, `bottomRight` | The colour of a corner |
 
-A slot that is not listed for the record's type is ignored. A slot that is missing leaves the module to its own default, as its spec says.
+A slot that is not listed for the record's type is ignored. A slot that is missing leaves the module to its own default, as its spec says. A new slot is a row in this table, like a new parameter.
 
 ### Terms
 | Term | Meaning |
@@ -117,20 +132,18 @@ The repo has no task convention for back-end work, so the contract below is the 
 |---|---|---|---|
 | Identifier | `id` | A UUID | Generated by the back-end |
 | Survey | - | The survey's identifier | Not sent: the list is read as part of its survey |
-| Type | `type` | Text | One of the eight values under [types](#types). Anything else is refused |
+| Type | `type` | Text | A name of at most 64 characters, lower case with underscores. Not checked against a list: the app knows the types, and skips a record whose type it does not know |
 | Position | `position` | A whole number | 0 or more |
-| Column | `column` | Text | `start` or `end`. `start` when left out |
+| Column | `column` | Text | `start` when left out. Not checked against a list, for the same reason |
 | Title | `title` | A text per language | Optional. Sent in the language asked for, like every other text of a survey |
 | Description | `description` | A text per language | Optional. Sent the same way |
 | Orientations | `orientationIds` | A list of identifiers | Each must be an orientation of the same survey. Empty when left out |
 | Axes | `axisIds` | A list of identifiers | Each must be an axis of the same survey. Empty when left out |
-| Selection | `selection` | Text | `all` or `linked_to_leader`. `all` when left out |
-| Grouping | `groupBy` | Text | `none` or `category`. `none` when left out |
-| Marker | `marker` | A number, or null | 0 to 100. 50 when left out; null switches it off |
-| Visible rows | `visibleRows` | A whole number | 1 or more. 3 when left out |
-| Labels | `labels` | Slot names with a text per language each | Sent as slot names with one text each. Only the slots of the record's type are accepted |
-| Colours | `colors` | Slot names with a colour each | Only the slots of the record's type are accepted |
+| Parameters | `params` | One JSON object | Names with a value each: a number, a text, a boolean, null, or a list of those. Stored and sent as it was saved. Empty when left out. The back-end does not know the names: it checks only the size - at most 50 names of at most 64 characters, a text of at most 500 characters, a list of at most 200 values |
+| Labels | `labels` | One JSON object: slot names with a text per language each | Sent as slot names with one text each, in the language asked for. The back-end does not know the slot names |
+| Colours | `colors` | One JSON object: slot names with a colour each | Each value must be a plain colour. The back-end does not know the slot names |
 
+- **What the back-end never has to change** - a new module type, a new parameter and a new slot need no migration and no release of the API: the table has the same columns, and what the names mean is the app's and this spec's. The back-end changes only when the record gains a field that every module has.
 - **Where it is sent** - `GET /v1/survey/{identifier}` gains `resultModules`, a list in the order of `position`. A survey with none sends an empty list.
 - **Who writes it** - whoever may edit the survey. The endpoints the editor saves through are the editor's to specify; this spec fixes only the record.
 - **What it does not replace** - the fields the API still lacks for an orientation and an axis stay asked for where they are named: the seven orientation properties in [universal orientation](./universal-orientation.md), and for an axis its category and a name per language.
@@ -153,9 +166,11 @@ Three fields are asked of the back-end here, because the record leans on them:
 | A record breaks a rule of the [record](#the-record) - no identifier, no type, a position that is not a number | It is skipped. The others are drawn |
 | Two records have the same identifier | The first is kept |
 | Two records have the same position | They keep the order of the list |
-| Column, selection or grouping holds a value the app does not know | The default of that field |
-| Marker is outside 0 to 100, or not a number and not none | 50 |
-| Visible rows is below 1 or not a whole number | 3 |
+| Column holds a value the app does not know | Start |
+| Parameters is missing or is not a set of names with values | As if empty: every parameter has its default |
+| A parameter the record's type reads is left out | Its default |
+| A parameter holds a value its [row](#parameters) does not allow - `marker` outside 0 to 100, `visibleRows` below 1, a `selection` the app does not know | Its default |
+| A parameter the record's type does not read, or one the app does not know | Ignored |
 | A colour is not a plain colour value | It is dropped, and the module uses its default |
 | There is more than one header record | The first in order is the header. The others are skipped |
 
@@ -180,6 +195,8 @@ Three fields are asked of the back-end here, because the record leans on them:
 The header's confidence is the leader's value. Nothing else in the result is called confidence.
 
 ### Selection
+The parameter `selection`.
+
 | Case | Behaviour |
 |---|---|
 | All | Every shown orientation of the record |
@@ -189,6 +206,8 @@ The header's confidence is the leader's value. Nothing else in the result is cal
 This is the rule the old identity quiz had in code: the parties shown are the ones tied to the taker's leading identity.
 
 ### Grouping by category
+The parameter `groupBy`.
+
 | Case | Behaviour |
 |---|---|
 | A module of axes | One group per category of the quiz, in the quiz's order, holding the record's axes of that category in the author's order. The group is named after the category |
@@ -241,6 +260,7 @@ A record does not change while a result is open: it is read with the quiz.
 
 ## Rules and constraints
 - **One shape.** No module type has a record of its own, and no record nests another.
+- **The shape does not grow with the modules.** A new type, a new parameter and a new slot are new names inside the same fields. A new field is added only for something every module has.
 - **One header.** A result has at most one.
 - **Order is a number.** Position decides the order on a narrow screen and inside each column on a wide one. The header is outside both.
 - **Two columns.** A module stands in the start or the end column. No module spans both.
@@ -253,6 +273,7 @@ A record does not change while a result is open: it is read with the quiz.
 |---|---|
 | A record with both orientations and axes | The type reads the one it is listed with and ignores the other |
 | A record with a label or a colour in a slot of another type | The slot is ignored |
+| A record with a parameter of another type | The parameter is ignored |
 | A title or a description that is blank | As if absent |
 | A very long list of orientations in a horizontal bar | All are ranked; the fold hides the rest |
 | An axis listed in a Nolan chart record that is not a compass axis | It is not used by the map |
@@ -270,7 +291,7 @@ The list is public quiz content. It holds no personal data and nothing about a t
 | A module fails while it draws | The result screen contains it, as the [module wrapper](./module-wrapper.md) leaves to it |
 
 ## Non-functional
-- **A new type costs no migration.** A type the app does not know is skipped, so the back-end can accept a new one before every app knows it.
+- **A new type, parameter or slot costs no migration.** They are names the back-end stores without knowing them, and an app that does not know one skips the record or ignores the name, so a new one can be saved before every app knows it.
 - **Nothing is fetched per module.** The list comes with the quiz, and the values come with the result.
 
 ## Dependencies
