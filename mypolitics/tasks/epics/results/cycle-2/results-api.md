@@ -73,7 +73,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
 {
   "60beb898-a4e4-4160-88c4-07a9931ab499": [
     {
-      "id": "identity-header",
+      "id": "e7a3dbe2-b263-444a-b686-f7c801c17879",
       "type": "header",
       "position": 0,
       "orientationIds": [
@@ -97,7 +97,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       "values": []
     },
     {
-      "id": "identity-archetype",
+      "id": "b9f37f04-1b35-4423-ba31-90d523a09664",
       "type": "archetype",
       "position": 1,
       "column": "end",
@@ -130,7 +130,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "identity-ideologies",
+      "id": "34247794-ee0f-451b-9e48-b8685067c8de",
       "type": "multi_axis",
       "position": 2,
       "column": "start",
@@ -168,7 +168,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "identity-compass",
+      "id": "9ada868c-90a5-42e1-a12a-b1f4ecd3150b",
       "type": "nolan_chart",
       "position": 3,
       "column": "end",
@@ -307,7 +307,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "identity-parties",
+      "id": "2c5ba77b-959e-421a-8079-edf2d948a01c",
       "type": "horizontal_bar",
       "position": 4,
       "column": "start",
@@ -349,7 +349,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
   ],
   "270f6c12-6551-4661-bfcf-52635a703928": [
     {
-      "id": "presidential-header",
+      "id": "1046adae-2298-4fa2-a20c-023b67fc1e23",
       "type": "header",
       "position": 0,
       "orientationIds": [
@@ -379,7 +379,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "presidential-candidates",
+      "id": "26585cf4-cfb5-4755-b6f6-f997764b60c5",
       "type": "horizontal_bar",
       "position": 1,
       "column": "start",
@@ -414,7 +414,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "presidential-identity",
+      "id": "a9fabbef-3b68-4121-ac03-174016fd849a",
       "type": "archetype",
       "position": 2,
       "column": "end",
@@ -442,7 +442,7 @@ The API sends no `resultModules` yet. The app keeps a list for the two quizzes i
       ]
     },
     {
-      "id": "presidential-categories",
+      "id": "31a5619f-c941-4802-ac9b-4a477f5a2a90",
       "type": "horizontal_bar",
       "position": 3,
       "column": "end",
