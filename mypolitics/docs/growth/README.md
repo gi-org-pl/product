@@ -10,3 +10,4 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Result chart forms](./result-chart-forms.md) | A parliament, possible majorities and seats by topic as result modules |
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
+| [Legacy content migration](./legacy-content-migration.md) | Moving old videos and articles to the new service |
