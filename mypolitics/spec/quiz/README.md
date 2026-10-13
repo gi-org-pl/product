@@ -25,6 +25,7 @@
 | [Phases model](./phases-model.md) | The questionnaire screen: seven phases, their buttons, back and reset |
 | [Progress and pacing](./progress-and-pacing.md) | The progress bar: what counts, what it shows, where it is drawn |
 | [Random copy](./checkpoints-random-copy.md) | The pools of lines the checkpoint cards draw their wording from |
+| [Result modules configuration](./result-modules-configuration.md) | The one record that says which modules a result shows, where, and what each is pointed at |
 | [Results saving and marketing](./results-saving-and-marketing.md) | The e-mail card, and the endpoint that sends the results link |
 | [Session and data](./session-and-data.md) | Where a quiz is read from, what a session holds and what is handed in |
 | [Single axis chart](./single-axis-chart.md) | One orientation, one bar |
@@ -35,7 +36,7 @@
 | [Universal orientation](./universal-orientation.md) | The one definition of an orientation, and how it is read from the API |
 
 ## Build order
-The result modules lean on each other, so they are built in steps. Everything inside one step can be built at the same time; a step needs the ones above it only where the last column says so. Steps 0 to 3 are the result modules; steps 4 and up are the questionnaire.
+The result modules lean on each other, so they are built in steps. Everything inside one step can be built at the same time; a step needs the ones above it only where the last column says so. Steps 0 to 3 are the result modules; steps 4 to 11 are the questionnaire; steps 12 and up are the result screen.
 
 | Step | Spec | Needs first |
 |---|---|---|
@@ -67,6 +68,7 @@ The result modules lean on each other, so they are built in steps. Everything in
 | 9 | [Stats chart](./stats-chart.md) | Checkpoints, random copy; answer model. Its trigger cannot fire until a source of answer counts exists |
 | 10 | [Single axis puzzle](./single-axis-puzzle.md) | Axis closeness, for the bar without value labels and the shared gate |
 | 11 | [Double axis puzzle](./double-axis-puzzle.md) | Single axis puzzle, for the option row and the bar without numbers; archetype, for the row a hit uncovers |
+| 12 | [Result modules configuration](./result-modules-configuration.md) | Every result module, for what each takes; universal orientation; session and data, for the quiz; event model, for a value and a trait |
 
 Four rules are written once and used by more than one module. Each lives in the spec that is built first:
 

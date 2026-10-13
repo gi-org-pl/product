@@ -6,6 +6,7 @@
 | File | Description |
 |---|---|
 | [Comparison](./comparison/README.md) | Comparing with a friend or an orientation |
+| [Configuration](./configuration.md) | The list that says which modules a quiz's result shows |
 | [Engaging loader](./engaging-loader.md) | The wait before the result |
 | [Follow-up recommendation](./follow-up-recommendation.md) | The next quiz to take |
 | [Info modals](./info-modals.md) | Explaining what a module measures |
