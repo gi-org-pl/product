@@ -36,7 +36,7 @@ One record per module. A quiz has a list of them.
 | Axes | A list of identifiers | The axes the module is about, in the author's order | May be empty |
 | Values | A list of pairs, each a [key](#keys) and a value | Everything else about the module: its title, its description, its settings, its texts and its colours | May be empty. A key that is left out has its default |
 
-A value is a text, a number, yes or no, or nothing. Every text and every colour is author-supplied and untrusted.
+A key is a string. A value is a string or a whole number (an int). Every text and every colour is author-supplied and untrusted.
 
 Three rules keep the record the same for every module, and keep it from ever needing a new field:
 
@@ -83,13 +83,13 @@ What a key means, what it may hold and what it is when left out is defined once,
 | `description` | A text, per language | None | Every type | The author's explanation of the module. When present, the module offers its info action |
 | `selection` | `all` or `linked_to_leader` | `all` | Horizontal bar | Which of its orientations the module shows |
 | `groupBy` | `none` or `category` | `none` | Multi axis, horizontal bar | Whether its rows are one list or one list per category |
-| `marker` | A number from 0 to 100, or nothing | 50 | Single axis, double axis, multi axis | The reference line on every bar of the module. Nothing switches the line off |
+| `marker` | A whole number from 0 to 100, or `none` | 50 | Single axis, double axis, multi axis | The reference line on every bar of the module. `none` switches the line off |
 | `visibleRows` | A whole number, 1 or more | 3 | Horizontal bar | How many rows a list shows before its fold |
 | `label.link` | A text, per language | The header's own | Header | The label of the link to the orientation's website |
 | `label.` and a name of the map | A text, per language | The map's own | Nolan chart | A name on the map. See [below](#keys-of-the-map) |
 | `color.` and a corner of the map | A colour | The map's own | Nolan chart | The colour of a corner |
 
-A key holds one of six kinds of value: a text, a text per language, a number within bounds, one of a list of choices, yes or no, a colour. The kind decides how the app checks a value and which control the quiz editor offers for it, so a key that is added to the table has its place in the editor's form without a form being written for it.
+A value is a string or a whole number, and the table says how a key reads it. There are five kinds: a text, a text per language, a whole number within bounds, one of a list of choices, a colour. A choice and a colour are strings; a key that needs yes or no is a choice of two. The kind decides how the app checks a value and which control the quiz editor offers for it, so a key that is added to the table has its place in the editor's form without a form being written for it.
 
 - **A type reads the keys listed for it** and ignores every other key, whether another type reads it or nobody does.
 - **A key means one thing.** A type that needs a different meaning takes a different key.
@@ -139,7 +139,7 @@ The repo has no task convention for back-end work, so the contract below is the 
 | Column | `column` | Text | `start` when left out. Not checked against a list, for the same reason |
 | Orientations | `orientationIds` | A list of identifiers | Each must be an orientation of the same survey. Empty when left out |
 | Axes | `axisIds` | A list of identifiers | Each must be an axis of the same survey. Empty when left out |
-| Values | `values` | Pairs of a key and a value, tied to their record | Sent as a list of `{ "key", "value" }`. A key is a text of at most 64 characters: letters, digits, dots and underscores. A value is a text, a number, a boolean or null, or a text per language. A key stands once in a record. Empty when left out |
+| Values | `values` | Pairs of a key and a value, tied to their record | Sent as a list of `{ "key", "value" }`. A key is a text of at most 64 characters: letters, digits, dots and underscores. A value is a string or an integer; a text is stored as a string per language. A key stands once in a record. Empty when left out |
 
 - **How the pairs are stored** is the back-end's choice: a table of rows `{ record, key, value }`, which keeps both tables flat, or one JSON column on the record. What is sent is the same.
 - **A text per language** - a value saved as an object of languages, `{ "pl": ..., "en": ... }`, is sent as the one text of the language asked for, by the rule every other text of a survey follows. The back-end applies it to any value of that shape, whatever its key.
@@ -170,10 +170,10 @@ Four fields are asked of the back-end here, because the record leans on them:
 | Two records have the same position | They keep the order of the list |
 | Column holds a value the app does not know | Start |
 | Values is missing or is not a list of pairs | As if empty: every key has its default |
-| A pair has no key, or a value that is not a text, a number, yes or no, or nothing | That pair is skipped |
+| A pair has no key, or a value that is not a string or a whole number | That pair is skipped |
 | The same key stands twice in a record | The first counts |
 | A key the record's type reads is left out | Its default |
-| A key holds a value its [row](#keys) does not allow - `marker` outside 0 to 100, `visibleRows` below 1, a `selection` the app does not know | Its default |
+| A key holds a value its [row](#keys) does not allow - `marker` outside 0 to 100 or not whole, `visibleRows` below 1, a `selection` the app does not know | Its default |
 | A key the record's type does not read, or one the app does not know | Ignored |
 | A colour is not a plain colour value | It is dropped, and the module uses its default |
 | There is more than one header record | The first in order is the header. The others are skipped |
@@ -265,7 +265,7 @@ A record does not change while a result is open: it is read with the quiz.
 ## Rules and constraints
 - **One shape.** No module type has a record of its own, and no record nests another.
 - **The shape does not grow with the modules.** A new type and a new key are new names inside the same fields. A new field is added only for something the back-end has to understand.
-- **A value is plain.** A pair holds one text, number, yes or no, or nothing: no list and no nested object. What a module is about - its orientations and axes, and the categories they are grouped by - is said by the two lists of identifiers and by the axes and orientations themselves, not by a value.
+- **A value is plain.** A pair holds one string or one whole number: no list, no nested object, no fraction and no empty value. What would be "nothing" is a word of its own, as `none` is for the marker. What a module is about - its orientations and axes, and the categories they are grouped by - is said by the two lists of identifiers and by the axes and orientations themselves, not by a value.
 - **One header.** A result has at most one.
 - **Order is a number.** Position decides the order on a narrow screen and inside each column on a wide one. The header is outside both.
 - **Two columns.** A module stands in the start or the end column. No module spans both.
