@@ -8,4 +8,5 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | File | Description |
 |---|---|
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
+| [Voting records comparison](./voting-records-comparison.md) | How politicians and clubs voted, compared on key topics |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
