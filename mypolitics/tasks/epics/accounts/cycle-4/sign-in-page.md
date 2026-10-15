@@ -32,7 +32,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Signed in on the page | Goes to `next`, or home |
 | "Anuluj" on the step | Back to the card with three providers |
 | `next` missing | Home |
-| `next` to another site, `//host`, a scheme, or not starting with `/` | Ignored: home |
+| `next` to another site, `//host`, `/\host` (encoded or not), a scheme, a tab or line break that makes it another host, or not starting with `/` | Ignored: home. Checked with a URL parser against the app's own origin |
 
 # Athena components to use
 

@@ -131,7 +131,8 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Case | Behaviour |
 |---|---|
 | The app starts | `session` is `unknown`, then the client's answer: `signed-in` with the account, or `signed-out` |
-| `getSession` rejects | `signed-out` - the API being unreachable is treated as signed out |
+| `getSession` rejects on the first check | `signed-out` - the API being unreachable is treated as signed out |
+| `getSession` rejects on a later `refresh()` | A `signed-in` session stays as it is; otherwise `signed-out` |
 | `setSignedIn(account)` | `signed-in` with that account at once, without asking the client |
 | `signOut()` | The client's `signOut`, then `signed-out`; answers `true` |
 | `signOut()` and the client rejects | Still `signed-in`; answers `false`. The page never shows a person signed out while the API may still hold their session |

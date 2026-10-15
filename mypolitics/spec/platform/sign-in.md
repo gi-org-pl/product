@@ -138,7 +138,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | "Wybierz inny sposób" pressed | Back to the card with three buttons. The pending link is dropped |
 | Outcome: window closed | Back to three active buttons, with the red "Logowanie przerwane" box above them naming the provider |
 | Outcome: provider failed | Back to three active buttons, with the red box naming the provider that failed and pointing to the others |
-| Outcome: failed | Back to three active buttons, with the red "Coś poszło nie tak" box |
+| Outcome: failed | The app asks for the session first, in case the sign-in happened and only its answer was lost: signed in, the card's work is done. Otherwise back to three active buttons, with the red "Coś poszło nie tak" box |
 | Another button pressed while an error is shown | The error disappears as the new attempt starts |
 | A link to the terms or the privacy policy | Opens in a new tab |
 
@@ -150,7 +150,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | The person edits the name | It is theirs: nothing replaces it |
 | "Gotowe" with everything valid | "Gotowe" shows a spinner and the step cannot be changed; the API saves the account and starts the session; the page or the dialog finishes |
 | "Gotowe" with something missing | Nothing is sent. Under each missing item its message appears in red, and focus moves to the first of them. A message disappears as soon as its item is fixed |
-| Saving failed | The app first asks for the session, in case the account was saved and only the answer was lost: signed in, the step finishes. Otherwise the step stays as it was, with "Nie udało się zapisać konta. Spróbuj jeszcze raz." above the buttons, and "Gotowe" can be pressed again |
+| Saving failed | The app repeats the completion of the same sign-up once, in case the account was saved and only the answer was lost - a repeated completion answers with the account it made. Signed in, the step finishes. Otherwise the step stays as it was, with "Nie udało się zapisać konta. Spróbuj jeszcze raz." above the buttons, and "Gotowe" can be pressed again. The step stays in saving, and the dialog cannot be closed, until the repeat has answered |
 | The pending sign-up has expired when "Gotowe" is pressed | The step closes and the card returns with "Coś poszło nie tak", so the person starts again with a provider |
 | "Anuluj" | The pending sign-up is dropped. On the page the card returns; in the dialog the dialog closes, as any cancel does |
 | The promise under the boxes | Names the provider the person signed in with |
@@ -270,7 +270,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 | A photo address that fails to load | The initials, as if there were no photo |
 | No e-mail from the provider | The account is created without one; the account menu shows the provider mark only; the "account exists" case cannot arise for that sign-in |
 | An e-mail the provider does not mark as verified | Treated as no e-mail |
-| `next` pointing to another site, a protocol other than the app's, or `//` | Ignored: the home page |
+| `next` pointing to another site, a protocol other than the app's, `//`, `/\` or anything a browser would read as another host | Ignored: the home page |
 | An unknown action key | A programming error: it fails the build's type check. At run time the dialog shows the page's line |
 
 ## Privacy and data handling
@@ -291,6 +291,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 | The provider is down, times out or is denied the permissions | "{Provider} nie odpowiada", pointing to the other ways |
 | The API is unreachable during a sign-in | "Coś poszło nie tak" |
 | The API is unreachable when the app starts | Treated as signed out: the header shows "Zaloguj się". The next sign-in asks again |
+| The API is unreachable when the app asks again later | A session already known stays as it is: an outage says nothing about the session ending |
 | Saving the account fails | The step stays with "Nie udało się zapisać konta. Spróbuj jeszcze raz." |
 | The session ends while the person is in the app (expired, signed out elsewhere) | The next request that needs it finds it gone: the header shows "Zaloguj się", and the next action that needs an account opens the dialog |
 | A social app's in-app browser that cannot open the provider | The provider failed message; the other providers stay available |

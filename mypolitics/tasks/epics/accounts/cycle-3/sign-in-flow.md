@@ -48,9 +48,11 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | "Wybierz inny sposób" | `client.cancelPending(pendingId)`, then the choose view without an error |
 | `window-closed`, `provider-failed`, `failed` | The choose view with that error |
 | `signIn` rejects | As `failed` |
+| `failed` (or a rejection) | The flow asks for the session first: signed in, it finishes as `signed-in`; otherwise the choose view with the `failed` error |
+| An outcome with a pending operation that arrives after unmount | Its pending sign-up or link is dropped with `cancelPending` |
 | "Gotowe" | `client.completeSignUp(signUp.id, setup)`; the step is saving and `onBusyChange(true)`, then `onBusyChange(false)` when it settles |
 | `completeSignUp` → `signed-in` | `setSignedIn`, `onSignedIn` |
-| `completeSignUp` → `failed` or rejects | The flow asks for the session: signed in, it finishes; otherwise the step with the save error |
+| `completeSignUp` → `failed` or rejects | The flow repeats the completion of the same sign-up once: signed in, it finishes; otherwise the step with the save error. `onBusyChange(false)` only after the repeat has answered |
 | `completeSignUp` → `expired` | The choose view with the `failed` error |
 | "Anuluj" | `client.cancelPending(signUp.id)` (its failure ignored), then `onCancel` |
 | The flow is unmounted while a provider is waited for | The sign-in is aborted through its `signal`: the client closes the window and undoes whatever the sign-in started. Nothing is called on the host |
