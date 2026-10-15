@@ -35,7 +35,9 @@ The spec's back-end half is the contract: [Sign-in](https://github.com/gi-org-pl
 | Pending sign-up | Created when the provider identity has no account and its e-mail belongs to none; 15 minutes; holds the suggested name, the photo address, the e-mail - **only in the person's browser**, in an encrypted cookie the page cannot read. The API writes nothing about the person (table, log, cache) before "Gotowe" |
 | Complete sign-up | Display name (2-50 characters), the age declaration and the acceptance of the terms with their versions; saves the account and starts the session; answers expired when the pending sign-up is gone |
 | Account exists | When the verified e-mail belongs to an account of another provider: never merged; a pending link of 15 minutes that names that account; a sign-in with `link` whose identity belongs to that account links the new provider; any other answers `link-failed` and starts no session |
-| Cancel | Drops a pending sign-up or a pending link |
+| Pending identifiers | Every pending sign-up and pending link has its own identifier, returned with the outcome; completion, cancellation and the owner's sign-in name it, so flows in two tabs never mix |
+| Idempotent completion | Completing a sign-up already completed answers with the account it made |
+| Cancel | Drops the named pending sign-up or pending link |
 | Sign out | Ends the session in the API; the call fails when it could not |
 | Never | Joins the account to answers, results, demographics or the respondent code |
 

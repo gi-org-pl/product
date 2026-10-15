@@ -52,8 +52,10 @@ The buttons are always in this order. The marks are the providers' own, in their
 | | Terms accepted | The date and the version of the terms and of the privacy policy | Recorded on "Gotowe" |
 | Linked provider | Provider and the provider's user identifier | A way to sign in to the account | At least one per account. The pair is unique across all accounts |
 | Session | The account and when it was started | That this browser is signed in | Held by the API in a cookie the page cannot read. 30 days, extended on use |
-| Pending sign-up | Provider, provider's user identifier, suggested name, photo, e-mail | A provider sign-in that has no account yet | Held only in the person's browser, in an encrypted cookie the page cannot read, for 15 minutes. The API stores none of it until "Gotowe", see "Privacy and data handling". Becomes an account on "Gotowe" or is dropped |
-| Pending link | Provider and provider's user identifier, and the account the address belongs to | A provider waiting to be linked to that very account | Held the same way, for 15 minutes. Linked only by a sign-in, meant to link, whose identity belongs to that account |
+| Pending sign-up | Its own identifier, provider, provider's user identifier, suggested name, photo, e-mail | A provider sign-in that has no account yet | Held only in the person's browser, in an encrypted cookie the page cannot read, for 15 minutes. The API stores none of it until "Gotowe", see "Privacy and data handling". Becomes an account on "Gotowe" or is dropped |
+| Pending link | Its own identifier, provider and provider's user identifier, and the account the address belongs to | A provider waiting to be linked to that very account | Held the same way, for 15 minutes. Linked only by a sign-in, meant to link, whose identity belongs to that account |
+
+**Every pending operation is named by its own identifier**, handed to the app with the outcome that created it. Completing, cancelling and the owner's sign-in name the one they act on, so two sign-ins in two tabs of one browser never take each other's place.
 
 **Identity** is the provider together with the provider's user identifier, never the e-mail. A person who signs in with X and gets no e-mail has a complete account; nothing anywhere requires an address.
 
@@ -103,8 +105,8 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | Out | Sign out | An event | From the account menu |
 | In | Session | The account, or none | From the API when the app starts, and after every sign-in, "Gotowe" and sign-out |
 | In | Provider sign-in | The provider | The API opens the provider's window and answers with one of the outcomes below |
-| In | Complete sign-up | Display name, the two declarations | The API saves the account and starts the session |
-| In | Cancel sign-up | An event | The API drops the pending sign-up or the pending link |
+| In | Complete sign-up | The pending sign-up's identifier, display name, the two declarations | The API saves the account and starts the session. Repeating it for a sign-up already completed answers with the account it made, so a completion whose answer was lost can be repeated |
+| In | Cancel sign-up | The pending operation's identifier | The API drops that pending sign-up or pending link |
 | In | Stop a sign-in | An event | The provider window is closed and its answer, if one still arrives, is undone - see "The auth dialog" |
 | In | Resume a sign-in | The outcome of a provider sign-in that had to leave the page, or nothing | Asked by the sign-in page when the provider sends the person back |
 | In | Terms and privacy addresses | Two links | The app's terms and privacy pages. They open in a new tab, so nothing in progress is lost |
@@ -148,7 +150,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | The person edits the name | It is theirs: nothing replaces it |
 | "Gotowe" with everything valid | "Gotowe" shows a spinner and the step cannot be changed; the API saves the account and starts the session; the page or the dialog finishes |
 | "Gotowe" with something missing | Nothing is sent. Under each missing item its message appears in red, and focus moves to the first of them. A message disappears as soon as its item is fixed |
-| Saving failed | The step stays as it was, with "Nie udało się zapisać konta. Spróbuj jeszcze raz." above the buttons. "Gotowe" can be pressed again |
+| Saving failed | The app first asks for the session, in case the account was saved and only the answer was lost: signed in, the step finishes. Otherwise the step stays as it was, with "Nie udało się zapisać konta. Spróbuj jeszcze raz." above the buttons, and "Gotowe" can be pressed again |
 | The pending sign-up has expired when "Gotowe" is pressed | The step closes and the card returns with "Coś poszło nie tak", so the person starts again with a provider |
 | "Anuluj" | The pending sign-up is dropped. On the page the card returns; in the dialog the dialog closes, as any cancel does |
 | The promise under the boxes | Names the provider the person signed in with |
@@ -160,7 +162,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 |---|---|
 | `/login` is opened signed out | The card with the page heading and line, inside the app's header and footer |
 | `/login` is opened while signed in | The person is sent on at once, as if they had just signed in |
-| The provider sends the person back after a full-page sign-in | The page asks how the sign-in ended and shows that: the person is sent on when signed in; otherwise the card shows "Prawie gotowe", "To konto już istnieje" or the error, exactly as after a provider window |
+| The provider sends the person back after a full-page sign-in | Until the page knows how the sign-in ended, it shows nothing in place of the card, so no second sign-in can start meanwhile. Then it shows that: the person is sent on when signed in; otherwise the card shows "Prawie gotowe", "To konto już istnieje" or the error, exactly as after a provider window |
 | Signed in on the page (with or without the step) | The page goes to the address it was given in `next`, or to the home page when there is none |
 | `next` is not an address inside the app | It is ignored and the home page is used, so the page can never send anyone to another site |
 | "Zaloguj się" in the header | Opens `/login` with `next` set to the page the person was on |

@@ -36,24 +36,25 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 | Case | Behaviour |
 |---|---|
+| `resume`, while the client is asked | The flow shows nothing, so no other sign-in can start |
 | `resume` and the client has an outcome | The flow starts from that outcome, as if a provider window had just answered |
 | `resume` and the client has none | The choose view |
 | A provider is chosen | `client.signIn(provider, { returnTo, signal })`; the panel waits for that provider |
 | `signed-in` | `setSignedIn(account)` on the session, then `onSignedIn(account)` |
 | `new-account` | The step, with the provider and the suggested name |
 | `account-exists` | The panel's account-exists view |
-| "Zaloguj się przez {owner}" | `client.signIn(owner, { link: true, ... })`, the owner's button waits; `signed-in` finishes as above |
+| "Zaloguj się przez {owner}" | `client.signIn(owner, { link: pendingId, ... })`, the owner's button waits; `signed-in` finishes as above |
 | `link-failed` | The choose view with the `failed` error |
-| "Wybierz inny sposób" | `client.cancelPending()`, then the choose view without an error |
+| "Wybierz inny sposób" | `client.cancelPending(pendingId)`, then the choose view without an error |
 | `window-closed`, `provider-failed`, `failed` | The choose view with that error |
 | `signIn` rejects | As `failed` |
-| "Gotowe" | `client.completeSignUp(setup)`; the step is saving and `onBusyChange(true)`, then `onBusyChange(false)` when it settles |
+| "Gotowe" | `client.completeSignUp(signUp.id, setup)`; the step is saving and `onBusyChange(true)`, then `onBusyChange(false)` when it settles |
 | `completeSignUp` → `signed-in` | `setSignedIn`, `onSignedIn` |
-| `completeSignUp` → `failed` or rejects | The step with the save error |
+| `completeSignUp` → `failed` or rejects | The flow asks for the session: signed in, it finishes; otherwise the step with the save error |
 | `completeSignUp` → `expired` | The choose view with the `failed` error |
-| "Anuluj" | `client.cancelPending()` (its failure ignored), then `onCancel` |
+| "Anuluj" | `client.cancelPending(signUp.id)` (its failure ignored), then `onCancel` |
 | The flow is unmounted while a provider is waited for | The sign-in is aborted through its `signal`: the client closes the window and undoes whatever the sign-in started. Nothing is called on the host |
-| The flow is unmounted while the step or the account-exists view is shown | `client.cancelPending()` |
+| The flow is unmounted while the step or the account-exists view is shown | `client.cancelPending(pendingId)` |
 
 # Athena components to use
 

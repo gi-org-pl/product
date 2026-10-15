@@ -28,6 +28,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Opened signed out | `SignInFlow` with "Zaloguj się lub załóż konto" and its line, centred under the header, as the frames draw it. It is given `resume`, so a provider that needed the whole page and sent the person back here carries on where it ended, and `returnTo` = this page with the same `next` |
 | Opened while signed in | Goes to `next` at once (replacing the history entry) |
 | Opened while the session is not known | Shows nothing until it is |
+| Opened after a full-page provider sign-in | Shows nothing until the flow knows how the sign-in ended (`resume`) |
 | Signed in on the page | Goes to `next`, or home |
 | "Anuluj" on the step | Back to the card with three providers |
 | `next` missing | Home |
