@@ -202,7 +202,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 | Case | Behaviour |
 |---|---|
 | The session is not known yet | The account place in the header is empty, so it never flashes "Zaloguj się" for a person who is signed in |
-| Signed out, wide screen | "Zaloguj się" as the filled main pill after the three navigation pills, with a thin divider before it |
+| Signed out, wide screen | "Zaloguj się" after the three navigation pills, with a thin divider before it, drawn like them: light, and filled while the sign-in page is open |
 | Signed out, phone menu | "Zaloguj się" as the last pill of the menu, drawn like the navigation pills |
 | Signed in, wide screen | A pill with the avatar and the display name in place of "Zaloguj się". Pressing it opens the account menu under it |
 | The account menu | The avatar, the display name, and under it the mark of the provider the person signed in with and their e-mail (the mark alone when there is no e-mail); then "Wyloguj się". "Moje quizy" and "Konto i logowanie", drawn in the frame between the two, are added when their pages exist |

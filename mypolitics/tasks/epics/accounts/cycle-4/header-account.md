@@ -27,7 +27,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Case | Behaviour |
 |---|---|
 | Session unknown | Nothing in the account place |
-| Signed out, bar | A thin divider after the navigation pills, then "Zaloguj się" as the filled pill, linking to `PATHS.signIn(current path)` |
+| Signed out, bar | A thin divider after the navigation pills, then "Zaloguj się" drawn like them (filled on the sign-in page), linking to `PATHS.signIn(current path)` |
 | Signed out, phone menu | "Zaloguj się" as the last pill, drawn like the navigation pills |
 | Signed in, bar | A pill with the avatar and the display name (cut with an ellipsis when long). It opens the account menu below it; it is a menu button (`aria-haspopup`, `aria-expanded`) |
 | The account menu | Avatar, name, the provider mark with the e-mail (the mark alone without one), a divider, "Wyloguj się" |
