@@ -42,7 +42,8 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | `signed-in` | `setSignedIn(account)` on the session, then `onSignedIn(account)` |
 | `new-account` | The step, with the provider and the suggested name |
 | `account-exists` | The panel's account-exists view |
-| "Zaloguj się przez {owner}" | `client.signIn(owner, ...)`, the owner's button waits; `signed-in` finishes as above |
+| "Zaloguj się przez {owner}" | `client.signIn(owner, { link: true, ... })`, the owner's button waits; `signed-in` finishes as above |
+| `link-failed` | The choose view with the `failed` error |
 | "Wybierz inny sposób" | `client.cancelPending()`, then the choose view without an error |
 | `window-closed`, `provider-failed`, `failed` | The choose view with that error |
 | `signIn` rejects | As `failed` |
@@ -90,6 +91,7 @@ describe("SignInFlow", () => {
   it("Given the provider window is closed, When the outcome arrives, Then 'Logowanie przerwane' shows");
   it("Given the provider fails, When the outcome arrives, Then '{provider} nie odpowiada' shows");
   it("Given signIn rejects, When it settles, Then 'Coś poszło nie tak' shows");
+  it("Given account-exists, When the sign-in meant to link answers link-failed, Then the card returns with the failed error");
   it("Given the flow is unmounted while waiting, When it unmounts, Then the sign-in is aborted and nothing is called on the host");
   it("Given the step is shown, When the flow is unmounted, Then the pending sign-up is dropped");
   it("Given 'Gotowe' is saving, When it renders, Then onBusyChange is true until the save settles");

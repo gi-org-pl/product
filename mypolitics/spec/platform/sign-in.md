@@ -53,7 +53,7 @@ The buttons are always in this order. The marks are the providers' own, in their
 | Linked provider | Provider and the provider's user identifier | A way to sign in to the account | At least one per account. The pair is unique across all accounts |
 | Session | The account and when it was started | That this browser is signed in | Held by the API in a cookie the page cannot read. 30 days, extended on use |
 | Pending sign-up | Provider, provider's user identifier, suggested name, photo, e-mail | A provider sign-in that has no account yet | Held only in the person's browser, in an encrypted cookie the page cannot read, for 15 minutes. The API stores none of it until "Gotowe", see "Privacy and data handling". Becomes an account on "Gotowe" or is dropped |
-| Pending link | Provider and provider's user identifier | A provider waiting to be linked to an account made with another one | Held the same way, for 15 minutes. Linked after the owning provider signs in |
+| Pending link | Provider and provider's user identifier, and the account the address belongs to | A provider waiting to be linked to that very account | Held the same way, for 15 minutes. Linked only by a sign-in, meant to link, whose identity belongs to that account |
 
 **Identity** is the provider together with the provider's user identifier, never the e-mail. A person who signs in with X and gets no e-mail has a complete account; nothing anywhere requires an address.
 
@@ -117,6 +117,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | Account exists | The provider that owns the account, the e-mail | The provider is linked to no account, but its verified e-mail belongs to an account made with another provider. A pending link exists |
 | Window closed | The provider | The person closed the provider's window before it finished |
 | Provider failed | The provider | The provider refused, timed out, answered with an error, or the person denied the permissions |
+| Link failed | - | A sign-in meant to link ("Zaloguj się przez ..." after "To konto już istnieje") found nothing to link to: the pending link has expired, or the identity that signed in belongs to another account than the one the address belongs to. No session is started and nothing is linked |
 | Failed | - | Anything else: the API is unreachable or answered in a way the app does not know |
 
 ## Behaviour
@@ -130,7 +131,8 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | Outcome: signed in | The card's work is done: the page or the dialog finishes, see below |
 | Outcome: new account | The card is replaced by the "Prawie gotowe" step |
 | Outcome: account exists | The card shows "To konto już istnieje" with one button for the owning provider and "Wybierz inny sposób". The terms links are not shown |
-| "Zaloguj się przez ..." pressed | A sign-in with the owning provider, with the same waiting state on that button. When it succeeds, the API links the pending provider and the person is signed in |
+| "Zaloguj się przez ..." pressed | A sign-in with the owning provider, meant to link, with the same waiting state on that button. When it succeeds, the API links the pending provider to the account the address belongs to and the person is signed in |
+| Outcome: link failed | Back to three active buttons, with the red "Coś poszło nie tak" box: the person starts over with the provider they wanted to add, which shows "To konto już istnieje" again with a fresh pending link |
 | "Wybierz inny sposób" pressed | Back to the card with three buttons. The pending link is dropped |
 | Outcome: window closed | Back to three active buttons, with the red "Logowanie przerwane" box above them naming the provider |
 | Outcome: provider failed | Back to three active buttons, with the red box naming the provider that failed and pointing to the others |
@@ -242,6 +244,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 - **No account before "Gotowe".** A provider sign-in that finds no account creates a pending sign-up, nothing more. Nothing about the person is stored beyond it until they have declared their age and accepted the terms.
 - **No merging on e-mail.** Two accounts are never joined because they share an address, and a provider is never linked to an account without the owning provider's sign-in in the same flow. Providers verify e-mails differently; a silent merge would hand an account to whoever controls the address on the weaker provider.
 - **A provider is linked to at most one account.** The provider and its user identifier are unique.
+- **A link goes to the account the address belongs to, and nowhere else.** The pending link names that account; a sign-in meant to link whose identity belongs to another account (a person with two accounts at the same provider who picks the wrong one) links nothing and starts no session.
 - **Identity never depends on an e-mail.** An account without one is complete.
 - **Taking a quiz never asks for an account**, and no dialog opens on the questionnaire, the result or the comparison.
 - **One dialog at a time**, for one action.
@@ -272,7 +275,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 - **Identity and views stay apart.** The account holds the provider identity, the display name, an optional photo address and an optional e-mail. It is never joined to answers, results, demographics or the respondent code - the separation in [privacy and legal](../../docs/platform/privacy-and-legal.md). The promise on the step says so, naming the provider.
 - **Only what is shown is kept.** No birth date (a declaration only), no friends lists, no provider tokens beyond the sign-in itself. The app asks the providers for the basic profile and the e-mail and nothing more.
 - **The display name is public** as the author of a quiz. It is suggested, never applied without the person pressing "Gotowe".
-- **Nothing is stored before the age declaration.** The provider's profile is needed to sign the person in and to suggest a name, so it is read when the provider answers; until "Gotowe" it is held only in the person's own browser, in an encrypted cookie the page cannot read, which expires after 15 minutes and is deleted by "Anuluj", by closing the dialog and by "Wybierz inny sposób". The API keeps no copy and writes nothing about the person - not in a table, a log or a cache - until the age has been declared and the terms accepted. The pending link is held the same way. This is the reading of the rule in [privacy and legal](../../docs/platform/privacy-and-legal.md) that no personal data is processed below 16: what a person under 16 gave the provider passes through the sign-in and is never kept.
+- **Nothing is stored before the age declaration.** The provider's profile is needed to sign the person in and to suggest a name, so it is read when the provider answers; until "Gotowe" it is held only in the person's own browser, in an encrypted cookie the page cannot read, which expires after 15 minutes and is deleted by "Anuluj", by closing the dialog and by "Wybierz inny sposób". Deleting it is a request to the API, because the page cannot touch that cookie; when the API cannot be reached, the step still closes, and the cookie stays in the person's own browser until it expires - our servers hold nothing either way. The step does not keep a person waiting for the network to say goodbye. The API keeps no copy and writes nothing about the person - not in a table, a log or a cache - until the age has been declared and the terms accepted. The pending link is held the same way. This is the reading of the rule in [privacy and legal](../../docs/platform/privacy-and-legal.md) that no personal data is processed below 16: what a person under 16 gave the provider passes through the sign-in and is never kept.
 - **The page never holds the session.** The session is a cookie the page cannot read; the app learns who is signed in only by asking the API.
 - **Sign-out ends the session in the API**, not only in the page. Until the API confirms it, the page keeps showing the person signed in.
 - **The stand-in used until the API exists** keeps its pretend session in the tab's session storage and contacts no provider. It is used by the development builds and must not be the sign-in of a public release.

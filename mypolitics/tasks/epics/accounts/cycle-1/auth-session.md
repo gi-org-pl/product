@@ -44,6 +44,7 @@ export type SignInOutcome =
   | { kind: "signed-in"; account: AuthAccount }
   | { kind: "new-account"; signUp: PendingSignUp }
   | { kind: "account-exists"; provider: IdentityProvider; ownerProvider: IdentityProvider; email: string }
+  | { kind: "link-failed" }       // a sign-in meant to link found nothing to link to; no session
   | { kind: "window-closed"; provider: IdentityProvider }
   | { kind: "provider-failed"; provider: IdentityProvider }
   | { kind: "failed" };
@@ -61,6 +62,7 @@ export type CompleteSignUpOutcome =
 
 export interface SignInOptions {
   returnTo?: string;              // where a full-page provider sign-in comes back to: the sign-in page
+  link?: boolean;                 // the owner's sign-in after account-exists: links, or fails as a whole
   signal?: AbortSignal;           // aborting closes the provider window, settles with window-closed
                                   // and undoes whatever the sign-in started in the API
 }
@@ -137,7 +139,8 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Stand-in: sign-in with a provider that has an account | `signed-in` after `delayMs` |
 | Stand-in: sign-in with a provider that has none | `new-account` with the suggested name, e-mail and no photo; a pending sign-up is kept |
 | Stand-in: `completeSignUp` with a pending sign-up | Saves the account under the provider and returns `signed-in`; with `failCompleteSignUp` returns `failed`; with none pending returns `expired` |
-| Stand-in: `accountExists` behaviour | `account-exists` naming the owning provider and the e-mail; a pending link is kept. Signing in with the owning provider then returns `signed-in` and links the pending provider, so the next sign-in with it is `signed-in` too |
+| Stand-in: `accountExists` behaviour | `account-exists` naming the owning provider and the e-mail; a pending link to the owner's account is kept. Signing in with the owning provider and `link: true` then returns `signed-in` and links the pending provider, so the next sign-in with it is `signed-in` too |
+| Stand-in: `link: true` with no pending link, or by another provider than the owner | `link-failed`; no session, nothing linked |
 | Stand-in: `cancelPending` | Drops a pending sign-up and a pending link |
 | Stand-in: `signIn` aborted through `signal` | Settles with `window-closed` and changes nothing |
 | Stand-in: `resumeSignIn` | `null` - the stand-in never leaves the page |

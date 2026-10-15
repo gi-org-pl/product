@@ -29,12 +29,12 @@ The spec's back-end half is the contract: [Sign-in](https://github.com/gi-org-pl
 | Identity | Provider + the provider's user identifier, unique. E-mail optional, verified only - X often gives none |
 | Session | A cookie the page cannot read (`HttpOnly`, `Secure`, `SameSite=Lax`), 30 days, extended on use; it records when it started |
 | Read the session | The account or none |
-| Provider sign-in | Through a provider window (OAuth with PKCE), answering with one of the six outcomes; falls back to a full-page redirect that returns to `returnTo` (the sign-in page) when the window is blocked |
+| Provider sign-in | Through a provider window (OAuth with PKCE), answering with one of the outcomes of the spec; falls back to a full-page redirect that returns to `returnTo` (the sign-in page) when the window is blocked |
 | Resume | After a full-page redirect, the outcome of that sign-in can be asked for once |
 | Stop | A sign-in that the app abandons (the dialog was closed) is undone: a session it started is ended, a pending sign-up or link is dropped |
 | Pending sign-up | Created when the provider identity has no account and its e-mail belongs to none; 15 minutes; holds the suggested name, the photo address, the e-mail - **only in the person's browser**, in an encrypted cookie the page cannot read. The API writes nothing about the person (table, log, cache) before "Gotowe" |
 | Complete sign-up | Display name (2-50 characters), the age declaration and the acceptance of the terms with their versions; saves the account and starts the session; answers expired when the pending sign-up is gone |
-| Account exists | When the verified e-mail belongs to an account of another provider: never merged; a pending link of 15 minutes; signing in with the owning provider then links the new one |
+| Account exists | When the verified e-mail belongs to an account of another provider: never merged; a pending link of 15 minutes that names that account; a sign-in with `link` whose identity belongs to that account links the new provider; any other answers `link-failed` and starts no session |
 | Cancel | Drops a pending sign-up or a pending link |
 | Sign out | Ends the session in the API; the call fails when it could not |
 | Never | Joins the account to answers, results, demographics or the respondent code |
