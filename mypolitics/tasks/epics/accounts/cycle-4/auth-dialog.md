@@ -66,11 +66,14 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | 768 px wide or more | A modal in the middle over a dimmed page |
 | Narrower | A bottom sheet: full width at the bottom, rounded top corners, the handle drawn at the top |
 | Signed in through the dialog | The dialog closes, then the action runs once |
-| Close button, Escape, a press on the dimmed page, "Anuluj" | The dialog closes; the action does not run; focus returns to the control that was focused when it opened |
+| Close button, Escape, a press on the dimmed page, "Anuluj" | The dialog closes; the action does not run; focus returns to the control that was focused when it opened. `SignInFlow` unmounts, which aborts a running sign-in or drops a pending one |
+| While "Gotowe" is saving (`onBusyChange`) | The dialog cannot be closed: the close button is disabled, Escape and the dimmed page do nothing |
+| A provider that needs the whole page | `SignInFlow` gets `returnTo` = the sign-in page with `next` set to the current page, so the person comes back there and the page resumes the sign-in |
 | A second `requireAuth` while open | Ignored |
 | Open | Focus moves into the dialog and stays there (Tab and Shift+Tab wrap, also after the content changes from the card to the step); the page behind does not scroll |
 | `RequireAuth` signed in | Its children |
 | `RequireAuth` signed out | Nothing of the page; the dialog with the intent's line. Signing in shows the children; closing goes back in history, or to the home page when there is no earlier page in the app |
+| `RequireAuth` and the person signs out while on it | Straight to the home page, with no dialog: a change from signed in to signed out is told apart from arriving signed out |
 | Reduced motion | No movement when the dialog appears |
 
 # Athena components to use
@@ -131,6 +134,7 @@ describe("AuthDialog", () => {
   it("Given the step is shown, When Tab is pressed on the last control, Then focus wraps to the first");
   it("Given it is open, When it renders, Then the page behind does not scroll");
   it("Given a narrow screen, When it opens, Then it is drawn as a bottom sheet with a handle");
+  it("Given 'Gotowe' is saving, When Escape or the close button is pressed, Then the dialog stays open");
 });
 
 describe("RequireAuth", () => {
@@ -138,6 +142,7 @@ describe("RequireAuth", () => {
   it("Given a signed-out session, When it renders, Then the children do not show and the dialog opens");
   it("Given a signed-out session, When the person signs in, Then the children show");
   it("Given a signed-out session, When the dialog is closed, Then the person goes back or home");
+  it("Given a signed-in session, When the person signs out on the page, Then they go home with no dialog");
 });
 
 describe("HomePage", () => {

@@ -52,8 +52,8 @@ The buttons are always in this order. The marks are the providers' own, in their
 | | Terms accepted | The date and the version of the terms and of the privacy policy | Recorded on "Gotowe" |
 | Linked provider | Provider and the provider's user identifier | A way to sign in to the account | At least one per account. The pair is unique across all accounts |
 | Session | The account and when it was started | That this browser is signed in | Held by the API in a cookie the page cannot read. 30 days, extended on use |
-| Pending sign-up | Provider, provider's user identifier, suggested name, photo, e-mail | A provider sign-in that has no account yet | Kept by the API for 15 minutes. Becomes an account on "Gotowe" or is dropped |
-| Pending link | Provider and provider's user identifier | A provider waiting to be linked to an account made with another one | Kept for 15 minutes. Linked after the owning provider signs in |
+| Pending sign-up | Provider, provider's user identifier, suggested name, photo, e-mail | A provider sign-in that has no account yet | Held only in the person's browser, in an encrypted cookie the page cannot read, for 15 minutes. The API stores none of it until "Gotowe", see "Privacy and data handling". Becomes an account on "Gotowe" or is dropped |
+| Pending link | Provider and provider's user identifier | A provider waiting to be linked to an account made with another one | Held the same way, for 15 minutes. Linked after the owning provider signs in |
 
 **Identity** is the provider together with the provider's user identifier, never the e-mail. A person who signs in with X and gets no e-mail has a complete account; nothing anywhere requires an address.
 
@@ -87,6 +87,7 @@ Polish source strings. All are drawn in the frames except the ones marked "Set h
 | Age not declared | "Konto mogą założyć osoby, które mają ukończone 16 lat." | Set here |
 | Terms not accepted | "Żeby założyć konto, zaakceptuj Regulamin i Politykę prywatności." | Set here |
 | Saving failed | "Nie udało się zapisać konta. Spróbuj jeszcze raz." | Set here |
+| Sign-out failed | "Nie udało się wylogować. Spróbuj jeszcze raz." | Set here |
 | Header, signed out | "Zaloguj się" | Frame |
 | Account menu | display name, provider mark and e-mail, "Wyloguj się" | Frame |
 | Close the dialog, for assistive technology | "Zamknij" | Set here |
@@ -103,7 +104,9 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | In | Session | The account, or none | From the API when the app starts, and after every sign-in, "Gotowe" and sign-out |
 | In | Provider sign-in | The provider | The API opens the provider's window and answers with one of the outcomes below |
 | In | Complete sign-up | Display name, the two declarations | The API saves the account and starts the session |
-| In | Cancel sign-up | An event | The API drops the pending sign-up |
+| In | Cancel sign-up | An event | The API drops the pending sign-up or the pending link |
+| In | Stop a sign-in | An event | The provider window is closed and its answer, if one still arrives, is undone - see "The auth dialog" |
+| In | Resume a sign-in | The outcome of a provider sign-in that had to leave the page, or nothing | Asked by the sign-in page when the provider sends the person back |
 | In | Terms and privacy addresses | Two links | The app's terms and privacy pages. They open in a new tab, so nothing in progress is lost |
 
 ### Outcomes of a provider sign-in
@@ -155,6 +158,7 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 |---|---|
 | `/login` is opened signed out | The card with the page heading and line, inside the app's header and footer |
 | `/login` is opened while signed in | The person is sent on at once, as if they had just signed in |
+| The provider sends the person back after a full-page sign-in | The page asks how the sign-in ended and shows that: the person is sent on when signed in; otherwise the card shows "Prawie gotowe", "To konto już istnieje" or the error, exactly as after a provider window |
 | Signed in on the page (with or without the step) | The page goes to the address it was given in `next`, or to the home page when there is none |
 | `next` is not an address inside the app | It is ignored and the home page is used, so the page can never send anyone to another site |
 | "Zaloguj się" in the header | Opens `/login` with `next` set to the page the person was on |
@@ -171,10 +175,12 @@ The frames' text reads "Facebook dodamy" in the "account exists" line; the sourc
 | On a narrower screen | A bottom sheet over a dimmed page: full width, rounded top corners, a handle at the top. The handle is a picture of a handle: the sheet closes by its close button, Escape or a press on the dimmed page, not by dragging |
 | Signed in through the dialog (with or without the step) | The dialog closes and the action runs, once |
 | Closed - close button, Escape, a press on the dimmed page, or "Anuluj" on the step | The dialog closes and nothing else happens: the action does not run, the page is as it was, focus returns to the control that started the action. A pending sign-up is dropped |
-| Closed while a provider window is open | The dialog closes; whatever the provider answers later is ignored, and a pending sign-up it creates is dropped |
+| Closed while a provider window is open | The dialog closes and the provider window with it. An answer that still arrives is undone: a pending sign-up or link is dropped, and a session it started is ended, so closing never leaves the person signed in |
+| Closed while the step or "To konto już istnieje" is shown | The pending sign-up or link is dropped |
+| While "Gotowe" is being saved | The dialog cannot be closed: the close button is disabled and Escape and the dimmed page do nothing, until the API answers |
 | A second action asks while the dialog is open | Ignored. The dialog belongs to the first one |
 | The person signs in in another tab while the dialog is open | Nothing changes in this tab until it checks the session again; signing in through the dialog then finds the existing session and finishes |
-| The provider needs the whole page (see "Failure modes") | Before leaving, the dialog remembers the page it was opened on. After the provider sends the person back, they land on that page, signed in, and press the action again: the action itself is not repeated automatically after a full page load |
+| The provider needs the whole page (see "Failure modes") | The page leaves for the provider and comes back to the sign-in page, with `next` set to the page the dialog was opened on. The sign-in page asks how the provider sign-in ended and carries on from there - signed in, "Prawie gotowe", "To konto już istnieje" or an error - and then goes to `next`. The person presses the action again there: the action itself is not repeated automatically after a full page load |
 
 #### Actions that need an account
 An action is named by a key, and each key has its own line - the reason the account is needed, said in terms of what the person was doing. A new action that needs an account adds a key with its line and asks for an account with it; nothing else changes.
@@ -186,7 +192,7 @@ An action is named by a key, and each key has its own line - the reason the acco
 A line follows the same pattern: what will be kept on the account, then that the first sign-in creates it. "Utwórz quiz" is the action's name in the frames; on the home page today the button reads "Stwórz własny". Until the editor exists, signing in through that button leaves the person on the home page, signed in - the action behind it is still empty, and it starts the editor once the editor is built.
 
 #### Guarded pages
-A page that only makes sense signed in (the editor, "Moje quizy") is guarded with an action key. Signed in, it shows. Signed out, the page shows nothing of itself and the dialog opens with the key's line; signing in shows the page, and closing the dialog takes the person back to where they came from, or to the home page when they opened the address directly.
+A page that only makes sense signed in (the editor, "Moje quizy") is guarded with an action key. Signed in, it shows. Signed out, the page shows nothing of itself and the dialog opens with the key's line; signing in shows the page, and closing the dialog takes the person back to where they came from, or to the home page when they opened the address directly. Signing out while on a guarded page goes straight to the home page, with no dialog.
 
 ### The header
 | Case | Behaviour |
@@ -198,7 +204,8 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 | The account menu | The avatar, the display name, and under it the mark of the provider the person signed in with and their e-mail (the mark alone when there is no e-mail); then "Wyloguj się". "Moje quizy" and "Konto i logowanie", drawn in the frame between the two, are added when their pages exist |
 | The menu closes | On a choice, on Escape (focus back to the pill), or on a press outside it |
 | Signed in, phone menu | A row with the avatar and the display name, then "Wyloguj się" as a white pill with a hairline outline |
-| "Wyloguj się" | The session ends; the header shows "Zaloguj się"; the person stays on the page, unless the page is guarded, in which case they go to the home page |
+| "Wyloguj się" | The API ends the session; then the header shows "Zaloguj się" and the person stays on the page, unless the page is guarded, in which case they go to the home page |
+| "Wyloguj się" fails (the API cannot be reached) | The person stays signed in, the menu stays open with "Nie udało się wylogować. Spróbuj jeszcze raz." and "Wyloguj się" can be pressed again. The page never shows a person as signed out while the API still holds their session |
 | A long display name | Cut with an ellipsis in the header pill; shown whole, wrapped, in the menu |
 | No photo | The initials in the avatar circle, as the frames draw it |
 
@@ -214,7 +221,7 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 | Error: failed | The last attempt failed in the app or the API | Any provider |
 | Account exists | The provider's e-mail belongs to an account made with another provider | Sign in with the owning provider; go back to the default |
 | Prawie gotowe | A new account is pending | Edit the name, tick the boxes, "Gotowe", "Anuluj" |
-| Saving | "Gotowe" was pressed and the API has not answered | Nothing; closing the dialog drops the sign-up |
+| Saving | "Gotowe" was pressed and the API has not answered | Nothing, and the dialog cannot be closed |
 | Done | Signed in | The page or the dialog finishes |
 
 ### The session
@@ -265,15 +272,16 @@ A page that only makes sense signed in (the editor, "Moje quizy") is guarded wit
 - **Identity and views stay apart.** The account holds the provider identity, the display name, an optional photo address and an optional e-mail. It is never joined to answers, results, demographics or the respondent code - the separation in [privacy and legal](../../docs/platform/privacy-and-legal.md). The promise on the step says so, naming the provider.
 - **Only what is shown is kept.** No birth date (a declaration only), no friends lists, no provider tokens beyond the sign-in itself. The app asks the providers for the basic profile and the e-mail and nothing more.
 - **The display name is public** as the author of a quiz. It is suggested, never applied without the person pressing "Gotowe".
-- **A pending sign-up lives 15 minutes** and is then deleted, as is a pending link.
+- **Nothing is stored before the age declaration.** The provider's profile is needed to sign the person in and to suggest a name, so it is read when the provider answers; until "Gotowe" it is held only in the person's own browser, in an encrypted cookie the page cannot read, which expires after 15 minutes and is deleted by "Anuluj", by closing the dialog and by "Wybierz inny sposób". The API keeps no copy and writes nothing about the person - not in a table, a log or a cache - until the age has been declared and the terms accepted. The pending link is held the same way. This is the reading of the rule in [privacy and legal](../../docs/platform/privacy-and-legal.md) that no personal data is processed below 16: what a person under 16 gave the provider passes through the sign-in and is never kept.
 - **The page never holds the session.** The session is a cookie the page cannot read; the app learns who is signed in only by asking the API.
-- **Sign-out ends the session in the API**, not only in the page.
+- **Sign-out ends the session in the API**, not only in the page. Until the API confirms it, the page keeps showing the person signed in.
 - **The stand-in used until the API exists** keeps its pretend session in the tab's session storage and contacts no provider. It is used by the development builds and must not be the sign-in of a public release.
 
 ## Failure modes
 | Failure | Behaviour |
 |---|---|
-| The browser blocks the provider's window | The page goes to the provider instead and comes back to the page it left, see "The auth dialog" |
+| The browser blocks the provider's window | The page goes to the provider instead and comes back to the sign-in page, which resumes the sign-in, see "The auth dialog" |
+| Signing out cannot reach the API | The person stays signed in, see "The header" |
 | The person closes the provider's window | "Logowanie przerwane", naming the provider |
 | The provider is down, times out or is denied the permissions | "{Provider} nie odpowiada", pointing to the other ways |
 | The API is unreachable during a sign-in | "Coś poszło nie tak" |

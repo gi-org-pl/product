@@ -25,7 +25,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 | Case | Behaviour |
 |---|---|
-| Opened signed out | `SignInFlow` with "Zaloguj się lub załóż konto" and its line, centred under the header, as the frames draw it |
+| Opened signed out | `SignInFlow` with "Zaloguj się lub załóż konto" and its line, centred under the header, as the frames draw it. It is given `resume`, so a provider that needed the whole page and sent the person back here carries on where it ended, and `returnTo` = this page with the same `next` |
 | Opened while signed in | Goes to `next` at once (replacing the history entry) |
 | Opened while the session is not known | Shows nothing until it is |
 | Signed in on the page | Goes to `next`, or home |
@@ -61,6 +61,7 @@ describe("SignInPage", () => {
   it("Given an unknown session, When /login opens, Then nothing is shown");
   it("Given next=/quizzes/mypolitics, When they sign in, Then they land on /quizzes/mypolitics");
   it("Given the step, When 'Anuluj' is pressed, Then the card with three providers returns");
+  it("Given a provider sent the person back with a new account, When /login opens, Then 'Prawie gotowe' is shown");
 });
 
 describe("toSafeNextPath", () => {

@@ -34,6 +34,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | Menu closes | On "Wyloguj się", on Escape (focus back to the pill), on a press outside |
 | Signed in, phone menu | A row with the avatar and the name, then "Wyloguj się" as a white pill with a hairline outline |
 | "Wyloguj się" | `signOut()`; the header shows "Zaloguj się"; the page stays (a page under `RequireAuth` sends the person home by itself) |
+| `signOut()` answers `false` | The person stays signed in; the menu stays open with "Nie udało się wylogować. Spróbuj jeszcze raz.", announced, and "Wyloguj się" can be pressed again |
 | No photo, or the photo fails | The initials |
 
 "Moje quizy" and "Konto i logowanie" are drawn in the frame but their pages do not exist yet, so they are not added here: the tasks of those pages add their entries to the menu.
@@ -75,6 +76,7 @@ describe("HeaderAccount", () => {
   it("Given no e-mail, When the menu opens, Then only the provider mark is shown");
   it("Given the menu, When Escape is pressed, Then it closes and focus returns to the pill");
   it("Given the menu, When 'Wyloguj się' is pressed, Then the session is signed out and 'Zaloguj się' is shown");
+  it("Given signing out fails, When 'Wyloguj się' is pressed, Then the menu stays open with the failure message");
   it("Given the phone menu signed in, When it renders, Then the name row and 'Wyloguj się' are shown");
 });
 ```

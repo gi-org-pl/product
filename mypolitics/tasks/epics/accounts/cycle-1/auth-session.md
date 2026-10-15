@@ -60,15 +60,18 @@ export type CompleteSignUpOutcome =
   | { kind: "failed" };
 
 export interface SignInOptions {
-  returnTo?: string;              // where a full-page provider sign-in comes back to
+  returnTo?: string;              // where a full-page provider sign-in comes back to: the sign-in page
+  signal?: AbortSignal;           // aborting closes the provider window, settles with window-closed
+                                  // and undoes whatever the sign-in started in the API
 }
 
 export interface AuthClient {
   getSession(): Promise<AuthAccount | null>;
   signIn(provider: IdentityProvider, options?: SignInOptions): Promise<SignInOutcome>;
+  resumeSignIn(): Promise<SignInOutcome | null>; // how a sign-in that left the page ended; null when none
   completeSignUp(setup: AccountSetup): Promise<CompleteSignUpOutcome>;
   cancelPending(): Promise<void>; // drops a pending sign-up or a pending link
-  signOut(): Promise<void>;
+  signOut(): Promise<void>;       // rejects when the API could not end the session
 }
 ```
 
@@ -112,7 +115,7 @@ export interface AuthSessionValue {
   session: AuthSession;
   client: AuthClient;
   setSignedIn: (account: AuthAccount) => void; // called by the sign-in screens when they finish
-  signOut: () => Promise<void>;
+  signOut: () => Promise<boolean>; // true when the session ended; false leaves the person signed in
   refresh: () => Promise<void>;   // asks the client again
 }
 export const useAuthSession: () => AuthSessionValue;
@@ -127,13 +130,17 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | The app starts | `session` is `unknown`, then the client's answer: `signed-in` with the account, or `signed-out` |
 | `getSession` rejects | `signed-out` - the API being unreachable is treated as signed out |
 | `setSignedIn(account)` | `signed-in` with that account at once, without asking the client |
-| `signOut()` | The client's `signOut`, then `signed-out` - also when the client rejects |
+| `signOut()` | The client's `signOut`, then `signed-out`; answers `true` |
+| `signOut()` and the client rejects | Still `signed-in`; answers `false`. The page never shows a person signed out while the API may still hold their session |
+| An answer of `getSession` asked for before a later `setSignedIn` or `signOut` | Dropped, so a slow first check cannot overwrite a sign-in that finished in the meantime |
 | `useAuthSession` outside the provider | Throws a clear error naming the provider |
 | Stand-in: sign-in with a provider that has an account | `signed-in` after `delayMs` |
 | Stand-in: sign-in with a provider that has none | `new-account` with the suggested name, e-mail and no photo; a pending sign-up is kept |
 | Stand-in: `completeSignUp` with a pending sign-up | Saves the account under the provider and returns `signed-in`; with `failCompleteSignUp` returns `failed`; with none pending returns `expired` |
 | Stand-in: `accountExists` behaviour | `account-exists` naming the owning provider and the e-mail; a pending link is kept. Signing in with the owning provider then returns `signed-in` and links the pending provider, so the next sign-in with it is `signed-in` too |
 | Stand-in: `cancelPending` | Drops a pending sign-up and a pending link |
+| Stand-in: `signIn` aborted through `signal` | Settles with `window-closed` and changes nothing |
+| Stand-in: `resumeSignIn` | `null` - the stand-in never leaves the page |
 | Stand-in: storage missing or throwing | Works in memory |
 
 # Athena components to use
@@ -171,7 +178,8 @@ describe("AuthSessionProvider", () => {
   it("Given the client returns nothing, When it answers, Then the session is signed out");
   it("Given getSession rejects, When it answers, Then the session is signed out");
   it("Given a signed-in session, When signOut is called, Then the client signs out and the session is signed out");
-  it("Given signOut rejects, When it is called, Then the session is signed out anyway");
+  it("Given signOut rejects, When it is called, Then the session stays signed in and the call answers false");
+  it("Given the first getSession is slow, When a sign-in finishes before it, Then its late answer is dropped");
   it("Given any session, When setSignedIn is called, Then the session is signed in with that account");
 });
 
@@ -191,6 +199,8 @@ describe("createMockAuthClient", () => {
   it("Given window-closed, provider-failed or failed behaviour, When signing in, Then that outcome is returned");
   it("Given session storage throws, When the client is used, Then it works in memory");
   it("Given a saved session, When getSession is called, Then the account is returned, and after signOut nothing");
+  it("Given a sign-in is aborted, When the signal fires, Then the outcome is window-closed and nothing is pending");
+  it("Given any state, When resumeSignIn is called, Then it answers null");
 });
 ```
 

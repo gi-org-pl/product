@@ -29,12 +29,14 @@ The spec's back-end half is the contract: [Sign-in](https://github.com/gi-org-pl
 | Identity | Provider + the provider's user identifier, unique. E-mail optional, verified only - X often gives none |
 | Session | A cookie the page cannot read (`HttpOnly`, `Secure`, `SameSite=Lax`), 30 days, extended on use; it records when it started |
 | Read the session | The account or none |
-| Provider sign-in | Through a provider window (OAuth with PKCE), answering with one of the six outcomes; falls back to a full-page redirect that returns to `returnTo` when the window is blocked |
-| Pending sign-up | Created when the provider identity has no account and its e-mail belongs to none; 15 minutes; holds the suggested name, the photo address, the e-mail. No account exists before "Gotowe" |
+| Provider sign-in | Through a provider window (OAuth with PKCE), answering with one of the six outcomes; falls back to a full-page redirect that returns to `returnTo` (the sign-in page) when the window is blocked |
+| Resume | After a full-page redirect, the outcome of that sign-in can be asked for once |
+| Stop | A sign-in that the app abandons (the dialog was closed) is undone: a session it started is ended, a pending sign-up or link is dropped |
+| Pending sign-up | Created when the provider identity has no account and its e-mail belongs to none; 15 minutes; holds the suggested name, the photo address, the e-mail - **only in the person's browser**, in an encrypted cookie the page cannot read. The API writes nothing about the person (table, log, cache) before "Gotowe" |
 | Complete sign-up | Display name (2-50 characters), the age declaration and the acceptance of the terms with their versions; saves the account and starts the session; answers expired when the pending sign-up is gone |
 | Account exists | When the verified e-mail belongs to an account of another provider: never merged; a pending link of 15 minutes; signing in with the owning provider then links the new one |
 | Cancel | Drops a pending sign-up or a pending link |
-| Sign out | Ends the session in the API |
+| Sign out | Ends the session in the API; the call fails when it could not |
 | Never | Joins the account to answers, results, demographics or the respondent code |
 
 The exact endpoints, request and answer shapes are the API's to define; this task follows them. When the API work starts, link its issue or pull request here.
@@ -48,6 +50,9 @@ The exact endpoints, request and answer shapes are the API's to define; this tas
 | `getSession` unreachable or timing out | Rejects; the session provider treats it as signed out |
 | The provider window is closed by the person | `window-closed` |
 | The window is blocked | The full-page redirect with `returnTo` |
+| `resumeSignIn` after the redirect | The outcome of that sign-in; `null` when there is none |
+| `signIn` aborted through `signal` | The window is closed, the outcome is `window-closed`, and the API is asked to undo whatever the sign-in started |
+| `signOut` cannot reach the API | Rejects |
 | The provider refuses, times out, permissions denied | `provider-failed` |
 | Network failure, 5xx, unknown answer | `failed` |
 | `completeSignUp` after 15 minutes | `expired` |
@@ -83,6 +88,9 @@ describe("createApiAuthClient", () => {
   it("Given the window is blocked, When the sign-in starts, Then the page goes to the provider with returnTo");
   it("Given an expired pending sign-up, When completeSignUp is called, Then the outcome is expired");
   it("Given a session, When signOut is called, Then the API ends it");
+  it("Given the API cannot be reached, When signOut is called, Then it rejects");
+  it("Given a redirect came back, When resumeSignIn is called, Then the outcome of that sign-in is returned");
+  it("Given a sign-in is aborted, When the signal fires, Then the window closes and the API undoes the sign-in");
 });
 ```
 

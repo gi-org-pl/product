@@ -18,6 +18,8 @@ export interface SignInFlowProps {
   heading: string;                // for the "choose" view: the page's or the dialog's
   description: string;
   returnTo?: string;              // passed to the client for a full-page provider sign-in
+  resume?: boolean;               // on mount, ask the client how a sign-in that left the page ended
+  onBusyChange?: (isBusy: boolean) => void; // true while "Gotowe" is saving: the host must not close
   headingId?: string;
   descriptionId?: string;
   onClose?: () => void;           // the dialog's close button, on every view
@@ -34,7 +36,9 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 | Case | Behaviour |
 |---|---|
-| A provider is chosen | `client.signIn(provider, { returnTo })`; the panel waits for that provider |
+| `resume` and the client has an outcome | The flow starts from that outcome, as if a provider window had just answered |
+| `resume` and the client has none | The choose view |
+| A provider is chosen | `client.signIn(provider, { returnTo, signal })`; the panel waits for that provider |
 | `signed-in` | `setSignedIn(account)` on the session, then `onSignedIn(account)` |
 | `new-account` | The step, with the provider and the suggested name |
 | `account-exists` | The panel's account-exists view |
@@ -42,12 +46,13 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | "Wybierz inny sposób" | `client.cancelPending()`, then the choose view without an error |
 | `window-closed`, `provider-failed`, `failed` | The choose view with that error |
 | `signIn` rejects | As `failed` |
-| "Gotowe" | `client.completeSignUp(setup)`; the step is saving |
+| "Gotowe" | `client.completeSignUp(setup)`; the step is saving and `onBusyChange(true)`, then `onBusyChange(false)` when it settles |
 | `completeSignUp` → `signed-in` | `setSignedIn`, `onSignedIn` |
 | `completeSignUp` → `failed` or rejects | The step with the save error |
 | `completeSignUp` → `expired` | The choose view with the `failed` error |
 | "Anuluj" | `client.cancelPending()` (its failure ignored), then `onCancel` |
-| The flow is unmounted while waiting | Whatever the client answers later changes nothing and calls nothing; a `new-account` or `account-exists` answer that arrives late is dropped with `cancelPending()` |
+| The flow is unmounted while a provider is waited for | The sign-in is aborted through its `signal`: the client closes the window and undoes whatever the sign-in started. Nothing is called on the host |
+| The flow is unmounted while the step or the account-exists view is shown | `client.cancelPending()` |
 
 # Athena components to use
 
@@ -85,7 +90,10 @@ describe("SignInFlow", () => {
   it("Given the provider window is closed, When the outcome arrives, Then 'Logowanie przerwane' shows");
   it("Given the provider fails, When the outcome arrives, Then '{provider} nie odpowiada' shows");
   it("Given signIn rejects, When it settles, Then 'Coś poszło nie tak' shows");
-  it("Given the flow is unmounted while waiting, When the outcome arrives, Then nothing is called");
+  it("Given the flow is unmounted while waiting, When it unmounts, Then the sign-in is aborted and nothing is called on the host");
+  it("Given the step is shown, When the flow is unmounted, Then the pending sign-up is dropped");
+  it("Given 'Gotowe' is saving, When it renders, Then onBusyChange is true until the save settles");
+  it("Given resume and an outcome of a sign-in that left the page, When the flow mounts, Then it continues from that outcome");
   it("Given returnTo, When a provider is chosen, Then the client gets it");
 });
 ```
@@ -126,5 +134,5 @@ Interactive stories on the stand-in client, one per path, so a reviewer can clic
 - [ ] Biome lint clean, TypeScript clean
 - [ ] Storybook story per path above
 - [ ] Every outcome of the spec's "Outcomes of a provider sign-in" and of "Gotowe" has a test
-- [ ] A late answer after unmount changes nothing
+- [ ] Unmounting at any point leaves nothing pending and nobody signed in by accident
 - [ ] CI green: build, lint, test
