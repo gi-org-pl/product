@@ -12,7 +12,7 @@ As a person using myPolitics, I want the app to know whether I am signed in - fr
 
 There is **no visible component in this task**. Nothing renders except the provider around the app.
 
-The API has no accounts yet. Everything that talks to it goes through one interface, `AuthClient`, and the app gets its client from one file. This task puts a stand-in behind that file; the [AuthApi](#) task replaces it with the real adapter and touches nothing else.
+The API has no accounts yet. Everything that talks to it goes through one interface, `AuthClient`, and the app gets its client from one file. This task puts a stand-in behind that file; the [AuthApi](https://github.com/gi-org-pl/mypolitics-app/issues/207) task replaces it with the real adapter and touches nothing else.
 
 ### Types
 
@@ -143,7 +143,7 @@ None - nothing is drawn.
 # Out of scope
 
 - Any screen: the card, the step, the dialog, the page and the header have their own tasks.
-- Talking to the API, opening provider windows, cookies: [AuthApi](#).
+- Talking to the API, opening provider windows, cookies: [AuthApi](https://github.com/gi-org-pl/mypolitics-app/issues/207).
 
 # Files to create
 
@@ -203,7 +203,7 @@ None - nothing is drawn. The stand-in client is what the stories of the later ta
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - React Context + `useState` is enough here; Zustand is not needed
-- Name the branch `feature/auth-session-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/auth-session-204`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 

@@ -47,7 +47,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 # Out of scope
 
-- The `/login` page: [SignInPage](#).
+- The `/login` page: [SignInPage](https://github.com/gi-org-pl/mypolitics-app/issues/210).
 - "Moje quizy", "Konto i logowanie".
 
 # Files to create
@@ -95,11 +95,11 @@ In the order of the frames:
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - All texts through Lingui; run `yarn i18n:extract` and commit the catalogues
-- Name the branch `feature/header-account-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/header-account-211`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [AuthSession](#), [AccountSetupForm](#) (`getInitials`), [SignInPage](#) (the `/login` address).
+- [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204), [AccountSetupForm](https://github.com/gi-org-pl/mypolitics-app/issues/206) (`getInitials`), [SignInPage](https://github.com/gi-org-pl/mypolitics-app/issues/210) (the `/login` address).
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)

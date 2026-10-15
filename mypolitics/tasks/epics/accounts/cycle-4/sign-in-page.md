@@ -39,8 +39,8 @@ None directly.
 
 # Out of scope
 
-- The "Zaloguj się" button in the header: [HeaderAccount](#).
-- The dialog: [AuthDialog](#).
+- The "Zaloguj się" button in the header: [HeaderAccount](https://github.com/gi-org-pl/mypolitics-app/issues/211).
+- The dialog: [AuthDialog](https://github.com/gi-org-pl/mypolitics-app/issues/209).
 
 # Files to create
 
@@ -90,11 +90,11 @@ None - a page.
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - All texts through Lingui; run `yarn i18n:extract` and commit the catalogues
-- Name the branch `feature/sign-in-page-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/sign-in-page-210`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [SignInFlow](#).
+- [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208).
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)

@@ -1,4 +1,4 @@
-> **Blocked - do not start.** The myPolitics API has no accounts, sessions or provider sign-in yet. This task waits for those API changes; until then the app runs on the stand-in client of [AuthSession](#).
+> **Blocked - do not start.** The myPolitics API has no accounts, sessions or provider sign-in yet. This task waits for those API changes; until then the app runs on the stand-in client of [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204).
 
 # Story
 
@@ -10,7 +10,7 @@ As a person signing in to myPolitics, I want the sign-in buttons to really sign 
 **Location:** `src/services/api/client/auth/`, `src/services/api/schemas/auth.ts`, `src/services/api/utils/auth/`, `src/services/auth/client/authClient.ts`
 **Shared:** yes
 
-Nothing visible changes. Every screen talks to `AuthClient` ([AuthSession](#)); this task writes an `AuthClient` over the API and makes `authClient.ts` export it instead of the stand-in. If anything outside these folders has to change, the interface was wrong: fix the interface in its own commit and say so in the pull request.
+Nothing visible changes. Every screen talks to `AuthClient` ([AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204)); this task writes an `AuthClient` over the API and makes `authClient.ts` export it instead of the stand-in. If anything outside these folders has to change, the interface was wrong: fix the interface in its own commit and say so in the pull request.
 
 ```ts
 // src/services/api/client/auth/createApiAuthClient.ts
@@ -90,11 +90,11 @@ describe("createApiAuthClient", () => {
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Every API answer validated with Zod; the Axios instance of `src/services/api/client/apiClient.ts`, never a new one
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/auth-api-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/auth-api-207`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [AuthSession](#) - the interface.
+- [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204) - the interface.
 - **The API changes** for accounts, sessions and provider sign-in - not started.
 
 # Resources

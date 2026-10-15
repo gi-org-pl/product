@@ -10,7 +10,7 @@ As a person signing in, I want the card to react to whatever the provider answer
 **Location:** `src/components/account/SignInFlow/`
 **Shared:** no - domain `account`. It is the one thing the sign-in page and the auth dialog both show
 
-It composes [SignInPanel](#) and [AccountSetupForm](#), talks to the `AuthClient` of [AuthSession](#), and tells its host when it is done. It is the same component on the page and in the dialog, so a change to the flow is a change to both.
+It composes [SignInPanel](https://github.com/gi-org-pl/mypolitics-app/issues/205) and [AccountSetupForm](https://github.com/gi-org-pl/mypolitics-app/issues/206), talks to the `AuthClient` of [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204), and tells its host when it is done. It is the same component on the page and in the dialog, so a change to the flow is a change to both.
 
 ```ts
 // src/components/account/SignInFlow/SignInFlow.types.ts
@@ -55,7 +55,7 @@ None directly - the panel and the step use them.
 
 # Out of scope
 
-- The page around it: [SignInPage](#). The modal and the sheet around it: [AuthDialog](#).
+- The page around it: [SignInPage](https://github.com/gi-org-pl/mypolitics-app/issues/210). The modal and the sheet around it: [AuthDialog](https://github.com/gi-org-pl/mypolitics-app/issues/209).
 - What happens after `onSignedIn`: the host decides.
 
 # Files to create
@@ -106,11 +106,11 @@ Interactive stories on the stand-in client, one per path, so a reviewer can clic
 - Create unit tests with Vitest for 100% of the code created if feasible (check our [testing convention](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/TESTING_CONVENTION.md))
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
-- Name the branch `feature/sign-in-flow-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/sign-in-flow-208`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [AuthSession](#), [SignInPanel](#), [AccountSetupForm](#).
+- [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204), [SignInPanel](https://github.com/gi-org-pl/mypolitics-app/issues/205), [AccountSetupForm](https://github.com/gi-org-pl/mypolitics-app/issues/206).
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)

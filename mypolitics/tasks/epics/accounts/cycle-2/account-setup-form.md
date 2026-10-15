@@ -10,7 +10,7 @@ As a person signing in to myPolitics for the first time, I want to confirm the n
 **Location:** `src/components/account/AccountSetupForm/`
 **Shared:** no - domain `account`
 
-It only draws and checks. It makes no request: "Gotowe" hands a valid `AccountSetup` out, and [SignInFlow](#) saves it.
+It only draws and checks. It makes no request: "Gotowe" hands a valid `AccountSetup` out, and [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208) saves it.
 
 ```ts
 // src/components/account/AccountSetupForm/AccountSetupForm.types.ts
@@ -61,7 +61,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 # Out of scope
 
-- Saving the account and what happens after: [SignInFlow](#).
+- Saving the account and what happens after: [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208).
 - Changing the name later: the "Konto i logowanie" page, not designed yet.
 
 # Files to create
@@ -129,11 +129,11 @@ In the order of the frames:
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - All texts through Lingui; run `yarn i18n:extract` and commit the catalogues
-- Name the branch `feature/account-setup-form-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/account-setup-form-206`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [SignInPanel](#) - `AuthCard`, the provider list.
+- [SignInPanel](https://github.com/gi-org-pl/mypolitics-app/issues/205) - `AuthCard`, the provider list.
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)

@@ -84,9 +84,9 @@ None - no new library. The dialog is plain React and Tailwind.
 
 # Out of scope
 
-- The card and the step themselves: [SignInFlow](#).
+- The card and the step themselves: [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208).
 - The editor and its start screen: the editor epic. This task only wires "Stwórz własny".
-- The `/login` page: [SignInPage](#).
+- The `/login` page: [SignInPage](https://github.com/gi-org-pl/mypolitics-app/issues/210).
 
 # Files to create
 
@@ -174,11 +174,11 @@ Scenario: A visitor closes the dialog
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - All texts through Lingui; run `yarn i18n:extract` and commit the catalogues
-- Name the branch `feature/auth-dialog-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/auth-dialog-209`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [SignInFlow](#).
+- [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208).
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)

@@ -8,9 +8,9 @@ As a person who wants to create a quiz, I want one card with "Kontynuuj z Google
 
 **Name:** `SignInPanel`, built on a card frame `AuthCard`
 **Location:** `src/components/account/SignInPanel/`, `src/components/account/AuthCard/`
-**Shared:** no - domain `account`. `AuthCard` is its own component because the "Prawie gotowe" step ([AccountSetupForm](#)) is drawn in the same card
+**Shared:** no - domain `account`. `AuthCard` is its own component because the "Prawie gotowe" step ([AccountSetupForm](https://github.com/gi-org-pl/mypolitics-app/issues/206)) is drawn in the same card
 
-`SignInPanel` only draws. It makes no request and holds no state of the sign-in: what it shows comes in through `view`, and a press goes out through a callback. [SignInFlow](#) drives it.
+`SignInPanel` only draws. It makes no request and holds no state of the sign-in: what it shows comes in through `view`, and a press goes out through a callback. [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208) drives it.
 
 ```ts
 // src/components/account/AuthCard/AuthCard.types.ts
@@ -72,9 +72,9 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 
 # Out of scope
 
-- Opening provider windows, outcomes, state: [SignInFlow](#) and [AuthSession](#).
-- The "Prawie gotowe" step: [AccountSetupForm](#).
-- The modal and the bottom sheet: [AuthDialog](#).
+- Opening provider windows, outcomes, state: [SignInFlow](https://github.com/gi-org-pl/mypolitics-app/issues/208) and [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204).
+- The "Prawie gotowe" step: [AccountSetupForm](https://github.com/gi-org-pl/mypolitics-app/issues/206).
+- The modal and the bottom sheet: [AuthDialog](https://github.com/gi-org-pl/mypolitics-app/issues/209).
 
 # Files to create
 
@@ -136,11 +136,11 @@ In the order of the frames:
 - Create a Storybook story for the component with all possible props variants of the component
 - Comply with [the component structure](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
 - All texts through Lingui; run `yarn i18n:extract` and commit the catalogues
-- Name the branch `feature/sign-in-panel-{issue number}`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
+- Name the branch `feature/sign-in-panel-205`, following [Conventional Branch](https://conventional-branch.github.io/) - never keep a generated or default branch name
 
 # Dependencies
 
-- [AuthSession](#) - the `IdentityProvider` type.
+- [AuthSession](https://github.com/gi-org-pl/mypolitics-app/issues/204) - the `IdentityProvider` type.
 
 # Resources
 - [Spec: Sign-in](https://github.com/gi-org-pl/product/blob/main/mypolitics/spec/platform/sign-in.md)
