@@ -9,7 +9,7 @@ Political views are a special category of personal data, and they are the only t
 
 The rule is a separation, held by design rather than by policy:
 
-- **Identity** - an account: name, e-mail, password, and what a creator owns - their quizzes, their [exports](../modules/quiz/data-harvesting/exports.md). Accounts exist so people can build things, not so we can know who answered what.
+- **Identity** - an account: name, the provider it signs in with, an e-mail when the provider gives one (see [sign-in](./sign-in.md)), and what a creator owns - their quizzes, their [exports](../modules/quiz/data-harvesting/exports.md). Accounts exist so people can build things, not so we can know who answered what.
 - **Views** - answers, results and [demographics](../modules/quiz/data-harvesting/demographics.md). Stored unlinked and processed statistically, whether or not the person answering has an account.
 
 Nothing crosses that line. A registered user's answers are as anonymous as an anonymous user's, and the platform is built so that we could not reconstruct the link if we were asked to.
