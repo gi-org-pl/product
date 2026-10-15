@@ -21,6 +21,8 @@ What an account never does:
 - **It does not become a social graph** - comparison runs on exchanged identifiers, not on finding people by name - see [comparison modes](../modules/quiz/results/comparison/comparision-modes.md).
 - **It does not replace the results link** - a saved result arrives by [e-mail](../modules/quiz/questionnaire/results-saving-and-marketing.md), which is how a taker returns to it without registering.
 
+How a person gets into an account - Google, Facebook or X, with no passwords - is decided in [sign-in](./sign-in.md).
+
 That leaves accounts as a creator and administration feature that a taker may never need, and the asymmetry is deliberate: the people who build carry an identity, the people who answer do not.
 
 ## Opportunity
