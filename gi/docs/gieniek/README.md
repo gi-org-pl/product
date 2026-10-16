@@ -101,6 +101,6 @@ Gieniek has its own GitHub account, `gieniek-ai`, a member of the `gi-org-pl` or
 ## Planned changes
 The current setup is a first stage. Three changes are tracked as issues in this repository:
 
-- a separate Google account for Gieniek, with access narrowed to shared folders and a mailbox of its own for incoming topics
-- moving Gieniek to the foundation's Claude account
-- a process that narrows connectors and commands depending on who sends the message
+- [a separate Google account for Gieniek, with access narrowed to shared folders and a mailbox of its own for incoming topics](https://github.com/gi-org-pl/product/issues/122)
+- [moving Gieniek to the foundation's Claude account](https://github.com/gi-org-pl/product/issues/123)
+- [a process that narrows connectors and commands depending on who sends the message](https://github.com/gi-org-pl/product/issues/124)
