@@ -75,6 +75,7 @@ The website gi.org.pl is built in Framer. A proposed structure:
 | Tags / project | For example myPolitics, Gieniek, the foundation |
 | Canonical URL | For re-posted articles: the address of the original |
 | AI-assisted | Marks an entry drafted with AI |
+| Reviewed by | The people who checked an AI-assisted entry, for the note on the entry page; entered by a person |
 | Internal notes | Links to the Discord messages that record consent; never shown on the site |
 
 Whether Framer keeps a CMS field that no page uses out of the published site is still to be checked before consent links go into it.
@@ -82,7 +83,8 @@ Whether Framer keeps a CMS field that no page uses out of the published site is 
 **Pages**
 
 - **List page** - all entries, newest first, with filters by type (Aktualności, Blog, Devlog) and by project.
-- **Entry page** - a template for one entry: title, authors, date, cover and body. A Blog entry also shows the personal-opinion disclaimer. An AI-assisted entry shows the note on who checked it.
+- **Entry page** - a template for one entry: title, authors, date, cover and body. A Blog entry also shows the personal-opinion disclaimer. An AI-assisted entry shows the note on who checked it, from the Reviewed by field.
+- **Canonical link** - for a re-posted article, the entry page puts the Canonical URL field into its `<link rel="canonical">` tag, so that search engines treat the original as the main version. Storing the address alone is not enough. Whether Framer can bind this tag to a CMS field is still to be checked.
 - **Author information** - a short note on each author, linked from the entry.
 - **RSS feed** - if Framer supports one for a CMS collection; this is still to be checked.
 - **Share image** - each entry uses its cover as the image when it is shared.
@@ -131,5 +133,5 @@ Not decided as a whole - GO or NO-GO is still open. The president answered the f
 
 ### Open questions
 - The Polish wording of the note on AI-drafted entries, and the final wording of the disclaimer.
-- Whether Framer keeps unused CMS fields out of the published site, and whether it offers an RSS feed for a collection.
+- Whether Framer keeps unused CMS fields out of the published site, whether it can set the canonical link of a CMS page from a field, and whether it offers an RSS feed for a collection.
 - Which past articles are migrated, when migration starts.
