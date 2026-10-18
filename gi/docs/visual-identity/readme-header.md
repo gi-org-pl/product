@@ -35,8 +35,9 @@ The first line of the README is the image, then an empty line, then the title:
 ```
 
 - **The address is absolute** and points to the default branch, so the image shows wherever the README is rendered - on GitHub, on npm, in a package registry. Use the repository's default branch in the address; it is `main` in almost every repository. The image therefore shows only after the change is merged.
-- **The alternative text is "&lt;Name&gt; header"**, with the name as the title of the README writes it ("Athena header"); where the title is not the name of the project, use the repository name.
+- **The alternative text is the repository name followed by "header"** ("check-crlf-action header"). Where the title of the README writes the same name with a capital letter, follow the title ("Athena header").
 - **Nothing else changes.** The title and everything after it stay as they were.
+- **A repository without a README** gets a short one: the header, `# <repository name>` and the description the repository has on GitHub.
 
 ## The image
 | Property | Value |
