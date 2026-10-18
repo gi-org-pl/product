@@ -35,6 +35,12 @@ The first line of the README is the image, then an empty line, then the title:
 ```
 
 - **The address is absolute** and points to the default branch, so the image shows wherever the README is rendered - on GitHub, on npm, in a package registry. Use the repository's default branch in the address; it is `main` in almost every repository. The image therefore shows only after the change is merged.
+- **A private repository uses the address on github.com** instead: `https://github.com/gi-org-pl/<repo>/blob/<default branch>/.github/image/header.png?raw=true`. The browser asks `raw.githubusercontent.com` without the reader's GitHub session, so in a private repository that address answers 404 even to members; the github.com address is asked for with the session and follows the repository's access rules. It keeps working if the repository is made public later.
+
+  ```markdown
+  ![gieniek-skills header](https://github.com/gi-org-pl/gieniek-skills/blob/main/.github/image/header.png?raw=true)
+  ```
+
 - **The alternative text is the repository name followed by "header"** ("check-crlf-action header"). Where the title of the README writes the same name with a capital letter, follow the title ("Athena header").
 - **Nothing else changes.** The title and everything after it stay as they were.
 - **A repository without a README** gets a short one: the header, `# <repository name>` and the description the repository has on GitHub.
@@ -65,7 +71,7 @@ All sizes follow from the height of the visible sign, S. At the standard scale S
 
 **Clear space.** The proportions keep the [clear space](./logo.md#clear-space) of both brand books. The GI logomark is 6.5X high, so the gap of 0.5 S is 3.25X, more than the 2X required. The myPolitics logomark is 4X high, so the gap is exactly its 2X. Above and below the sign there are 196 px.
 
-**Minimum size.** At the 1x size (half the PNG) the sign of the longest current name is about 55 px high - well above the minimum of 16 px for both logomarks.
+**Minimum size.** At the 1x size (half the PNG) the sign of the longest current name is about 55 px high - well above the minimum of 16 px for both logomarks. The template refuses a name so long that the sign would fall below 16 px; such a repository needs a shorter name, not a smaller sign.
 
 ## Generating a header
 The template [readme-header/header.html](./readme-header/header.html) lays the card out at 1x, and [readme-header/render.cjs](./readme-header/render.cjs) captures it with headless Chromium at device scale 2 with a transparent background. Both work from a checkout of this repository, because the template loads the logomark files from it.
@@ -78,7 +84,7 @@ The template [readme-header/header.html](./readme-header/header.html) lays the c
    ```
 
    - `--family gi|mypolitics` overrides the family; by default names starting with `mypolitics` get the myPolitics logomark and all others the GI logomark.
-   - `--font <path to Poppins-Bold.ttf>` uses a local font file. Without it, Poppins Bold comes from Google Fonts and the page needs the network.
+   - `--font <path to Poppins-Bold.ttf>` uses a local font file. Without it, Poppins Bold comes from Google Fonts and the page needs the network; with it, nothing is fetched.
    - `PLAYWRIGHT_MODULE=<path to node_modules/playwright>` uses a copy of Playwright installed elsewhere.
 
 3. Optimise the PNG losslessly if a tool is at hand, for example `oxipng -o 4 header.png`. Do not quantise it to a palette: the glow then turns into bands.

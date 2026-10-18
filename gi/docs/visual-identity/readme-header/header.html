@@ -8,7 +8,6 @@
 <head>
 <meta charset="utf-8">
 <title>README header</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=block">
 <style>
   :root { --font: "Poppins"; }
   html, body { margin: 0; padding: 0; background: transparent; }
@@ -59,6 +58,21 @@
   const CAP_RATIO = 0.56; // cap height of the name / height of the sign
   const GAP_RATIO = 0.5; // gap between the sign and the name / height of the sign
   const SIDE = 80; // smallest margin left and right of the pair at 1x
+  const MIN_SIGN_HEIGHT = 16; // minimum screen size of both logomarks
+  const GOOGLE_FONTS = "https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=block";
+
+  // The Google Fonts stylesheet is added only when no local font is given, so a render with --font
+  // never waits for the network.
+  function loadGoogleFonts() {
+    return new Promise((resolve, reject) => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = GOOGLE_FONTS;
+      link.onload = resolve;
+      link.onerror = () => reject(new Error("the Google Fonts stylesheet did not load"));
+      document.head.appendChild(link);
+    });
+  }
 
   async function draw() {
     const params = new URLSearchParams(location.search);
@@ -71,6 +85,8 @@
       const face = new FontFace("HeaderFont", `url(${fontUrl})`, { weight: "700" });
       document.fonts.add(await face.load());
       document.documentElement.style.setProperty("--font", "HeaderFont");
+    } else {
+      await loadGoogleFonts();
     }
     const fontFamily = fontUrl ? "HeaderFont" : "Poppins";
     // load() resolves to an empty list when no face of that name exists, and check() is then true as well,
@@ -101,6 +117,9 @@
     };
     const fit = (W - 2 * SIDE) / pairWidth(signH);
     if (fit < 1) signH *= fit;
+    if (signH < MIN_SIGN_HEIGHT) {
+      throw new Error(`"${name}" is too long: the sign would be ${signH.toFixed(1)} px high, below ${MIN_SIGN_HEIGHT} px`);
+    }
 
     const scale = signH / family.sign[3]; // CSS px per viewBox unit
     const signW = family.sign[2] * scale;
