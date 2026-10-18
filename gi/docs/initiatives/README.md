@@ -8,3 +8,4 @@ An initiative is a file shaped like an idea in the [idea template](../../../mypo
 | File | Description |
 |---|---|
 | [Discord backup](./discord-backup.md) | A regular, encrypted backup of the Discord server |
+| [Devblog](./devblog.md) | A blog on gi.org.pl for members' articles and devlogs drafted from the work |
