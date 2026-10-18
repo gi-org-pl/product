@@ -53,7 +53,7 @@ A devlog is written from the actual work - pull requests, issues, Discord thread
 **Quality bar - no AI slop**
 
 - Pictures are real: screenshots, diagrams and charts from the work itself. No AI-generated images - that is a rule of the foundation for all its graphics.
-- Charts and animations are built from real data of the work, not invented.
+- Charts and animations are built from real data of the work, not invented. Gieniek draws them with code from that data; they are not generated images. Making them for devlogs is part of this proposal at the president's request, and widens the graphics limit in [Gieniek's doc](../gieniek/README.md#limits), which today allows only real photos, product screenshots and brand material. The doc is to be updated if the initiative goes ahead.
 - Numbers only from the sources, each one traceable to where it came from.
 - If the substance is not confirmed by the people who did the work, the devlog is not published.
 
