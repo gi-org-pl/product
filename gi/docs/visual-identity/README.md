@@ -18,15 +18,15 @@ These pages are the English version of the foundation's brand book, [gi-brand-bo
 | [Usage](./usage.md) | The logo on backgrounds, avatars, incorrect use and example applications |
 
 ## Logo files
-The SVG files in [logo](./logo/) are the originals. Use them as they are - do not redraw, re-export or recolour them.
+The SVG files in [logo](./logo/) are the originals; the monochrome ones are derived from them by a change of fill colour only. Use them as they are - do not redraw, re-export or recolour them.
 
-| Version | On a dark background | On a light background | On brand red |
-|---|---|---|---|
-| Primary logo | [gi-primary-on-dark.svg](./logo/gi-primary-on-dark.svg) | [gi-primary-on-light.svg](./logo/gi-primary-on-light.svg) | [gi-primary-on-red.svg](./logo/gi-primary-on-red.svg) |
-| Short logo | [gi-short-on-dark.svg](./logo/gi-short-on-dark.svg) | [gi-short-on-light.svg](./logo/gi-short-on-light.svg) | [gi-short-on-red.svg](./logo/gi-short-on-red.svg) |
-| Logomark | [gi-logomark-on-dark.svg](./logo/gi-logomark-on-dark.svg) | [gi-logomark-on-light.svg](./logo/gi-logomark-on-light.svg) | [gi-logomark-on-red.svg](./logo/gi-logomark-on-red.svg) |
+| Version | On a dark background | On a light background | On brand red | Monochrome |
+|---|---|---|---|---|
+| Primary logo | [gi-primary-on-dark.svg](./logo/gi-primary-on-dark.svg) | [gi-primary-on-light.svg](./logo/gi-primary-on-light.svg) | [gi-primary-on-red.svg](./logo/gi-primary-on-red.svg) | [gi-primary-mono-black.svg](./logo/gi-primary-mono-black.svg) |
+| Short logo | [gi-short-on-dark.svg](./logo/gi-short-on-dark.svg) | [gi-short-on-light.svg](./logo/gi-short-on-light.svg) | [gi-short-on-red.svg](./logo/gi-short-on-red.svg) | [gi-short-mono-black.svg](./logo/gi-short-mono-black.svg) |
+| Logomark | [gi-logomark-on-dark.svg](./logo/gi-logomark-on-dark.svg) | [gi-logomark-on-light.svg](./logo/gi-logomark-on-light.svg) | [gi-logomark-on-red.svg](./logo/gi-logomark-on-red.svg) | [gi-logomark-mono-black.svg](./logo/gi-logomark-mono-black.svg) |
 
-The files for dark backgrounds and for brand red are white, so they are hard to see in a file preview on a light page. Each file has a transparent background; the colour behind it comes from where it is placed.
+The monochrome files are #231F20 only, for one-colour print on light backgrounds; they are the light-background files with the red changed to #231F20 and nothing else. A one-colour white logo is the brand red file, which is already white only. The files for dark backgrounds and for brand red are white, so they are hard to see in a file preview on a light page. Each file has a transparent background; the colour behind it comes from where it is placed.
 
 Only the SVGs are kept here. The full package of ready-made files - PNGs in several sizes and the other formats people ask for - is on the foundation's Google Drive, in the "Identyfikacja wizualna" folder.
 

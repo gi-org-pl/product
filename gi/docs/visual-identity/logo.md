@@ -57,11 +57,13 @@ Each version of the sign comes in four colour variants. The variant is always ch
 | Negative | Dark | White and red | `gi-*-on-dark.svg` |
 | Positive | Light | #231F20 and red | `gi-*-on-light.svg` |
 | On the brand colour | Red #D91919 | White only | `gi-*-on-red.svg` |
-| Monochrome | One-colour print | #231F20 only | no file here |
+| Monochrome | One-colour print | #231F20 only | `gi-*-mono-black.svg` |
 
 ![The three versions in the four colour variants: negative, positive, on the brand colour, monochrome](./images/colour-variants.png)
 
 *Columns from the left: negative, positive, on the brand colour, monochrome. Rows: primary logo, short logo, logomark.*
+
+Where one-colour white is needed, use the `gi-*-on-red.svg` files: they are white only.
 
 The colour values are in [Colours](./colours.md), and which backgrounds are allowed is in [Usage](./usage.md#logo-on-backgrounds).
 
