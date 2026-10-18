@@ -82,7 +82,7 @@
     if (!family) throw new Error(`unknown family ${familyKey}`);
     const fontUrl = params.get("font");
     if (fontUrl) {
-      const face = new FontFace("HeaderFont", `url(${fontUrl})`, { weight: "700" });
+      const face = new FontFace("HeaderFont", `url(${JSON.stringify(fontUrl)})`, { weight: "700" });
       document.fonts.add(await face.load());
       document.documentElement.style.setProperty("--font", "HeaderFont");
     } else {
