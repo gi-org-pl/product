@@ -45,7 +45,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | `account-exists` | The panel's account-exists view |
 | "Zaloguj się przez {owner}" | `client.signIn(owner, { link: pendingId, ... })`, the owner's button waits; `signed-in` finishes as above |
 | `link-failed` | The choose view with the `failed` error |
-| "Wybierz inny sposób" | `client.cancelPending(pendingId)`, then the choose view without an error |
+| "Wybierz inny sposób" | `client.cancelPending(pendingId)`, not waited for and its failure ignored (the pending cookie expires in the browser), and at once the choose view without an error |
 | `window-closed`, `provider-failed`, `failed` | The choose view with that error |
 | `signIn` rejects | As `failed` |
 | `failed` (or a rejection) | The flow asks for the session first: signed in, it finishes as `signed-in`; otherwise the choose view with the `failed` error |
@@ -54,7 +54,7 @@ The spec is the source of truth for every case: [Sign-in](https://github.com/gi-
 | `completeSignUp` → `signed-in` | `setSignedIn`, `onSignedIn` |
 | `completeSignUp` → `failed` or rejects | The flow repeats the completion of the same sign-up once: signed in, it finishes; otherwise the step with the save error. `onBusyChange(false)` only after the repeat has answered |
 | `completeSignUp` → `expired` | The choose view with the `failed` error |
-| "Anuluj" | `client.cancelPending(signUp.id)` (its failure ignored), then `onCancel` |
+| "Anuluj" | `client.cancelPending(signUp.id)`, not waited for and its failure ignored, and at once `onCancel` |
 | The flow is unmounted while a provider is waited for | The sign-in is aborted through its `signal`: the client closes the window and undoes whatever the sign-in started. Nothing is called on the host |
 | The flow is unmounted while the step or the account-exists view is shown | `client.cancelPending(pendingId)` |
 
@@ -91,6 +91,7 @@ describe("SignInFlow", () => {
   it("Given an address owned by Google, When Facebook is chosen, Then the account-exists view names Google");
   it("Given account-exists, When 'Zaloguj się przez Google' succeeds, Then the person is signed in and Facebook is linked");
   it("Given account-exists, When 'Wybierz inny sposób' is pressed, Then the pending link is dropped and three providers show");
+  it("Given the pending link or sign-up cannot be dropped (offline), When 'Wybierz inny sposób' or 'Anuluj' is pressed, Then the flow walks away all the same");
   it("Given the provider window is closed, When the outcome arrives, Then 'Logowanie przerwane' shows");
   it("Given the provider fails, When the outcome arrives, Then '{provider} nie odpowiada' shows");
   it("Given signIn rejects, When it settles, Then 'Coś poszło nie tak' shows");

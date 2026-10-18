@@ -28,6 +28,7 @@ The spec's back-end half is the contract: [Sign-in](https://github.com/gi-org-pl
 |---|---|
 | Identity | Provider + the provider's user identifier, unique. E-mail optional, verified only - X often gives none |
 | Session | A cookie the page cannot read (`HttpOnly`, `Secure`, `SameSite=Lax`), 30 days, extended on use; it records when it started |
+| Cross-origin cookies | The app (`https://mypolitics.pl`) and the API (`https://api.mypolitics.pl`) are two origins of one site, so the browser sends and stores the cookies only on credentialed requests. The auth endpoints answer with CORS for the app's own origins by name and `Access-Control-Allow-Credentials: true`, never `*` |
 | Read the session | The account or none |
 | Provider sign-in | Through a provider window (OAuth with PKCE), answering with one of the outcomes of the spec; falls back to a full-page redirect that returns to `returnTo` (the sign-in page) when the window is blocked |
 | Resume | After a full-page redirect, the outcome of that sign-in can be asked for once |
@@ -48,6 +49,7 @@ The exact endpoints, request and answer shapes are the API's to define; this tas
 | Case | Behaviour |
 |---|---|
 | Every answer of the API | Validated with Zod; anything that does not parse is the `failed` outcome, never a crash |
+| Every auth request | Sent with credentials (`withCredentials: true` on that request, not on the shared `apiClient`), so the session and pending cookies go out and come back. The survey and result requests stay without them, so the API cannot join an account to answers |
 | `getSession` with no session | `null` |
 | `getSession` unreachable or timing out | Rejects; the session provider treats it as signed out |
 | The provider window is closed by the person | `window-closed` |
@@ -82,6 +84,7 @@ src/services/api/utils/auth/toSignInOutcome.ts
 ```ts
 describe("createApiAuthClient", () => {
   it("Given a session cookie, When getSession is called, Then the account is returned");
+  it("Given any auth request, When it is sent, Then it carries credentials, and a survey request of apiClient does not");
   it("Given no session, When getSession is called, Then null is returned");
   it("Given the API is unreachable, When getSession is called, Then it rejects");
   it("Given each answer of a provider sign-in, When it arrives, Then it maps to its outcome");
@@ -119,5 +122,5 @@ describe("createApiAuthClient", () => {
 - [ ] Biome lint clean, TypeScript clean
 - [ ] Only the adapter, its schemas and `authClient.ts` changed
 - [ ] The e2e of the sign-in page and the dialog still pass against a mocked API
-- [ ] Signing in, signing up, account exists and signing out checked by hand against the API with each provider
+- [ ] Signing in, signing up, account exists and signing out checked by hand against the API with each provider, from the app's own origin (the cookies cross from `api.mypolitics.pl`)
 - [ ] CI green: build, lint, test, e2e
