@@ -94,7 +94,9 @@ The picture shown when a link to the site is shared (Open Graph `og:image`, 1200
 | `*-og-template.svg` | The same layout with the title as a text element, for Figma or Inkscape. It needs Poppins installed |
 | `*-og-example*.png` | Examples made with the HTML template |
 
-The template needs an internet connection to load Poppins from Google Fonts; without it the save buttons stay off and the page says why. Prefer the JPG: WhatsApp does not show previews larger than 300 KB, and the PNG from the template is usually larger than that. Keep the title and the logo away from the edges as the template does - a few apps crop the picture to a square in the middle.
+The template needs an internet connection to load Poppins from Google Fonts; without it the save buttons stay off and the page says why. Prefer the JPG: WhatsApp does not show previews larger than 300 KB, and the PNG from the template is usually larger than that.
+
+The template is laid out for the full 1.91:1 picture, which Facebook, LinkedIn, X and Discord show whole. Some apps show a small square thumbnail instead, cut from the middle (x 285 to 915): there the default picture keeps its whole logo, but a title picture loses the logo and the start of each line. That is the price of a readable title at full size; for a link that will mostly travel as a thumbnail, use the default picture.
 
 ## E-mail signature
 | File | Use |

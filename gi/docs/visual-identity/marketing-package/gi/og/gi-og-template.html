@@ -98,9 +98,10 @@ function fit(text) {
 }
 
 async function draw() {
-  // pass the text, so the subsets with Polish letters are loaded too
-  await document.fonts.load('700 64px Poppins', $('title').value || 'A');
-  await document.fonts.load('500 28px Poppins', $('label').value || 'A');
+  // pass the text, so the subsets with Polish letters are loaded too; an empty list means
+  // no Poppins face is registered (the stylesheet did not load), and then nothing may be saved
+  const bold = await document.fonts.load('700 64px Poppins', $('title').value || 'A').catch(() => []);
+  const medium = await document.fonts.load('500 28px Poppins', $('label').value || 'A').catch(() => []);
   const img = images[$('variant') ? +$('variant').value : 0];
   await img.decode();
   ctx.clearRect(0, 0, W, H);
@@ -121,7 +122,7 @@ async function draw() {
     ctx.fillStyle = ACCENT;
     ctx.fillText(label, PAD, firstBaseline - size * 0.72 - 28);
   }
-  const fontOk = document.fonts.check('700 64px Poppins');
+  const fontOk = bold.length > 0 && medium.length > 0;
   $('note').textContent = !fontOk ? 'Poppins did not load (offline?) - the picture would use another typeface. Connect to the internet and reload.'
     : !ok ? 'The title is too long for three lines - shorten it.' : '';
   $('save').disabled = $('savejpg').disabled = !fontOk || !ok;
