@@ -1,0 +1,134 @@
+<!doctype html>
+<!--
+  README header template. Open it as header.html?name=<repo>&family=<gi|mypolitics> and capture the
+  1000x300 page at device scale 2 with a transparent background; render.cjs next to this file does that.
+  The layout is in CSS pixels of the 1x size, so every number below doubles in the PNG.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>README header</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=block">
+<style>
+  :root { --font: "Poppins"; }
+  html, body { margin: 0; padding: 0; background: transparent; }
+  #card {
+    position: relative;
+    width: 1000px;
+    height: 300px;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #000000;
+  }
+  #glow { position: absolute; inset: 0; }
+  #mark { position: absolute; display: block; }
+  #name { position: absolute; inset: 0; overflow: visible; }
+  #name text { font-family: var(--font), sans-serif; font-weight: 700; fill: #ffffff; }
+</style>
+</head>
+<body>
+<div id="card">
+  <div id="glow"></div>
+  <img id="mark" alt="">
+  <svg id="name" width="1000" height="300" viewBox="0 0 1000 300"><text id="label"></text></svg>
+</div>
+<script>
+  // Each family names its logomark file as it is, the box of the visible sign inside the file's viewBox
+  // (the myPolitics file carries its clear space as padding), its unit X in viewBox units, and the colour
+  // of the background glow.
+  const FAMILIES = {
+    gi: {
+      src: "../logo/gi-logomark-on-dark.svg",
+      viewBox: [0, 0, 316, 256],
+      sign: [0, 0, 316, 256],
+      unit: 256 / 6.5, // X is the band width; the logomark is 6.5X high
+      glow: "217, 25, 25", // red #D91919
+    },
+    mypolitics: {
+      src: "../../../../mypolitics/assets/visual-identity/logo/mypolitics-logomark-colour.svg",
+      viewBox: [-24, -36, 168, 168],
+      sign: [0, 0, 120, 96],
+      unit: 24, // X is the height of one bar; the logomark is 4X high
+      glow: "0, 146, 184", // blue #0092B8
+    },
+  };
+
+  const W = 1000;
+  const H = 300;
+  const SIGN_HEIGHT = 104; // height of the visible sign at 1x
+  const CAP_RATIO = 0.56; // cap height of the name / height of the sign
+  const GAP_RATIO = 0.5; // gap between the sign and the name / height of the sign
+  const SIDE = 80; // smallest margin left and right of the pair at 1x
+
+  async function draw() {
+    const params = new URLSearchParams(location.search);
+    const name = params.get("name") || "repository";
+    const familyKey = params.get("family") || (name.startsWith("mypolitics") ? "mypolitics" : "gi");
+    const family = FAMILIES[familyKey];
+    if (!family) throw new Error(`unknown family ${familyKey}`);
+    const fontUrl = params.get("font");
+    if (fontUrl) {
+      const face = new FontFace("HeaderFont", `url(${fontUrl})`, { weight: "700" });
+      document.fonts.add(await face.load());
+      document.documentElement.style.setProperty("--font", "HeaderFont");
+    }
+    const fontFamily = fontUrl ? "HeaderFont" : "Poppins";
+    await document.fonts.load(`700 100px ${fontFamily}`);
+    if (!document.fonts.check(`700 100px ${fontFamily}`)) throw new Error("Poppins Bold did not load");
+
+    // Glow: two soft radial spots of the family colour, as in the first header (athena).
+    document.getElementById("glow").style.background = [
+      `radial-gradient(60% 90% at 30% 100%, rgba(${family.glow}, 0.06), rgba(${family.glow}, 0) 100%)`,
+      `radial-gradient(45% 75% at 82% 8%, rgba(${family.glow}, 0.045), rgba(${family.glow}, 0) 100%)`,
+    ].join(", ");
+
+    // Measure the ink of the name and the cap height of the font at 100px.
+    const ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = `700 100px ${fontFamily}`;
+    const capPer100 = ctx.measureText("H").actualBoundingBoxAscent;
+    const ink = ctx.measureText(name);
+    const inkLeftPer100 = -ink.actualBoundingBoxLeft; // ink start relative to the text origin
+    const inkWidthPer100 = ink.actualBoundingBoxRight + ink.actualBoundingBoxLeft;
+
+    // Size the pair at the standard scale, then shrink the whole pair if a long name would not fit.
+    let signH = SIGN_HEIGHT;
+    const pairWidth = (h) => {
+      const fontSize = (CAP_RATIO * h) / capPer100 * 100;
+      const signW = (family.sign[2] / family.sign[3]) * h;
+      return signW + GAP_RATIO * h + (inkWidthPer100 * fontSize) / 100;
+    };
+    const fit = (W - 2 * SIDE) / pairWidth(signH);
+    if (fit < 1) signH *= fit;
+
+    const scale = signH / family.sign[3]; // CSS px per viewBox unit
+    const signW = family.sign[2] * scale;
+    const fontSize = (CAP_RATIO * signH) / capPer100 * 100;
+    const total = pairWidth(signH);
+    const signLeft = (W - total) / 2;
+    const signTop = (H - signH) / 2;
+
+    const mark = document.getElementById("mark");
+    mark.src = family.src;
+    mark.style.width = `${family.viewBox[2] * scale}px`;
+    mark.style.height = `${family.viewBox[3] * scale}px`;
+    mark.style.left = `${signLeft - (family.sign[0] - family.viewBox[0]) * scale}px`;
+    mark.style.top = `${signTop - (family.sign[1] - family.viewBox[1]) * scale}px`;
+    await mark.decode();
+
+    // The name stands on its baseline so that the middle of its cap height is the middle of the sign.
+    const label = document.getElementById("label");
+    label.textContent = name;
+    label.setAttribute("font-size", fontSize.toFixed(3));
+    label.setAttribute("x", (signLeft + signW + GAP_RATIO * signH - (inkLeftPer100 * fontSize) / 100).toFixed(3));
+    label.setAttribute("y", (H / 2 + (capPer100 * fontSize) / 100 / 2).toFixed(3));
+
+    window.headerInfo = { name, family: familyKey, signHeight: signH, fontSize, unit: family.unit * scale };
+    document.body.dataset.ready = "1";
+  }
+
+  draw().catch((error) => {
+    document.body.dataset.error = String(error && error.message ? error.message : error);
+  });
+</script>
+</body>
+</html>
