@@ -29,18 +29,20 @@ The logomark depends on the family of the repository:
 The first line of the README is the image, then an empty line, then the title:
 
 ```markdown
-![Athena header](https://raw.githubusercontent.com/gi-org-pl/athena/main/.github/image/header.png)
+![check-crlf-action header](.github/image/header.png)
 
-# Athena
+# check-crlf-action
 ```
 
-- **The address is absolute** and points to the default branch, so the image shows wherever the README is rendered - on GitHub, on npm, in a package registry. Use the repository's default branch in the address; it is `main` in almost every repository. The image therefore shows only after the change is merged.
-- **A private repository uses the address on github.com** instead: `https://github.com/gi-org-pl/<repo>/blob/<default branch>/.github/image/header.png?raw=true`. The browser asks `raw.githubusercontent.com` without the reader's GitHub session, so in a private repository that address answers 404 even to members; the github.com address is asked for with the session and follows the repository's access rules. It keeps working if the repository is made public later.
+- **The relative path is the default.** `.github/image/header.png` renders on GitHub for everyone who can read the repository - public or private, on the default branch, on a pull request branch and in a fork.
+- **A private repository always uses the relative path.** An absolute `raw.githubusercontent.com` address of a private repository needs a token, so the image does not render for its readers.
+- **A public repository may use the absolute address** `https://raw.githubusercontent.com/gi-org-pl/<repo>/<default branch>/.github/image/header.png`, and must when its README is also shown outside GitHub - by npm or another package registry, where a relative path does not resolve. Athena is published to npm, so it uses this form:
 
   ```markdown
-  ![gieniek-skills header](https://github.com/gi-org-pl/gieniek-skills/blob/main/.github/image/header.png?raw=true)
+  ![Athena header](https://raw.githubusercontent.com/gi-org-pl/athena/main/.github/image/header.png)
   ```
 
+  The absolute address points to the default branch, so the image shows only after the change is merged.
 - **The alternative text is the repository name followed by "header"** ("check-crlf-action header"). Where the title of the README writes the same name with a capital letter, follow the title ("Athena header").
 - **Nothing else changes.** The title and everything after it stay as they were.
 - **A repository without a README** gets a short one: the header, `# <repository name>` and the description the repository has on GitHub.
