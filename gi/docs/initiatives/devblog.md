@@ -2,10 +2,10 @@
 
 > A blog on the foundation's website where everyone in GI can publish - foundation news, personal articles and devlogs about how we work and build.
 
-**Decision:** **⚪ idea**
+**Decision:** **🟢 GO**
 
 ## Context
-Proposed by a team member and written down on 2026-10-18 at the president's request. **Nothing is built yet.** The president's answers to the first open questions are under [Decision](#decision) and are written into the sections below. The Framer structure, the roles' details and the metrics are still proposals.
+Proposed by a team member and written down on 2026-10-18 at the president's request. Approved by the president on 2026-10-18. **Nothing is built yet** - the first step is the blog subpage on the website. The president's answers to the first open questions are under [Decision](#decision) and are written into the sections below. The Framer structure, the roles' details and the metrics are still proposals.
 
 The idea: a section on gi.org.pl where everyone in the foundation can publish. It holds three types of entries:
 
@@ -119,7 +119,7 @@ Proposals. With no required cadence, these are observed, not targets:
 - **No one to keep it going.** There is no required cadence, so the blog lives only as long as people write; the metrics show when it slows down.
 
 ## Decision
-Not decided as a whole - GO or NO-GO is still open. The president answered the first open questions on 2026-10-18:
+Approved - GO - by the president on 2026-10-18. His answers to the first open questions, the same day:
 
 | Question | Answer |
 |---|---|
