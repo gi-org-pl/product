@@ -14,3 +14,4 @@ There are exactly four modules: **Quiz**, **Data**, **Polls**, **Media**. Everyt
 | [Platform](./platform/README.md) | General concerns and ideas |
 | [Roadmap](./roadmap/README.md) | What happens when |
 | [Growth](./growth/README.md) | Growth ideas parked for a later stage |
+| [Visual identity](./visual-identity/README.md) | Logo, colours and typeface: the files and the rules of use |
