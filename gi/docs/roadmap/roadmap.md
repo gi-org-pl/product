@@ -9,3 +9,4 @@ Every entry is an [initiative](../initiatives/README.md) and links to its file, 
 | # | Initiative | Status |
 |---|---|---|
 | 1 | [Discord backup](../initiatives/discord-backup.md) | ⚪ idea |
+| 2 | [Devblog](../initiatives/devblog.md) | 🟢 GO |
