@@ -16,6 +16,7 @@ These pages are the English version of the foundation's brand book, [gi-brand-bo
 | [Colours](./colours.md) | The palette with HEX, RGB, CMYK and Pantone values |
 | [Typography](./typography.md) | The Poppins typeface and the role of each weight |
 | [Usage](./usage.md) | The logo on backgrounds, avatars, incorrect use and example applications |
+| [Marketing package](./marketing-package/README.md) | Ready-made avatars, covers, link previews and e-mail signatures for GI and myPolitics, with the platform sizes |
 
 ## Logo files
 The SVG files in [logo](./logo/) are the originals; the monochrome ones are derived from them by a change of fill colour only. Use them as they are - do not redraw, re-export or recolour them.
@@ -28,7 +29,7 @@ The SVG files in [logo](./logo/) are the originals; the monochrome ones are deri
 
 The monochrome files are #231F20 only, for one-colour print on light backgrounds; they are the light-background files with the red changed to #231F20 and nothing else. A one-colour white logo is the brand red file, which is already white only. The files for dark backgrounds and for brand red are white, so they are hard to see in a file preview on a light page. Each file has a transparent background; the colour behind it comes from where it is placed.
 
-Only the SVGs are kept here. The full package of ready-made files - PNGs in several sizes and the other formats people ask for - is on the foundation's Google Drive, in the "Identyfikacja wizualna" folder.
+The files for social media - avatars, covers and banners, link previews and the e-mail signature - are in the [marketing package](./marketing-package/README.md). Apart from that package only the SVGs are kept here. The full package of ready-made files - PNGs in several sizes and the other formats people ask for - is on the foundation's Google Drive, in the "Identyfikacja wizualna" folder.
 
 ## Names in the Polish original
 | English | Polish |

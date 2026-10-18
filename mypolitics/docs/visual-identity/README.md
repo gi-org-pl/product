@@ -37,6 +37,8 @@ The colour and blue logomarks have no lettering, so one file serves both backgro
 
 The files on dark backgrounds are partly white, so they are hard to see in a file preview on a light page.
 
+Ready-made avatars, covers and banners, link previews and the e-mail signature for the myPolitics accounts are in the foundation's [marketing package](https://github.com/gi-org-pl/product/tree/main/gi/docs/visual-identity/marketing-package).
+
 ## Names in the Polish original
 | English | Polish |
 |---|---|
