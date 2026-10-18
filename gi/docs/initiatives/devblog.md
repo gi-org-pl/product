@@ -28,16 +28,17 @@ A devlog is written from the actual work - pull requests, issues, Discord thread
 
 - public material - public repositories, issues and pull requests, the published site,
 - material whose owners agreed to its use - a private repository, a Discord thread, a design review,
-- never: personal data of members, interns or volunteers; secrets; internal-only threads without the consent of the people in them.
+- never: personal data of members, interns, volunteers or partners; secrets; internal-only threads without the consent of the people in them.
 
 **Steps**
 
-1. **Draft** - Gieniek writes the draft from the sources and prepares the charts and visuals.
+1. **Draft** - Gieniek writes the draft from the sources and prepares the charts and visuals. People appear in the draft by their roles only, as everywhere in Gieniek's work.
 2. **Author or owner review** - the people whose work it is check the substance, correct it and agree to be named.
 3. **Editor approval** - the editor approves the text for publication.
-4. **Publication** - a person publishes it. The bot prepares the entry in the website's CMS but publishes nothing.
+4. **President's confirmation** - a devlog drafted by Gieniek reaches the public, so under the current rules for Gieniek's work it also waits for the president's confirmation, whoever the editor is.
+5. **Publication** - a person fills in the names of the authors and reviewers who agreed to be named, and publishes the entry. The bot prepares the entry in the website's CMS, with roles in place of names, but publishes nothing.
 
-**Credit.** The people whose work the devlog describes are its authors, with their consent. Each devlog carries a note such as "Drafted with AI, reviewed by …", in line with the foundation's message that AI writes and a person approves.
+**Credit.** The people whose work the devlog describes are its authors, with their consent. Their names are entered by a person, not by the bot. Each devlog carries a note such as "Drafted with AI, reviewed by ...", in line with the foundation's message that AI writes and a person approves.
 
 **Quality bar - no AI slop**
 
@@ -68,7 +69,7 @@ The website gi.org.pl is built in Framer. A proposed structure:
 **Pages**
 
 - **List page** - all entries, newest first, with filters by type and by project.
-- **Article page** - a template for one entry: title, authors, date, cover, body, and the "Drafted with AI, reviewed by …" note when the entry is AI-assisted.
+- **Article page** - a template for one entry: title, authors, date, cover, body, and the "Drafted with AI, reviewed by ..." note when the entry is AI-assisted.
 - **Author information** - a short note on each author, linked from the entry.
 - **RSS feed** - if Framer supports one for a CMS collection; this is still to be checked.
 - **Share image** - each entry uses its cover as the image when it is shared.
@@ -79,7 +80,7 @@ The website gi.org.pl is built in Framer. A proposed structure:
 | Authors | Write articles, or are the people whose work a devlog describes |
 | Reviewer | Checks the substance of a text before it goes to the editor |
 | Editor / approver | Approves publication - the board or the marketing team |
-| Gieniek | On request: drafts devlogs, and prepares the blog page and the CMS collection in Framer. It publishes nothing |
+| Gieniek | On request: drafts devlogs, and prepares the blog page and the CMS collection in Framer. It uses roles instead of names and publishes nothing |
 
 ### Metrics
 Proposals:
@@ -105,7 +106,7 @@ Proposals:
 Not decided. The initiative is proposed and open; it moves to GO or NO-GO once the open questions below are settled.
 
 ### Open questions
-- Who approves publication - the board, or the marketing team.
+- Who approves publication - the board, or the marketing team. For devlogs drafted by Gieniek, the president's confirmation stays on top of it unless the rules for Gieniek's work change.
 - The cadence - how often an entry is expected.
 - Languages - Polish, English, or both.
 - Whether personal opinions need a disclaimer.
