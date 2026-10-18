@@ -73,8 +73,10 @@
       document.documentElement.style.setProperty("--font", "HeaderFont");
     }
     const fontFamily = fontUrl ? "HeaderFont" : "Poppins";
-    await document.fonts.load(`700 100px ${fontFamily}`);
-    if (!document.fonts.check(`700 100px ${fontFamily}`)) throw new Error("Poppins Bold did not load");
+    // load() resolves to an empty list when no face of that name exists, and check() is then true as well,
+    // so a missing font is caught by the list, not by check().
+    const faces = await document.fonts.load(`700 100px ${fontFamily}`);
+    if (faces.length === 0) throw new Error("Poppins Bold did not load");
 
     // Glow: two soft radial spots of the family colour, as in the first header (athena).
     document.getElementById("glow").style.background = [
