@@ -4,6 +4,8 @@
 
 **Decision:** **🟢 GO**
 
+Design: [Figma - page "Sejmownik"](https://www.figma.com/design/DIInW4qrIxsgXmKbSHukNm/mypolitics-app?node-id=6169-840)
+
 ## Context
 *what?*
 
@@ -25,6 +27,8 @@ The president decided on 2026-10-20:
 - **A separate app later** - it becomes its own app (sejmownik-app); until then it is designed within the myPolitics app file.
 - **First design covers the core** - start, bills (list and detail), a vote with the citizen poll and the comparison, members (list and profile), and civic education (the path of a bill and a quiz). It uses example data.
 - **Left out for now** - video and AI clips, statements in context (fact-checking), and everything about accounts.
+
+Design: the page "Sejmownik" in the myPolitics app file holds an overview frame ("Sejmownik / 00 Przegląd") and nine screens, each in desktop (1440) and mobile (390): start, bills list, bill detail, vote with the poll, vote with the result and comparison, members list, member profile, education (path of a bill) and education (quiz). Bills, votes, clubs and members come from the Sejm API; the poll numbers are made up. A bill is shown with a short name, always next to its official title, and member data is factual only.
 
 Scope by phase:
 
@@ -90,7 +94,7 @@ Added by Sejmownik, our reading:
 ## Decision
 *why GO/NO-GO?*
 
-**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. The president has decided to build it, set its scope and start the design (2026-10-20), so the decision exists; the design is still in progress, so the [growth README](./README.md) condition of a design and a decision is only half met. That is why the file stays in growth, the Design line is left out until the frames exist (page "Sejmownik" in the myPolitics app file) and is added then, and the file moves under its own app or module only after that. The parts left out above stay ideas and each needs its own decision.
+**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. The president has decided to build it, set its scope and start the design (2026-10-20), and the first design now exists (see the Design line), so the [growth README](./README.md) condition of a design and a decision is met. The file stays in growth for now, because its documentation is still only this idea; it moves under its own app or module when that app is set up. The parts left out above stay ideas and each needs its own decision.
 
 Open questions:
 
