@@ -82,6 +82,7 @@ Added by Sejmownik, our reading:
 - **Legal use of public data** - the terms of the Sejm API and of any other source, and the handling of members' personal data, have not been checked.
 - **Competitors** - civic monitoring projects and social media accounts already cover votes and asset declarations, so a copy of them gives no reason to come.
 - **A self-selected poll is not public opinion** - the citizen poll counts only the people who visit and answer, as [community voting](./community-voting.md) says of a shared link, and the myPolitics audience is not the population. The comparison with the Sejm vote must be labelled as responses from Sejmownik participants, never as the opinion of the country, unless a sampling method is defined.
+- **Poll answers are political views** - [privacy and legal](../platform/privacy-and-legal.md) and [principles](../concept/principles.md) require views to be stored unlinked from identity. Citizen poll answers, and the saved bills and followed members of the later accounts phase, must stay anonymous and never be tied to a profile or account.
 - **A separate product** - an own app needs its own team, hosting and editorial work, which a volunteer team may not have.
 
 ## Decision
