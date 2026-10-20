@@ -35,14 +35,14 @@ Both brands have the same layout: [gi](./gi/) and [mypolitics](./mypolitics/).
 
 ## How the files are made
 - **The logo is the original file, placed and scaled.** Each SVG master contains the logo file's content byte for byte inside an `<svg>` element that only sets its position and size. Nothing is redrawn, recoloured or re-exported from another tool.
-- **Black background with the template's glow.** The background is #000000 with the two red radial gradients of the foundation's slide template, scaled to the format. For GI the glow is the brand red #D91919 at twice the template's opacity (8% and 10%); for myPolitics it is the universal blue #0092B8 at three times (12% and 15%), because blue reads darker on black. Either way it stays a hint of colour, not a picture.
+- **Black background.** The Generacja Innowacja avatars are flat #000000 - no glow, gradient or texture, as the brand book says for a black circle. Everything else has the template's glow: the background is #000000 with the two red radial gradients of the foundation's slide template, scaled to the format. For GI the glow is the brand red #D91919 at twice the template's opacity (8% and 10%); for myPolitics it is the universal blue #0092B8 at three times (12% and 15%), because blue reads darker on black. Either way it stays a hint of colour, not a picture. The myPolitics avatars keep the glow.
 - **Avatars follow the brand book's avatar rule.** The logomark is 1/2 of the circle's diameter and centred; it is 540 px high in the 1080 px master. The measured centre of mass of both logomarks is within 0.5% of the centre of their box, so centring the box centres the sign optically. The myPolitics logomark file has its own margin (the bars are 96 of its 168 units), so the file is placed at 1.75 times the bar height, as the myPolitics brand book says.
 - **Clear space of 2X is kept** around every logo: 1/4 of the logo height for the GI primary logo, 1/3 for the myPolitics primary logo. Logo heights stay above the minimum sizes (GI primary 32 px, myPolitics primary 24 px, logomarks 16 px). In a 32 px GI avatar the logomark is 16 px high - its minimum - so the GI avatar should not be shown smaller. The myPolitics minimum is measured on the side of the logomark file, which is 28 px in a 32 px avatar.
-- **Type is Poppins Medium**, set as outlines in the SVG masters ("gi.org.pl" on the GI covers), so the masters look the same without the font installed. The title in the link preview template is Poppins Bold.
+- **No website address on the GI pictures.** The logo stands alone on the covers and in the link previews; the address was removed because it took up space. The only type in the package is the title of the link preview template (Poppins Bold), the label above it (Poppins Medium) and the e-mail signature.
 - **PNG files are optimised.** Pictures with the glow are saved losslessly (a 256-colour palette bands the gradient); the e-mail logos and the preview sheets use a palette.
 
 ## Which logo variant and why
-**Generacja Innowacja** - the negative variant (white and red) on black everywhere: the logomark in avatars, the primary logo on covers with the line "gi.org.pl" under it. Black is the foundation's leading background and the brand book's choice for a black circle. The e-mail logo is the positive variant on white, because most mail is read on white.
+**Generacja Innowacja** - the negative variant (white and red) on black everywhere: the logomark in avatars, the primary logo, alone, on covers and link previews. Black is the foundation's leading background and the brand book's choice for a black circle. The e-mail logo is the positive variant on white, because most mail is read on white.
 
 **myPolitics** - the brand book gives two families and allows both on black, which has the best contrast for every bar (3.76:1 and up, against the 3:1 rule).
 
@@ -75,11 +75,11 @@ The logo sits in the centre, so every crop the platforms make - all of them cut 
 
 | File | Size | Logo | Safe area and what is cut |
 |---|---|---|---|
-| `*-facebook-cover.png` | 1920 x 1080 (16:9) | GI primary, 220 px, with "gi.org.pl"; myPolitics colour, 150 px | Computers show 16:9, phones 2.4:1 (a band 800 px high here); the logo fits in the 851 x 315 shape (711 px high here) too. The profile picture covers about 40 px at the bottom left on phones, away from the logo |
-| `*-linkedin-cover.png` | 1512 x 256 | GI primary, 96 px, with "gi.org.pl"; myPolitics universal blue, 70 px | The page logo covers the bottom left. LinkedIn gives no phone safe area; the logo fits in the middle 1024 px |
-| `*-youtube-banner.png` | 2560 x 1440 | GI primary, 200 px, with "gi.org.pl"; myPolitics colour, 140 px | TVs show the whole picture; computers a 2560 x 423 band; every device the 1546 x 423 safe area in the middle, which holds the logo with its clear space |
+| `*-facebook-cover.png` | 1920 x 1080 (16:9) | GI primary, 220 px; myPolitics colour, 150 px | Computers show 16:9, phones 2.4:1 (a band 800 px high here); the logo fits in the 851 x 315 shape (711 px high here) too. The profile picture covers about 40 px at the bottom left on phones, away from the logo |
+| `*-linkedin-cover.png` | 1512 x 256 | GI primary, 96 px; myPolitics universal blue, 70 px | The page logo covers the bottom left. LinkedIn gives no phone safe area; the logo fits in the middle 1024 px |
+| `*-youtube-banner.png` | 2560 x 1440 | GI primary, 200 px; myPolitics colour, 140 px | TVs show the whole picture; computers a 2560 x 423 band; every device the 1546 x 423 safe area in the middle, which holds the logo with its clear space |
 | `mypolitics-x-header.png` | 1500 x 500 | myPolitics colour, 76 px | Up to 60 px may be cut at the top and the bottom; the profile photo covers the bottom left |
-| `*-discord-banner.png` | 960 x 540 (16:9) | GI primary, 130 px, with "gi.org.pl"; myPolitics colour, 84 px | The server name is written over the top 48 px, so the logo sits a little below the middle. The banner is shown small at the top of the channel list, hence the large logo. Needs Boost Level 2 |
+| `*-discord-banner.png` | 960 x 540 (16:9) | GI primary, 130 px; myPolitics colour, 84 px | The server name is written over the top 48 px, so the logo sits a little below the middle. The banner is shown small at the top of the channel list, hence the large logo. Needs Boost Level 2 |
 | `*-discord-invite-background.png` | 1920 x 1080 | None | The background behind the invite pop-up in the middle of the window. Discord recommends no logo or text there, so it is the glow only. Needs Boost Level 1 |
 
 The myPolitics website links to the same Discord server as gi.org.pl, so the GI icon and banner are the ones that server uses. The myPolitics Discord files are for a separate server, if there ever is one.
@@ -89,8 +89,8 @@ The picture shown when a link to the site is shared (Open Graph `og:image`, 1200
 
 | File | Use |
 |---|---|
-| `*-og-default.png` | For pages without a picture of their own: the primary logo in the middle (GI with "gi.org.pl"). myPolitics also has `mypolitics-og-default-blue.png` for data and press pages |
-| `*-og-template.html` | The template for a page with a title. Open it in a browser, type the title (and an optional label above it), then save it as JPG or PNG. The title is set in Poppins Bold, from 72 px down to 44 px until it fits in three lines; a one-letter word is kept with the next word. The myPolitics template has a switch for the logo family |
+| `*-og-default.png` | For pages without a picture of their own: the primary logo in the middle. myPolitics also has `mypolitics-og-default-blue.png` for data and press pages |
+| `*-og-template.html` | The template for a page with a title (the logo top left, no address). Open it in a browser, type the title (and an optional label above it), then save it as JPG or PNG. The title is set in Poppins Bold, from 72 px down to 44 px until it fits in three lines; a one-letter word is kept with the next word. The myPolitics template has a switch for the logo family |
 | `*-og-template.svg` | The same layout with the title as a text element, for Figma or Inkscape. It needs Poppins installed |
 | `*-og-example*.png` | Examples made with the HTML template |
 
@@ -103,7 +103,7 @@ The template is laid out for the full 1.91:1 picture, which Facebook, LinkedIn, 
 |---|---|
 | `*-email-logo.png` | The logo for the signature: GI positive variant, myPolitics universal blue positive variant, on white with 2X clear space, at twice the display size (shown at 185 x 60 px and 203 x 50 px) |
 | `*-email-logo-dark.png` | The same on black, for a dark signature |
-| `*-email-signature.html` | The signature: name, role, logo and the site address (myPolitics also with "myPolitics - projekt Fundacji Generacja Innowacja") |
+| `*-email-signature.html` | The signature: name, role and logo; in the GI signature the logo links to gi.org.pl, in the myPolitics one the line "myPolitics - projekt Fundacji Generacja Innowacja" and the site address are written under the logo |
 
 To set it up in Gmail:
 
