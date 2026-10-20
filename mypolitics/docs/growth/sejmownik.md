@@ -83,12 +83,13 @@ Added by Sejmownik, our reading:
 - **Competitors** - civic monitoring projects and social media accounts already cover votes and asset declarations, so a copy of them gives no reason to come.
 - **A self-selected poll is not public opinion** - the citizen poll counts only the people who visit and answer, as [community voting](./community-voting.md) says of a shared link, and the myPolitics audience is not the population. The comparison with the Sejm vote must be labelled as responses from Sejmownik participants, never as the opinion of the country, unless a sampling method is defined.
 - **Poll answers are political views** - [privacy and legal](../platform/privacy-and-legal.md) and [principles](../concept/principles.md) require views to be stored unlinked from identity. Citizen poll answers, and the saved bills and followed members of the later accounts phase, must stay anonymous and never be tied to a profile or account.
+- **Abuse of an anonymous poll** - without a login, a repeat visitor or a bot can submit many answers and skew the tally, as [community voting](./community-voting.md) records for its own flow. The poll needs a privacy-preserving uniqueness or abuse control before its numbers are published.
 - **A separate product** - an own app needs its own team, hosting and editorial work, which a volunteer team may not have.
 
 ## Decision
 *why GO/NO-GO?*
 
-**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. Now the president has decided to build it, set its scope and start the design (2026-10-20), which is the condition the [growth README](./README.md) names for leaving the parked state. The design is in progress, so the Design line is left out until the frames exist (page "Sejmownik" in the myPolitics app file) and is added then, and this file stays in growth until it has one and is moved under its own app or module. The parts left out above stay ideas and each needs its own decision.
+**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. The president has decided to build it, set its scope and start the design (2026-10-20), so the decision exists; the design is still in progress, so the [growth README](./README.md) condition of a design and a decision is only half met. That is why the file stays in growth, the Design line is left out until the frames exist (page "Sejmownik" in the myPolitics app file) and is added then, and the file moves under its own app or module only after that. The parts left out above stay ideas and each needs its own decision.
 
 Open questions:
 
@@ -97,5 +98,6 @@ Open questions:
 - **Voting records** - is this the same work as [voting records comparison](./voting-records-comparison.md), or separate?
 - **Link to the quiz** - how does a taker move from a quiz result to a vote, or is there no link?
 - **Poll method** - is a poll of participants enough, or is a representative method needed before it is described as public opinion?
+- **Poll abuse control** - how is one answer per person kept without tying it to an identity?
 - **Neutral wording** - who writes and checks the summaries and the wording of the poll comparison?
 - **Later phases** - in what order, and who decides on video, fact-checking and accounts?
