@@ -82,7 +82,8 @@ Added by Sejmownik, our reading:
 - **Legal use of public data** - the terms of the Sejm API and of any other source, and the handling of members' personal data, have not been checked.
 - **Competitors** - civic monitoring projects and social media accounts already cover votes and asset declarations, so a copy of them gives no reason to come.
 - **A self-selected poll is not public opinion** - the citizen poll counts only the people who visit and answer, as [community voting](./community-voting.md) says of a shared link, and the myPolitics audience is not the population. The comparison with the Sejm vote must be labelled as responses from Sejmownik participants, never as the opinion of the country, unless a sampling method is defined.
-- **Poll answers are political views** - [privacy and legal](../platform/privacy-and-legal.md) and [principles](../concept/principles.md) require views to be stored unlinked from identity. Citizen poll answers, and the saved bills and followed members of the later accounts phase, must stay anonymous and never be tied to a profile or account.
+- **Poll answers are political views** - [privacy and legal](../platform/privacy-and-legal.md) and [principles](../concept/principles.md) require views to be stored unlinked from identity. Citizen poll answers must stay anonymous and never be tied to a profile or account, including the accounts of the later phase. Saved bills and followed members belong to an account, but must not be joined to a person's poll answers.
+- **Small tallies expose people** - a tally with only a few answers, or one watched around a known person's submission, can reveal that person's answer. A poll needs a minimum number of answers before a result is shown.
 - **Abuse of an anonymous poll** - without a login, a repeat visitor or a bot can submit many answers and skew the tally, as [community voting](./community-voting.md) records for its own flow. The poll needs a privacy-preserving uniqueness or abuse control before its numbers are published.
 - **A separate product** - an own app needs its own team, hosting and editorial work, which a volunteer team may not have.
 
@@ -98,6 +99,7 @@ Open questions:
 - **Voting records** - is this the same work as [voting records comparison](./voting-records-comparison.md), or separate?
 - **Link to the quiz** - how does a taker move from a quiz result to a vote, or is there no link?
 - **Poll method** - is a poll of participants enough, or is a representative method needed before it is described as public opinion?
+- **Poll thresholds** - how many answers before a tally is shown?
 - **Poll abuse control** - how is one answer per person kept without tying it to an identity?
 - **Neutral wording** - who writes and checks the summaries and the wording of the poll comparison?
 - **Later phases** - in what order, and who decides on video, fact-checking and accounts?
