@@ -54,7 +54,7 @@ From left to right and top to bottom:
 9. Do not put the positive version on a dark background.
 10. Do not put the colour sign on a colour - use the monochrome version.
 11. Do not put the colour or the blue version on #003642 - the bars below 3:1 disappear.
-12. Do not push the logomark to the edge of the circle - the height of the logomark is 1/2 of the diameter.
+12. Do not push the logomark to the edge of the circle - the width of the logomark is 1/2 of the diameter.
 
 ## In the product
 The myPolitics app has a light interface, so it uses the primary logo in the positive version of the colour family. In the header the logo is 24 px high - the minimum size.
@@ -64,11 +64,11 @@ The myPolitics app has a light interface, so it uses the primary logo in the pos
 *A browser tab with the logomark as the favicon (16 px) and the page title, the app header and the results chart. These are the real components of the app; only the sign was swapped.*
 
 ## In communication
-**Avatars.** In an avatar the height of the logomark is 1/2 of the diameter of the circle, and the logomark is centred optically.
+**Avatars.** In an avatar the width of the logomark is 1/2 of the width of the avatar (the diameter of the circle), and the logomark is centred optically.
 
 - The colour family is for quiz accounts, the universal family for media accounts.
 - Always on black or white.
-- The height is that of the bars. The logomark file has a margin of its own (the bars are 96 of its 168 units of height), so the file itself is placed at 1.75 times that height.
+- The width is that of the bars. The logomark file has a margin of its own (the bars are 120 of its 168 units of width), so the file itself is placed at 1.4 times that width.
 
 **Partner strip.** On the black background of gi.org.pl the strip shows the GI short logo and the myPolitics primary logo of the universal family, both in their negative versions, with the line "myPolitics - projekt Fundacji Generacja Innowacja" (myPolitics - a project of the Generacja Innowacja Foundation).
 

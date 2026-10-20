@@ -1,0 +1,10 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<title>myPolitics cover 1920x1080</title>
+<defs>
+<radialGradient id="glow0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-1208.923 982.833 -1747.62 -679.881 1652.535 205.059)"><stop stop-color="#0092B8"/><stop offset="1" stop-color="#0092B8" stop-opacity="0"/></radialGradient>
+<radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1918.575 218.361 -388.278 1078.976 481.875 1003.33)"><stop stop-color="#0092B8"/><stop offset="0.714" stop-color="#0092B8" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1920" height="1080" fill="#000000"/>
+<rect width="1920" height="1080" fill="url(#glow0)" fill-opacity="0.16"/>
+<rect width="1920" height="1080" fill="url(#glow1)" fill-opacity="0.2"/>
+</svg>

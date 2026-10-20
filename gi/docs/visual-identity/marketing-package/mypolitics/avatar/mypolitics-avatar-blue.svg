@@ -1,0 +1,20 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<title>myPolitics avatar</title>
+<defs>
+<radialGradient id="glow0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-680.019 982.833 -983.036 -679.881 929.551 205.059)"><stop stop-color="#0092B8"/><stop offset="1" stop-color="#0092B8" stop-opacity="0"/></radialGradient>
+<radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1079.198 218.361 -218.406 1078.976 271.055 1003.33)"><stop stop-color="#0092B8"/><stop offset="0.714" stop-color="#0092B8" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1080" height="1080" fill="#000000"/>
+<rect width="1080" height="1080" fill="url(#glow0)" fill-opacity="0.12"/>
+<rect width="1080" height="1080" fill="url(#glow1)" fill-opacity="0.15"/>
+<svg x="162" y="162" width="756" height="756" viewBox="-24 -36 168 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon">
+<path d="M0 8C0 3.58172 3.58172 0 8 0H32C34.2091 0 36 1.79086 36 4V20C36 22.2091 34.2091 24 32 24H8C3.58172 24 0 20.4183 0 16V8Z" fill="#00718F"/>
+<path d="M0 80C0 75.5817 3.58172 72 8 72H32C34.2091 72 36 73.7909 36 76V92C36 94.2091 34.2091 96 32 96H8C3.58172 96 0 92.4183 0 88V80Z" fill="#00B3DB"/>
+<path d="M84 40C84 37.7909 85.7909 36 88 36H112C116.418 36 120 39.5817 120 44V52C120 56.4183 116.418 60 112 60H88C85.7909 60 84 58.2091 84 56V40Z" fill="#0092B8"/>
+<path d="M48 4C48 1.79086 49.7909 0 52 0H112C116.418 0 120 3.58172 120 8V16C120 20.4183 116.418 24 112 24H52C49.7909 24 48 22.2091 48 20V4Z" fill="#00718F"/>
+<path d="M48 76C48 73.7909 49.7909 72 52 72H112C116.418 72 120 75.5817 120 80V88C120 92.4183 116.418 96 112 96H52C49.7909 96 48 94.2091 48 92V76Z" fill="#00B3DB"/>
+<path d="M0 44C0 39.5817 3.58172 36 8 36H68C70.2091 36 72 37.7909 72 40V56C72 58.2091 70.2091 60 68 60H8C3.58172 60 0 56.4183 0 52V44Z" fill="#0092B8"/>
+</g>
+</svg>
+</svg>
