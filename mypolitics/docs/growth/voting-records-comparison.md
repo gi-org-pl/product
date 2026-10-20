@@ -21,7 +21,7 @@ What the documents say that is near it:
 
 Possible sources, as examples that were not checked: the parliament's own published voting records, and civic monitoring projects that republish them. Whether either is complete, current or free to reuse is not known.
 
-The idea is related to the one about educational pages on members of parliament and politicians, since a page about a person could show how they voted. That idea is in a separate proposal, and the two are not linked here.
+The idea is related to [Sejmownik](./sejmownik.md), which grew out of the idea of educational pages on members of parliament and shows votes and member profiles. Whether the two are one piece of work is an open question there.
 
 ## Opportunity
 - **Evidence instead of declaration** - a quiz result says what a party claims or what an author decided it stands for; a voting record is what it did.
