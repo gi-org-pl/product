@@ -1,3 +1,5 @@
+![Product header](https://raw.githubusercontent.com/gi-org-pl/product/main/.github/image/header.png)
+
 # Product
 
 > Product documentation of GI projects - published as a site at [roadmap.gi.org.pl](https://roadmap.gi.org.pl/).
