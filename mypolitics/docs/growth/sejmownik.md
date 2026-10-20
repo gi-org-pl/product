@@ -4,8 +4,6 @@
 
 **Decision:** **🟢 GO**
 
-Design: Figma, page "Sejmownik" in the myPolitics app file (in progress; the link to the exact frames is added when they exist)
-
 ## Context
 *what?*
 
@@ -73,7 +71,7 @@ Our reading, not stated in the documents:
 - **Facts go stale** - who sits in parliament and in which club changes, so every page has an owner or it becomes wrong.
 - **Where facts come from is open** - the idea does not say what the pages are based on, and a page about a person is only as good as its sources.
 - **It is a different product** - the quiz is a funnel with a payoff; a library of pages needs navigation, search, an editorial calendar and people to write, which a volunteer team may not have.
-- **The scope is not set** - members of parliament, politicians and institutions are different amounts of work, and the idea gives no order.
+- **Scope after the core is not set** - the first design is fixed, but the order and size of the later phases (video, fact-checking, accounts, a mobile app) are not, and they are very different amounts of work.
 - **A page can read as endorsement** - choosing whom to write about, and in what order, is itself a statement.
 
 Added by Sejmownik, our reading:
@@ -83,12 +81,13 @@ Added by Sejmownik, our reading:
 - **Data freshness** - votes and sittings change often, so the data needs an automatic refresh with a visible date, and a stale page is worse than none.
 - **Legal use of public data** - the terms of the Sejm API and of any other source, and the handling of members' personal data, have not been checked.
 - **Competitors** - civic monitoring projects and social media accounts already cover votes and asset declarations, so a copy of them gives no reason to come.
+- **A self-selected poll is not public opinion** - the citizen poll counts only the people who visit and answer, as [community voting](./community-voting.md) says of a shared link, and the myPolitics audience is not the population. The comparison with the Sejm vote must be labelled as responses from Sejmownik participants, never as the opinion of the country, unless a sampling method is defined.
 - **A separate product** - an own app needs its own team, hosting and editorial work, which a volunteer team may not have.
 
 ## Decision
 *why GO/NO-GO?*
 
-**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. Now the president has decided to build it, set its scope and start the design (2026-10-20), which is the condition the [growth README](./README.md) names for leaving the parked state. The design is in progress, so the Figma link is still to be added, and this file stays in growth until it has one and is moved under its own app or module. The parts left out above stay ideas and each needs its own decision.
+**🟢 GO**, for the core scope only. The template has three statuses - GO, NO-GO and idea - and the earlier file was an idea because it had no design and no decision. Now the president has decided to build it, set its scope and start the design (2026-10-20), which is the condition the [growth README](./README.md) names for leaving the parked state. The design is in progress, so the Design line is left out until the frames exist (page "Sejmownik" in the myPolitics app file) and is added then, and this file stays in growth until it has one and is moved under its own app or module. The parts left out above stay ideas and each needs its own decision.
 
 Open questions:
 
@@ -96,5 +95,6 @@ Open questions:
 - **Sources** - which data does it use, on which terms, and how often is it refreshed?
 - **Voting records** - is this the same work as [voting records comparison](./voting-records-comparison.md), or separate?
 - **Link to the quiz** - how does a taker move from a quiz result to a vote, or is there no link?
+- **Poll method** - is a poll of participants enough, or is a representative method needed before it is described as public opinion?
 - **Neutral wording** - who writes and checks the summaries and the wording of the poll comparison?
 - **Later phases** - in what order, and who decides on video, fact-checking and accounts?
