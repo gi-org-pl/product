@@ -7,7 +7,7 @@
 <rect width="1080" height="1080" fill="#000000"/>
 <rect width="1080" height="1080" fill="url(#glow0)" fill-opacity="0.12"/>
 <rect width="1080" height="1080" fill="url(#glow1)" fill-opacity="0.15"/>
-<svg x="67.5" y="67.5" width="945" height="945" viewBox="-24 -36 168 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg x="162" y="162" width="756" height="756" viewBox="-24 -36 168 168" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icon">
 <path d="M0 8C0 3.58172 3.58172 0 8 0H32C34.2091 0 36 1.79086 36 4V20C36 22.2091 34.2091 24 32 24H8C3.58172 24 0 20.4183 0 16V8Z" fill="#00718F"/>
 <path d="M0 80C0 75.5817 3.58172 72 8 72H32C34.2091 72 36 73.7909 36 76V92C36 94.2091 34.2091 96 32 96H8C3.58172 96 0 92.4183 0 88V80Z" fill="#00B3DB"/>

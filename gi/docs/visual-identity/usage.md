@@ -25,7 +25,7 @@ The sign stands on black, white, brand red, or a dark, calm photo - on a photo i
 ## Avatars
 In an avatar the logomark sits in a circle:
 
-- **The height of the logomark is 1/2 of the diameter of the circle.**
+- **The width of the logomark is 1/2 of the width of the avatar (the diameter of the circle).**
 - The logomark is centred optically.
 - On a black circle use the negative variant, on a red circle the variant on the brand colour.
 
@@ -46,7 +46,7 @@ From left to right and top to bottom:
 6. Do not change the gap between the sign and the lettering.
 7. Do not turn the sign into an outline.
 8. Do not place the sign on a busy background.
-9. Do not push the logomark to the edge of the circle - the height of the logomark is 1/2 of the diameter.
+9. Do not push the logomark to the edge of the circle - the width of the logomark is 1/2 of the diameter.
 
 ## Example applications
 The model placement of the sign in the most common places. Each keeps the [clear space](./logo.md#clear-space) of 2X and the [minimum sizes](./logo.md#minimum-sizes).
@@ -55,7 +55,7 @@ The model placement of the sign in the most common places. Each keeps the [clear
 |---|---|
 | A4 letterhead | Primary logo, positive |
 | Website header | Primary logo, negative |
-| Avatar | Logomark in a circle, height = 1/2 of the diameter |
+| Avatar | Logomark in a circle, width = 1/2 of the diameter |
 | Partner strip | Short logo, positive; all logos in the strip of equal height |
 
 The mock-ups are on page 13 of the [brand book](./gi-brand-book-2026.pdf).
