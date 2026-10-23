@@ -36,6 +36,8 @@ A small set, proposed here as a starting point and not a decision:
 | **Disagree** | The negative answer on the existing scale |
 | **Skip** | No answer; the statement is set aside, as a skip is today |
 
+Only agreement questions can be shown. A question whose answers are custom (the [answer model spec](../../spec/quiz/answer-model.md) documents a many-answer question) has no positive or negative scale answer to record, so the feed either filters such questions out of the quiz's pool or defines a scoring mapping for them; the first is the proposal.
+
 Open question: whether strong versions are needed (a long press, a second button). The scale in the answer model has four steps and two reactions carry half of that resolution. A feed answer would be incomparable with a classic one unless a fixed rule maps it onto the scale.
 
 ### Results with an open number of answers
@@ -50,7 +52,7 @@ The feed has no last question, so the result cannot be "the end". A proposed sha
 ## Opportunity
 - **It removes the heaviest cost of the classic quiz** - the docs name the first stretch of a long quiz as where takers leave. A feed has no stretch to survive.
 - **It may reach a different taker** - people who would not start a 100-question quiz might react to a statement.
-- **It reuses what exists** - statements, scoring, the local running state and the result modules are all there. The new parts are the card, the reactions and the thresholds.
+- **It reuses much of what exists** - statements, scoring, the running state and the result modules are all there. The new parts are the card, the reactions, the thresholds and a hand-in contract for sessions that do not end (see Risk).
 - **It fits the product's own bet** - [gamification](../modules/quiz/questionnaire/gamification.md) says the reward has to feel closer with every answer; a result that exists early and improves is the strongest form of that.
 - **Data of a new kind** - many quick reactions per taker, comparable with the same taker's considered answers if they take both.
 
@@ -64,6 +66,7 @@ The feed has no last question, so the result cannot be "the end". A proposed sha
 - **It pulls against a principle** - [principles](../concept/principles.md) are constraints, and "Substance over emotion" asks every design decision to move the user a step from feeling toward understanding. A feed that removes thinking and leans on emotion is the inverse of that on its face, so compliance is a gate for any decision to go ahead, not a detail: the result and its modules (explanations, multi-axis results) must stay where the taker ends up, the feed has to lead into them, and a design that keeps the user at the level of feeling does not pass. "Education through play" is the principle the idea can honestly stand on.
 - **Quick reactions are not considered answers** - an emotion-led reaction may differ from the answer the same person gives after reading the statement twice. The result is then a different measurement and must not be presented as the same one.
 - **Comparability with the classic quiz** - a feed result rests on two reactions and an unfixed set of statements, so it does not pool with classic results, and [comparison](../modules/quiz/results/comparison/README.md) between a feed result and a classic one would mislead until a mapping is validated.
+- **The hand-in assumes an ending** - today answers stay in the browser until one terminal hand-in ([session and data](../modules/quiz/questionnaire/session-and-data.md)) and the result flow submits once with no way back ([engaging loader spec](../../spec/quiz/engaging-loader.md)). Submitting at the first result would freeze every later reaction; waiting for a last question means an open-ended session that is abandoned contributes no data at all, including no mode-marked row for the validation below. An explicit contract is needed before the existing data and result path can be called reusable: a snapshot that can be updated, or a finish the taker triggers, with a rule for sessions that are left open.
 - **Selection bias** - the taker who stops early and the one who goes on for hundreds of statements are different people; results at different counts are not equally trustworthy, and aggregate statistics must not mix them.
 - **Seeing a reading changes the answers** - the docs say so for checkpoints ([axis closeness](../modules/quiz/questionnaire/checkpoints/axis-closeness.md)); a result available at any time makes steering possible. [Live results preview](./live-results-preview.md) carries the same risk.
 - **Confidence is misread as accuracy** - the header file says the number describes the answers. In a feed the number moves, which makes the misreading easier.
@@ -78,7 +81,7 @@ Gate for any GO: the mode passes the "Substance over emotion" principle (see Ris
 
 It should stay an experiment: an opt-in mode next to the classic quiz, never a replacement for it. A way to validate it:
 
-- **Opt-in or A/B** - offered as an alternative start on an existing quiz, with the taker choosing or being assigned a mode; answers are marked by mode in the dataset.
+- **Randomised A/B for the comparison** - takers are assigned a mode at random, so a difference in completion can be attributed to the mode; answers are marked by mode in the dataset. A taker-chosen opt-in is a feasibility cohort only: people who pick the feed differ in their willingness to finish, so its numbers are reported separately and are not compared with the classic quiz's.
 - **Completion** - the share of takers who reach a first result, against the same share in the classic quiz.
 - **Answers per session** - the distribution, and where takers stop; a long tail is a signal to review the stopping points, not a goal.
 - **Result stability against the classic quiz** - for takers who do both, how often the leading orientation agrees, at which reaction count it starts to, and how that compares with the classic quiz repeated by the same person.
@@ -95,3 +98,4 @@ Open questions:
 - Does the feed use one quiz, or a pool of statements across quizzes?
 - Should a feed result be saved and shared like a classic one, and what does the short results card say about its count?
 - Where is the line between a stopping point and an interruption?
+- What is the hand-in contract for a session with no last question: updatable snapshot, taker-triggered finish, or both?
