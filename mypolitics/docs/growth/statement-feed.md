@@ -11,7 +11,7 @@ The idea as proposed:
 
 - **A feed instead of questions** - the taker sees one statement after another, as in a social media feed, and reacts to each.
 - **Less friction** - answering a question and thinking about it for long is the cost the idea removes. It leans on reaction and emotion, and on an interface the taker already knows from social media. That sits uneasily with the product principles; see Risk.
-- **No fixed number of statements** - the taker could go on without end. After a number of statements they can already see a result, and the more they answer, the more accurate it is, or the more [result modules](../modules/quiz/results/modules/README.md) become available.
+- **No fixed number of statements** - the taker could go on without end (which holds only if the pool of statements does not run out; see Risk). After a number of statements they can already see a result, and the more they answer, the more accurate it is, or the more [result modules](../modules/quiz/results/modules/README.md) become available.
 
 What the documents say about the quiz this would sit next to:
 
@@ -52,7 +52,7 @@ The feed has no last question, so the result cannot be "the end". A proposed sha
 ## Opportunity
 - **It removes the heaviest cost of the classic quiz** - the docs name the first stretch of a long quiz as where takers leave. A feed has no stretch to survive.
 - **It may reach a different taker** - people who would not start a 100-question quiz might react to a statement.
-- **It reuses much of what exists** - statements, scoring, the running state and the result modules are all there. The new parts are the card, the reactions, the thresholds and a hand-in contract for sessions that do not end (see Risk).
+- **It reuses much of what exists** - statements, scoring, the running state and the result modules are all there. The new parts are the card, the reactions, the thresholds, a scoring contract for partial results and a hand-in contract for sessions that do not end (see Risk).
 - **It fits the product's own bet** - [gamification](../modules/quiz/questionnaire/gamification.md) says the reward has to feel closer with every answer; a result that exists early and improves is the strongest form of that.
 - **Data of a new kind** - many quick reactions per taker, comparable with the same taker's considered answers if they take both.
 
@@ -66,7 +66,9 @@ The feed has no last question, so the result cannot be "the end". A proposed sha
 - **It pulls against a principle** - [principles](../concept/principles.md) are constraints, and "Substance over emotion" asks every design decision to move the user a step from feeling toward understanding. A feed that removes thinking and leans on emotion is the inverse of that on its face, so compliance is a gate for any decision to go ahead, not a detail: the result and its modules (explanations, multi-axis results) must stay where the taker ends up, the feed has to lead into them, and a design that keeps the user at the level of feeling does not pass. "Education through play" is the principle the idea can honestly stand on.
 - **Quick reactions are not considered answers** - an emotion-led reaction may differ from the answer the same person gives after reading the statement twice. The result is then a different measurement and must not be presented as the same one.
 - **Comparability with the classic quiz** - a feed result rests on two reactions and an unfixed set of statements, so it does not pool with classic results, and [comparison](../modules/quiz/results/comparison/README.md) between a feed result and a classic one would mislead until a mapping is validated.
+- **Scoring assumes the whole quiz** - the running state divides by the maximum of the questions done so far, while the back end divides by every question of the quiz and its result is the authoritative one ([event model spec](../../spec/quiz/event-model.md), [session and data spec](../../spec/quiz/session-and-data.md)). A partial feed result computed either way can differ from the other: unseen questions lower scores, change bands and can change the leader, and filtering custom questions changes the pool the back end sees. The mode needs its own calculation and result contract (what the denominator is for a partial result, and which number is authoritative) in addition to the hand-in contract.
 - **The hand-in assumes an ending** - today answers stay in the browser until one terminal hand-in ([session and data](../modules/quiz/questionnaire/session-and-data.md)) and the result flow submits once with no way back ([engaging loader spec](../../spec/quiz/engaging-loader.md)). Submitting at the first result would freeze every later reaction; waiting for a last question means an open-ended session that is abandoned contributes no data at all, including no mode-marked row for the validation below. An explicit contract is needed before the existing data and result path can be called reusable: a snapshot that can be updated, or a finish the taker triggers, with a rule for sessions that are left open.
+- **A feed over existing questions is finite** - each question can be answered once, and a repeat replaces the earlier answer instead of adding evidence (session and data and event model specs). Without repeats the feed ends when the eligible pool is exhausted, so "without end" is not true of a single quiz. Exhaustion needs a definition before the long tail is measured or promised: a pool across quizzes, repeats with a defined scoring rule, or an honest end card.
 - **Selection bias** - the taker who stops early and the one who goes on for hundreds of statements are different people; results at different counts are not equally trustworthy, and aggregate statistics must not mix them.
 - **Seeing a reading changes the answers** - the docs say so for checkpoints ([axis closeness](../modules/quiz/questionnaire/checkpoints/axis-closeness.md)); a result available at any time makes steering possible. [Live results preview](./live-results-preview.md) carries the same risk.
 - **Confidence is misread as accuracy** - the header file says the number describes the answers. In a feed the number moves, which makes the misreading easier.
@@ -95,7 +97,8 @@ Open questions:
 - How many reactions give a first result, and who decides "enough" per quiz?
 - Who chooses the next statement, and can a quiz author configure the order?
 - What rule maps a feed reaction onto the four-step scale, if the data is to be pooled with the classic quiz?
-- Does the feed use one quiz, or a pool of statements across quizzes?
+- Does the feed use one quiz, or a pool of statements across quizzes, and what happens when the pool is exhausted?
+- What is the denominator of a partial result, and is the browser's or the back end's number authoritative?
 - Should a feed result be saved and shared like a classic one, and what does the short results card say about its count?
 - Where is the line between a stopping point and an interruption?
 - What is the hand-in contract for a session with no last question: updatable snapshot, taker-triggered finish, or both?
