@@ -27,6 +27,7 @@ Not covered here:
 | Entries | A list of orientation, value and optional badge | What is ranked | Used when there are no categories |
 | Categories | A list of a name and its entries | The same, broken by category | Optional. When present, the list is grouped |
 | Visible rows | A whole number | How many rows a flat list shows before the fold | Defaults to 3. The author chooses where the fold is |
+| Empty text | Text | What the card says when there is nothing to rank | Optional. Author-supplied and untrusted |
 | Comparison | The other party, and their value per orientation | A friend's scores on the same rows | Optional |
 | Statistics action, info action | Present or absent | The wrapper's two buttons | Optional, independent |
 
@@ -68,6 +69,13 @@ What is open is the module's own state. Nothing outside is told about it.
 | Opened | Every row is shown, and the control at the foot of the card closes the list again |
 | As many entries as visible rows, or fewer | Every row is shown and there is no control |
 
+### Empty card
+| Case | Behaviour |
+|---|---|
+| No entries, no categories, and an empty text | The text, quiet, where a name would stand, over an empty track with no cap and no marker. It wraps and is never cut. The text is the whole content of the card; on the party card of the identity quiz it reads "Brak najbliższej partii" |
+| No entries, no categories, and no empty text | An empty card under its title |
+| Categories present | The empty text is not used. A category with no result says so in its own heading |
+
 ### Grouped list
 | Case | Behaviour |
 |---|---|
@@ -97,12 +105,13 @@ The module starts folded, or grouped with nothing open. The state lasts as long 
 - **Rank is by the taker's value only.** Nothing else moves a row - not a badge, not the comparison, not the category.
 - **A badge is not a result.** It never changes a row's position, colour or bar.
 - **The fold hides rows, it does not remove them.** Rows behind it are still in the ranking and still reachable in one press.
-- **The module never hides itself.** With no entries it is an empty card under its title.
+- **The module never hides itself.** With no entries it is an empty card under its title, or says its empty text.
 
 ## Invalid and edge input
 | Input | Behaviour |
 |---|---|
 | Visible rows below 1, or not a whole number | The default of 3 |
+| Empty text that is blank, or has line breaks | Blank: as if absent. Line breaks: collapsed to one line |
 | Both entries and categories passed | The categories win |
 | Category with no entries | Drawn as a category with no result, and with no control to open it |
 | Category without a name | The heading shows the leader alone |
