@@ -6,7 +6,7 @@ multi-ecosystem-groups:
       interval: daily
 
 updates:
-  - package-ecosystem: pip
+  - package-ecosystem: npm
     directory: /
     patterns: ['*']
     multi-ecosystem-group: dependencies
