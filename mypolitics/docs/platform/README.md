@@ -12,3 +12,4 @@
 | [Open-source release](./open-source-release.md) | Publishing the codebase |
 | [Privacy and legal](./privacy-and-legal.md) | Political data constraints |
 | [Quiz migration](./quiz-migration.md) | Moving quizzes off the old stack |
+| [Sign-in](./sign-in.md) | Signing in with Google, Facebook or X |
