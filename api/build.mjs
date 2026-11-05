@@ -32,7 +32,7 @@ const SCHEMA_FILES = ["index.schema.json", "doc.schema.json", "search.schema.jso
 
 const DEFAULTS = {
   baseUrl: `https://${CUSTOM_DOMAIN}`,
-  siteUrl: "https://gi.org.pl/dokumentacja",
+  siteUrl: "https://gi.org.pl/produkt",
 };
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");

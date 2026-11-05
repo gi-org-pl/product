@@ -40,7 +40,7 @@ Liczby podajemy tak, jak na stronie gi.org.pl: z myPolitics skorzystało 4 500 0
 ## Kod i dokumentacja
 
 - [gi-org-pl na GitHubie](https://github.com/gi-org-pl): publiczne repozytoria fundacji.
-- [product](https://github.com/gi-org-pl/product): dokumentacja produktów (koncepty, specyfikacje, zadania); do czytania na https://gi.org.pl/dokumentacja, a jako JSON na https://product.gi.org.pl/index.json.
+- [product](https://github.com/gi-org-pl/product): dokumentacja produktów (koncepty, specyfikacje, zadania); do czytania na https://gi.org.pl/produkt, a jako JSON na https://product.gi.org.pl/index.json.
 - [gi-tech-standards](https://github.com/gi-org-pl/gi-tech-standards): publiczne standardy inżynierskie fundacji.
 - [frontend-workflows](https://github.com/gi-org-pl/frontend-workflows): wspólne workflowy CI dla projektów front-endowych.
 - [mypolitics-app](https://github.com/gi-org-pl/mypolitics-app): front-end myPolitics.
