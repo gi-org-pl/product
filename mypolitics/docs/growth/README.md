@@ -16,3 +16,4 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
 | [Multiplayer mode](./multiplayer-mode.md) | Taking a quiz in a group with a host, or as two |
 | [Legacy content migration](./legacy-content-migration.md) | Moving old videos and articles to the new service |
+| [Statement feed](./statement-feed.md) | A feed of statements the taker reacts to, with no fixed length |
