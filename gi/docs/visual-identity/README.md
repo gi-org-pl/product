@@ -17,6 +17,7 @@ These pages are the English version of the foundation's brand book, [gi-brand-bo
 | [Typography](./typography.md) | The Poppins typeface and the role of each weight |
 | [Usage](./usage.md) | The logo on backgrounds, avatars, incorrect use and example applications |
 | [Marketing package](./marketing-package/README.md) | Ready-made avatars, covers, link previews and e-mail signatures for GI and myPolitics, with the platform sizes |
+| [README header](./readme-header.md) | The image at the top of every repository README, with the template that renders it |
 
 ## Logo files
 The SVG files in [logo](./logo/) are the originals; the monochrome ones are derived from them by a change of fill colour only. Use them as they are - do not redraw, re-export or recolour them.
