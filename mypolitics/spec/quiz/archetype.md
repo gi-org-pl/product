@@ -26,6 +26,7 @@ Not covered here:
 | Title | Text | The card's name | Optional, as in the wrapper |
 | Archetypes | A list of orientation, match, short description and full description | Every archetype the quiz scores | Descriptions are optional |
 | Comparison | The other party, and their match per archetype | A friend's matches on the same bars | Optional |
+| Below 50 | `no_match` or `named` | What the module does with a leader whose match is below 50 | Defaults to `no_match` |
 | Statistics action, info action | Present or absent | The wrapper's two buttons | Optional, independent |
 
 An archetype is an orientation: a name, an image and a colour. A **match** is a number from 0 to 100. Names and both descriptions are author-supplied and untrusted.
@@ -47,7 +48,9 @@ Which view is open is the module's own state.
 | Case | Behaviour |
 |---|---|
 | The leader's match is a match or a partial match | Its name, and a one-sided bar with its image on the cap |
-| The leader's match is no match | The "no match" wording, quiet, in place of the name, and an empty track with no cap |
+| The leader's match is no match, and "Below 50" is `no_match` | The "no match" wording, quiet, in place of the name, and an empty track with no cap |
+| The leader's match is no match, "Below 50" is `named`, and the leader has a match | Its name, and a one-sided bar with its image on the cap and its match, as for a partial match, in the colour of the no match band |
+| No archetype has a match | The "no match" wording and an empty track, whatever "Below 50" holds |
 | The bar | No marker and no labels |
 | The bar's colour | The colour of the match's band, never the archetype's own colour |
 
@@ -83,6 +86,13 @@ Two controls sit at the foot of the card, description first, ranking second.
 | Description control | Not shown |
 | Ranking | Shows every archetype, the leader included, since none of them is drawn above it |
 
+### Closest archetype named below 50
+| Case | Behaviour |
+|---|---|
+| Summary | The leader's short description |
+| Description control | Shown when the leader has a full description that differs from the short one |
+| Ranking | Every other archetype, as when the leader is a match |
+
 ### Comparison
 | Case | Behaviour |
 |---|---|
@@ -96,12 +106,12 @@ Two controls sit at the foot of the card, description first, ranking second.
 | Summary - "standard" | Nothing opened | Open the full description, open the ranking |
 | Full description | Description control active | Return to the summary, switch to the ranking |
 | Ranking | Ranking control active | Return to the summary, switch to the full description |
-| No match | The leader is below 50 | Open the ranking |
+| No match | The leader is below 50, and "Below 50" is `no_match` or no archetype has a match | Open the ranking |
 
 The module starts in the summary. The state lasts as long as the card is on screen and is not saved anywhere.
 
 ## Rules and constraints
-- **No match is a result.** The module never names the least bad option.
+- **No match is a result.** By default the module never names the least bad option. With "Below 50" set to `named` it names the closest archetype, with its match and its description, as the old result page did.
 - **One leader.** Runners-up live in the ranking, however close they are.
 - **Descriptions are plain text.** Paragraph breaks are kept; markup, links and anything else in the text are shown as written and never interpreted.
 - **A band colours a bar, an orientation does not.** Every bar on this card takes its colour from its match's band, so the ranking reads as strong, loose and none at a glance.

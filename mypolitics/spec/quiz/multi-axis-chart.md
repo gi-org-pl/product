@@ -49,6 +49,7 @@ Which group is open is the module's own state. Nothing outside is told about it.
 |---|---|
 | Heading, with a lead | The axis or group name, quiet, then the leading orientation's name, strong |
 | Heading, on a tie | The name alone |
+| Colours | In a group, a pole whose orientation has no colour of its own takes the colour of the same pole of the group's headline axis, so the narrower axes read as one group with it. A pole with a colour keeps it. Where the headline axis has none, the pole has none either and is drawn as the universal axis draws it |
 | Bar | Double-sided, with the marker, and with both poles labelled under their caps |
 | Comparison values for this axis | Passed to the bar unchanged |
 
@@ -57,6 +58,7 @@ Which group is open is the module's own state. Nothing outside is told about it.
 |---|---|
 | A group | One axis row for its headline axis, headed by the group's name and the headline axis's lead |
 | Group with more than one axis | Under the bar, a preview of the orientations inside - the icons of the start poles on one side, of the end poles on the other - and a control that opens the group |
+| The preview icons | Each drawn as it stands on a cap, at half the scale: a vector image whole, a picture covering its place. See the [universal axis](./universal-axis.md#image-cases) |
 | Group with one axis | No preview and no control. There is nothing to open |
 | The list of groups | Every group, in the author's order, never sorted |
 
