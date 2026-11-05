@@ -5,4 +5,4 @@
 ## Contents
 | File | Description |
 |---|---|
-| [Accounts](./accounts.md) | Identity, ownership and permissions |
+| Accounts | Identity, ownership and permissions |

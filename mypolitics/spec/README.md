@@ -14,9 +14,9 @@
 ## Contents
 | Folder | Description |
 |---|---|
-| [Data](./data/) | Datasets, analysis and reports |
-| [Media](./media/) | Aggregation and distribution |
+| Data | Datasets, analysis and reports |
+| Media | Aggregation and distribution |
 | [Platform](./platform/README.md) | Cross-cutting concerns no module owns |
-| [Polls](./polls/) | Poll aggregation and predictions |
+| Polls | Poll aggregation and predictions |
 | [Quiz](./quiz/README.md) | Taking, creating and scoring quizzes |
 

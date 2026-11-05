@@ -1,0 +1,24 @@
+{
+  "name": "gi-product-docs-api",
+  "private": true,
+  "description": "Builds the product docs into JSON files served on GitHub Pages",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node api/build.mjs --out _site",
+    "test": "node --test api/build.test.mjs"
+  },
+  "dependencies": {
+    "github-slugger": "2.0.0",
+    "highlight.js": "11.12.0",
+    "markdown-it": "15.0.3",
+    "sanitize-html": "2.18.1",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

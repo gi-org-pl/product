@@ -7,7 +7,7 @@
 ## Context
 A post-survey is a short set of questions shown once a quiz is finished - the para-poll. The quiz measures political values, which move slowly; the post-survey asks about current affairs, which move every week.
 
-- **Technically a quiz** - authored in the [editor](../editor/README.md) with the same schema, only served differently.
+- **Technically a quiz** - authored in the [editor](../editor/) with the same schema, only served differently.
 - **Attached by the front-end** - the questionnaire ends, and the front-end appends the post-survey as extra questions before the [result screen](../results/README.md) closes the session.
 - **Optional** - it is offered, never forced. The user has already finished what they came for.
 - **Two payoffs for the taker** - a bit more insight about themselves, and access to how everyone else answered.

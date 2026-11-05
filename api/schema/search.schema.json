@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product.gi.org.pl/schema/search.schema.json",
+  "title": "Docs API search index",
+  "description": "search.json: the text of every document, for search in the browser.",
+  "type": "object",
+  "required": ["schemaVersion", "commit", "docs"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "schemaVersion": { "const": 1 },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "docs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "section", "headings", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "index.schema.json#/$defs/docId" },
+          "title": { "type": "string" },
+          "section": { "type": "string" },
+          "headings": { "type": "array", "items": { "type": "string" } },
+          "text": { "type": "string", "description": "Plain text of the document, whitespace collapsed" }
+        }
+      }
+    }
+  }
+}

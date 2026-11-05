@@ -15,7 +15,7 @@
 ## Context
 Our own operational capacity caps how many quizzes we can write, and how often we can come out with a new idea. Community quizzes lift that cap: creators bring the ideas and build them here.
 
-Instead of standing up their own platform, inventing a scoring algorithm and earning reach from zero, a creator gets our audience, the [editor](../editor/README.md) and configurable result modules. They design the quiz end to end - questions, answers, weights, orientations, result screen. The 2023 editor already proved the demand, with no promotion at all.
+Instead of standing up their own platform, inventing a scoring algorithm and earning reach from zero, a creator gets our audience, the [editor](../editor/) and configurable result modules. They design the quiz end to end - questions, answers, weights, orientations, result screen. The 2023 editor already proved the demand, with no promotion at all.
 
 Three things make it work:
 - **[Moderation](./moderation.md)** - The author can always take their own quiz; sharing it needs our approval.

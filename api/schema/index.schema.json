@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product.gi.org.pl/schema/index.schema.json",
+  "title": "Docs API manifest",
+  "description": "index.json: what the build contains, the navigation tree and one summary per document, in reading order.",
+  "type": "object",
+  "required": ["schemaVersion", "repository", "branch", "commit", "generatedAt", "baseUrl", "siteUrl", "files", "sections", "docs"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "schemaVersion": { "const": 1 },
+    "repository": { "type": "string", "description": "owner/name of the source repository" },
+    "branch": { "type": "string" },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$", "description": "The commit the files were built from" },
+    "generatedAt": { "type": "string", "format": "date-time", "description": "Commit time of that commit; the build reads no clock" },
+    "baseUrl": { "type": "string", "format": "uri", "description": "Where these files are served" },
+    "siteUrl": { "type": "string", "format": "uri", "description": "The page that shows the documents to people; links between documents point there as ?doc=<id>" },
+    "files": {
+      "type": "object",
+      "required": ["search", "doc", "asset", "schemas"],
+      "additionalProperties": false,
+      "properties": {
+        "search": { "type": "string", "format": "uri" },
+        "doc": { "type": "string", "description": "URL template; {id} is a document id" },
+        "asset": { "type": "string", "description": "URL template; {path} is a file path in the repository" },
+        "schemas": { "type": "array", "items": { "type": "string", "format": "uri" } }
+      }
+    },
+    "sections": { "type": "array", "items": { "$ref": "#/$defs/folder" }, "description": "One tree per top-level folder" },
+    "docs": { "type": "array", "items": { "$ref": "#/$defs/summary" }, "description": "Every document in reading order, which is also the order of prev and next" }
+  },
+  "$defs": {
+    "docId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)*$",
+      "description": "Repository path without .md, and without /README for the README of a folder"
+    },
+    "folder": {
+      "type": "object",
+      "required": ["id", "title", "path", "children"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "oneOf": [{ "$ref": "#/$defs/docId" }, { "type": "null" }], "description": "The README document of the folder, or null when it has none" },
+        "title": { "type": "string" },
+        "path": { "type": "string", "pattern": "/$" },
+        "children": { "type": "array", "items": { "oneOf": [{ "$ref": "#/$defs/folder" }, { "$ref": "#/$defs/leaf" }] } }
+      }
+    },
+    "leaf": {
+      "type": "object",
+      "required": ["id", "title", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/docId" },
+        "title": { "type": "string" },
+        "path": { "type": "string", "pattern": "\\.md$" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["id", "title", "path", "section", "description", "updated", "tags", "excerpt", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/docId" },
+        "title": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "pattern": "\\.md$" },
+        "section": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "updated": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "description": "Time of the last commit that changed the file" },
+        "tags": { "type": "array", "items": { "type": "string" }, "description": "Frontmatter tags, otherwise the folder names" },
+        "excerpt": { "type": ["string", "null"], "maxLength": 240 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

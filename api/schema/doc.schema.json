@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product.gi.org.pl/schema/doc.schema.json",
+  "title": "Docs API document",
+  "description": "docs/<id>.json: one document with its rendered body.",
+  "type": "object",
+  "required": [
+    "schemaVersion", "id", "title", "path", "section", "sectionTitle", "description", "updated", "tags", "excerpt", "url",
+    "breadcrumbs", "frontmatter", "toc", "html", "markdown", "githubUrl", "editUrl", "prev", "next"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "schemaVersion": { "const": 1 },
+    "id": { "$ref": "index.schema.json#/$defs/docId" },
+    "title": { "type": "string", "minLength": 1 },
+    "path": { "type": "string", "pattern": "\\.md$" },
+    "section": { "type": "string" },
+    "sectionTitle": { "type": "string" },
+    "description": { "type": ["string", "null"] },
+    "updated": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "excerpt": { "type": ["string", "null"], "maxLength": 240 },
+    "url": { "type": "string", "format": "uri" },
+    "breadcrumbs": {
+      "type": "array",
+      "description": "The folders above the document, from the section down",
+      "items": {
+        "type": "object",
+        "required": ["id", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "oneOf": [{ "$ref": "index.schema.json#/$defs/docId" }, { "type": "null" }] },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "frontmatter": { "type": "object", "description": "YAML frontmatter as written, empty when the file has none" },
+    "toc": {
+      "type": "array",
+      "description": "Headings of levels 2 to 4 in order; id is the anchor in html",
+      "items": {
+        "type": "object",
+        "required": ["level", "text", "id"],
+        "additionalProperties": false,
+        "properties": {
+          "level": { "type": "integer", "minimum": 2, "maximum": 4 },
+          "text": { "type": "string" },
+          "id": { "type": "string" }
+        }
+      }
+    },
+    "html": {
+      "type": "string",
+      "description": "Sanitised HTML of the body without the title. Links to other documents carry data-doc (and data-anchor) and point at siteUrl?doc=<id>; files point at the asset URL; everything else at GitHub."
+    },
+    "markdown": { "type": "string", "description": "The source file as it is in the repository" },
+    "githubUrl": { "type": "string", "format": "uri" },
+    "editUrl": { "type": "string", "format": "uri" },
+    "prev": { "$ref": "#/$defs/neighbour" },
+    "next": { "$ref": "#/$defs/neighbour" }
+  },
+  "$defs": {
+    "neighbour": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["id", "title"],
+          "additionalProperties": false,
+          "properties": { "id": { "$ref": "index.schema.json#/$defs/docId" }, "title": { "type": "string" } }
+        }
+      ]
+    }
+  }
+}
