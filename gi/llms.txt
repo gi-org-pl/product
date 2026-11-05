@@ -1,0 +1,52 @@
+# Fundacja Generacja Innowacja
+
+> Polska organizacja pozarządowa, która buduje technologię obywatelską: quizy, badania, programy wideo i platformy pomagające młodym ludziom lepiej rozumieć siebie, swoje poglądy i życie publiczne. Strona: https://gi.org.pl (po polsku). In English: Generacja Innowacja is a Polish non-profit foundation (founded June 2023) building civic technology; its main product is myPolitics, a platform of civic education quizzes, and it also runs internships for students, open-source software and youth research.
+
+Fundacja Generacja Innowacja powstała w czerwcu 2023 roku. Misja: wykorzystywać i budować technologię w służbie społeczeństwa, z naciskiem na edukację obywatelską. Zarząd: Adrian Orłów (prezes) i Oskar Barcz (wiceprezes). Dane ze stopki strony: ul. Twarda 18, 00-105 Warszawa, KRS 0001041229, NIP 5214023308.
+
+Aktualny produkt: myPolitics (quizy obywatelskie, wyniki, raport "Młodzi Wyborcy '25"); wersja 2.0 jest w budowie. Pozostałe projekty prezentowane na stronie: Młodzież vs. Politycy, Ring Polityczny, Echo Generacji. Fundacja pracuje z asystentem AI o imieniu Gieniek; każdą jego pracę sprawdza człowiek.
+
+Liczby podajemy tak, jak na stronie gi.org.pl: z myPolitics skorzystało 4 500 000+ osób od 2018 r., kanał myPolitics na YouTube ma 6 000 000+ wyświetleń, a fundacja rozwinęła 170+ talentów w 18+ programach praktyk.
+
+## Projekty
+
+- [Projekty](https://gi.org.pl/projekty): przegląd projektów fundacji - quizy, badania, programy wideo i platformy.
+- [myPolitics](https://gi.org.pl/projekty/mypolitics): platforma quizów obywatelskich działająca od 2018 r.; pomaga poznać swoje poglądy, nie podpowiada, na kogo głosować. 500 000+ osób skorzystało z quizu przed wyborami prezydenckimi 2025, 300 000+ wypełnień quizu tożsamościowego od marca 2025 r.; wersja 2.0 w budowie.
+- [Młodzi Wyborcy '25](https://gi.org.pl/projekty/mlodzi-wyborcy-25): raport o poglądach młodych (18-29 lat) oparty na quizie prezydenckim 2025, próba 100 000 osób, 300 000+ wypełnionych kwestionariuszy; zaprezentowany w Belwederze 13.03.2026.
+- [Młodzież vs. Politycy](https://gi.org.pl/projekty/mlodziez-vs-politycy): program wideo na YouTube, w którym młodzi zadają pytania decydentom; 3 mln+ wyświetleń.
+- [Ring Polityczny](https://gi.org.pl/projekty/ring-polityczny): program wideo, w którym rozmawiają osoby o przeciwnych poglądach; 2 mln+ wyświetleń.
+- [Echo Generacji](https://gi.org.pl/projekty/echo-generacji): platforma mikroblogów młodzieżowych organizacji pozarządowych (strona: echogeneracji.pl).
+- [Quizy myPolitics](https://mypolitics.pl): aplikacja z quizami.
+
+## Fundacja
+
+- [Strona główna](https://gi.org.pl/): misja, najważniejsze projekty, praktyki, technologia i kontakt.
+- [Praktyki](https://gi.org.pl/praktyki): praktyki systemowe dla uczniów (klasy i szkoły) i indywidualne dla studentów; zdalnie, z mentoringiem i code review przy prawdziwych produktach. Zgłoszenia przez Discord, kanał #onboarding.
+- [Zespół](https://gi.org.pl/team): zarząd, osoby kierujące obszarami, zespół oraz asystent AI Gieniek.
+- [Gieniek](https://gi.org.pl/gieniek): asystent AI fundacji - czym się zajmuje (kod, posty, dokumenty grantowe) i jakich zasad się trzyma (zatwierdza człowiek, nie publikuje sam, bez grafik generowanych przez AI).
+- [Technologia](https://gi.org.pl/technologia): jak fundacja buduje oprogramowanie - open source, publiczne standardy, review człowieka, zasada "człowiek prowadzi, AI wspiera".
+- [Filmy](https://gi.org.pl/filmy): nagrania z kanału YouTube fundacji - demo, debaty, wywiady.
+- [Artykuły](https://gi.org.pl/articles): blog - aktualności, teksty członków i devlogi.
+- [Partnerzy](https://gi.org.pl/partners): partnerzy fundacji.
+- [Dokumenty](https://gi.org.pl/documents): statut, sprawozdania, polityka ochrony małoletnich, polityka korzystania z AI, kryteria oceniania praktyk, standardy techniczne.
+- [Dotacje](https://gi.org.pl/dotacje): zadania finansowane z budżetu państwa, obecnie PROO 2018-2030, Priorytet 1a (rozwój instytucjonalny fundacji, 1.04.2026 - 31.12.2026).
+- [Discord](https://gi.org.pl/discord): społeczność fundacji (220+ osób) - rozmowy o IT, feedback do projektów, rekrutacja na praktyki.
+
+## Kontakt
+
+- E-mail: relations@gi.org.pl
+- Discord: https://gi.org.pl/discord (zaproszenie do serwera)
+
+## Kod i dokumentacja
+
+- [gi-org-pl na GitHubie](https://github.com/gi-org-pl): publiczne repozytoria fundacji.
+- [product](https://github.com/gi-org-pl/product): dokumentacja produktów (koncepty, specyfikacje, zadania), publikowana na https://roadmap.gi.org.pl/.
+- [gi-tech-standards](https://github.com/gi-org-pl/gi-tech-standards): publiczne standardy inżynierskie fundacji.
+- [frontend-workflows](https://github.com/gi-org-pl/frontend-workflows): wspólne workflowy CI dla projektów front-endowych.
+- [mypolitics-app](https://github.com/gi-org-pl/mypolitics-app): front-end myPolitics.
+
+## Optional
+
+- [Kanał myPolitics na YouTube](https://www.youtube.com/@myPolitics): programy wideo.
+- [Kanał Generacji Innowacji na YouTube](https://www.youtube.com/@GeneracjaInnowacja): demo i wywiady.
+- [LinkedIn](https://www.linkedin.com/company/giorgpl), [Facebook](https://www.facebook.com/GeneracjaInnowacja/), [Instagram](https://www.instagram.com/generacjainnowacja/): profile fundacji w mediach społecznościowych.
