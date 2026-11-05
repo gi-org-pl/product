@@ -16,6 +16,7 @@ These pages are the English version of the foundation's brand book, [gi-brand-bo
 | [Colours](./colours.md) | The palette with HEX, RGB, CMYK and Pantone values |
 | [Typography](./typography.md) | The Poppins typeface and the role of each weight |
 | [Usage](./usage.md) | The logo on backgrounds, avatars, incorrect use and example applications |
+| [README header](./readme-header.md) | The image at the top of every repository README, with the template that renders it |
 
 ## Logo files
 The SVG files in [logo](./logo/) are the originals; the monochrome ones are derived from them by a change of fill colour only. Use them as they are - do not redraw, re-export or recolour them.
