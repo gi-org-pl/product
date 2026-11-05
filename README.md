@@ -9,7 +9,7 @@
 |---|---|
 | [Generacja Innowacja](./gi/README.md) | Roadmap, decisions and docs of the whole foundation |
 | [myPolitics](./mypolitics/README.md) | Docs, specs, roadmap and tasks of myPolitics |
-| [Asystent NGO](./asystent-ngo/) | Developer tasks of Asystent NGO |
+| Asystent NGO | No longer developed - its developer tasks are kept on the [`asystent-ngo`](https://github.com/gi-org-pl/product/tree/asystent-ngo/asystent-ngo) branch |
 
 ## The site
 The markdown files are the source of truth. The site is generated from them on every merge to `main` - nothing is written for the site separately.
