@@ -2,7 +2,7 @@
 
 # Product
 
-> Product documentation of GI projects - read it at [gi.org.pl/dokumentacja](https://gi.org.pl/dokumentacja), which loads it as JSON from [product.gi.org.pl](https://product.gi.org.pl/index.json).
+> Product documentation of GI projects - read it at [gi.org.pl/produkt](https://gi.org.pl/produkt), which loads it as JSON from [product.gi.org.pl](https://product.gi.org.pl/index.json).
 
 ## Contents
 | Folder | Description |
@@ -12,7 +12,7 @@
 | [Asystent NGO](./asystent-ngo/) | Developer tasks of Asystent NGO |
 
 ## The site
-The markdown files are the source of truth. On every merge to `main` a GitHub Actions workflow builds them into JSON files and publishes those on GitHub Pages at `https://product.gi.org.pl`. The documentation page of the foundation's website, [gi.org.pl/dokumentacja](https://gi.org.pl/dokumentacja), reads those files and shows the documents, so nobody needs to know GitHub to read them. Nothing is written for the site separately.
+The markdown files are the source of truth. On every merge to `main` a GitHub Actions workflow builds them into JSON files and publishes those on GitHub Pages at `https://product.gi.org.pl`. The documentation page of the foundation's website, [gi.org.pl/produkt](https://gi.org.pl/produkt), reads those files and shows the documents, so nobody needs to know GitHub to read them. Nothing is written for the site separately.
 
 - **What is published** - every markdown file under [gi](./gi/README.md) and [mypolitics](./mypolitics/README.md), except the `tasks/` folders, which stay on GitHub. Other files in those folders (images, PDFs, SVGs) are published next to them.
 - **Navigation follows the folders** - each folder is a section and its `README.md` is the section's landing page. Inside a folder, documents follow the order in which its `README.md` links to them. A new file appears by itself.
@@ -45,7 +45,7 @@ Everything is served from `https://product.gi.org.pl` with `Access-Control-Allow
 | `schema/*.json` | A JSON Schema for each of the three JSON files |
 
 - **A document's id is its path** without `.md`, and without `/README` for a folder's landing page: `mypolitics/docs/concept/README.md` is `mypolitics/docs/concept`, served at `docs/mypolitics/docs/concept.json`.
-- **Links in the HTML** to another document point at `https://gi.org.pl/dokumentacja?doc=<id>` and carry `data-doc` and `data-anchor`, so a reader can open them in place. Images and files point at `files/`; anything else in the repository points at GitHub.
+- **Links in the HTML** to another document point at `https://gi.org.pl/produkt?doc=<id>` and carry `data-doc` and `data-anchor`, so a reader can open them in place. Images and files point at `files/`; anything else in the repository points at GitHub.
 - **Headings have ids** as on GitHub, so `#anchor` links keep working.
 - **The build is deterministic** - it reads only the git tree, never the network or the clock, and the same commit gives the same files.
 
