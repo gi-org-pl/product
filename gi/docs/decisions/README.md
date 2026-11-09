@@ -7,4 +7,5 @@ A decision gets its own file once it is taken: what was decided, when, by whom (
 | Decision | Decided |
 |---|---|
 | [GitHub settings are managed as code](./github-settings-as-code.md) | 2026-11-06 |
+| [Cloudflare settings are managed as code](./cloudflare-settings-as-code.md) | 2026-11-09 |
 
