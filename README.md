@@ -9,7 +9,7 @@
 |---|---|
 | [Generacja Innowacja](./gi/README.md) | Roadmap, decisions and docs of the whole foundation |
 | [myPolitics](./mypolitics/README.md) | Docs, specs, roadmap and tasks of myPolitics |
-| [Asystent NGO](./asystent-ngo/) | Developer tasks of Asystent NGO |
+| Asystent NGO | No longer developed - its developer tasks are kept on the [`asystent-ngo`](https://github.com/gi-org-pl/product/tree/asystent-ngo/asystent-ngo) branch |
 
 ## The site
 The markdown files are the source of truth. On every merge to `main` a GitHub Actions workflow builds them into JSON files and publishes those on GitHub Pages at `https://product.gi.org.pl`. The documentation page of the foundation's website, [gi.org.pl/produkt](https://gi.org.pl/produkt), reads those files and shows the documents, so nobody needs to know GitHub to read them. Nothing is written for the site separately.
