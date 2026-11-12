@@ -17,6 +17,9 @@ The idea as proposed:
 - **Scenarios** - a person picks a starting point and decisions on the way ("the Senate proposes amendments", "the President vetoes") and follows where the bill goes, including the dead ends where it is rejected.
 - **Citizens' legislative initiative** - a path of its own: the committee, collecting 100 000 signatures, the deadlines, and what happens to the bill in the Sejm afterwards.
 - **Real bills as examples** - a scenario can replay the path of a real bill from the Sejm data that Sejmownik already uses.
+- **Elections next** - the same approach fits other parts of the system people find hard, such as how seats are allocated with the D'Hondt method, which the team raised in the same conversation.
+
+Interactive civics exercises exist in Polish schools, and the team remembers them as the most engaging lessons. The president's view is that they feel official - no animation, colour or illustration, more like an interactive exam - and that this can be done much better.
 
 ## Opportunity
 *why?*
