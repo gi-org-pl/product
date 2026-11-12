@@ -104,6 +104,16 @@ One hatching pattern serves both directions. Direction is conveyed by where the 
 
 Draw order is fills, then marker, then band, then the other party's image, which is always topmost. Which values stay visible next to the band is set in [value label cases](#with-a-comparison).
 
+## Image cases
+How an orientation's image is fitted into its cap depends on what kind of image it is. The kind is read from the image's address alone: a file whose name ends in ".svg", or an SVG written into the address, is a vector image; anything else is a picture. Nothing is fetched or measured, so the same image is fitted the same way wherever it is drawn.
+
+| Case | Rendering |
+|---|---|
+| A picture | Covers the cap, cut to its round shape |
+| A vector image | Drawn whole, at its own size, in the middle of the cap. It is made smaller only when it would not fit, never enlarged and never cut |
+
+An icon of an ideology is usually a bare vector glyph with no margin of its own, which covering would blow up and cut. Every other place that draws an orientation's image follows the same two cases.
+
 ## Label cases
 - A label sits under the cap of the entry it names, on one line, truncated when it does not fit.
 - The full name remains available to assistive technology even when the visible text is truncated.
@@ -116,7 +126,7 @@ Draw order is fills, then marker, then band, then the other party's image, which
 | Values that together exceed the track | Both fills scaled proportionally so they meet without overlapping |
 | Value missing or not a number | The entry stays present: its cap and label are drawn, with no fill and no number |
 | Orientation without an image | Cap renders with colour only |
-| Orientation without a colour | Falls back to a neutral colour |
+| Orientation without a colour | Falls back to a neutral colour, unless the module drawing the bar has lent it one first, as the [multi axis chart](./multi-axis-chart.md) does inside a group |
 | Orientation name longer than the track | Truncated visually, preserved for assistive technology |
 
 Nothing here throws. Quiz configuration is author-supplied and can be wrong; a broken bar must degrade rather than take a result screen down.
