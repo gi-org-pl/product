@@ -11,6 +11,7 @@ An idea lands here so it is not lost. It moves under its module or [platform](..
 | [Community voting](./community-voting.md) | A public question the community votes on, built to be shared |
 | [Profile badges](./profile-badges.md) | A collectible badge for each completed quiz |
 | [Sejmownik](./sejmownik.md) | Following the Sejm - bills, votes, members - to understand and take part; grows the educational pages idea |
+| [Legislative process simulator](./legislative-process-simulator.md) | An interactive map of how a law is made, with scenarios to play through |
 | [Voting records comparison](./voting-records-comparison.md) | How politicians and clubs voted, compared on key topics |
 | [Live results preview](./live-results-preview.md) | Watching the compass and results change while answering |
 | [Early access rollout](./early-access-rollout.md) | Returning takers get a new quiz first |
